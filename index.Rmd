@@ -1,9 +1,37 @@
 --- 
-title: "AKA"
-author: "Nils"
-date: "`r Sys.Date()`"
+title: "Anvendt kvantitativ analyse"
+author: ""
+date: "Siste endring `r format(Sys.time(), '%d %B, %Y')`"
 site: bookdown::bookdown_site
+bibliography: bibliografi.bib
+csl: apa7.csl
 ---
 
-# Down the rabbit-hole
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 5px;}
+</style>
+<div class = "blue">
+# Introduksjon {.unnumbered}
+<div>
 
+Dette notatet gir en introduksjon til anvendt kvantitativ analyse rettet mot samfunnsvitenskapene. 
+
+Innholdet er under utvikling og oppdateres jevnlig om enn noe uregelmessig. Tilbakemeldinger og innspill bes gitt til [Nils Kvilvang](mailto:nils.kvilvang@inn.no).
+
+![Bilde: Ukjent opphav](Doubleblind.png)
+
+## Versjoner {.unnumbered}
+
+```{r echo = FALSE}
+
+pacman::p_load(kableExtra)
+
+versjon <- data.frame(Dato = c("22.apr 2022", "22.apr 2022", "23.apr 2022"),
+                            Endring = c("Grunnversjon", "Lagt til kapittel om regresjonsanalyse", "Oppdatert kode embedding av filer. Korrektur. Endret på rekkefølge to delkapitler."))
+
+kbl(versjon) %>%
+  kable_classic(full_width = F, html_font = "Cambria", font_size = 12) %>%
+  column_spec(1, width = "8em") %>%
+  column_spec(2, width = "40em")
+
+```
