@@ -35,3 +35,4 @@ kbl(versjon) %>%
   column_spec(2, width = "40em")
 
 ```
+

@@ -1,0 +1,7 @@
+# Vedlegg 9 - Session Info {.unnumbered}
+
+```{r echo = FALSE, eval=TRUE}
+
+xfun::session_info()
+
+```

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Innledning | Anvendt kvantitativ analyse</title>
+  <meta name="description" content="3 Innledning | Anvendt kvantitativ analyse" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Innledning | Anvendt kvantitativ analyse" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Innledning | Anvendt kvantitativ analyse" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="regresjonsanalyse.html"/>
+<link rel="next" href="teori.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
+<link href="libs/table1-1.0/table1_defaults.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">AKA</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#introduksjon">Introduksjon<span></span></a>
+<ul>
+<li><a href="index.html#versjoner">Versjoner<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="hvorfor-dette-notatet.html"><a href="hvorfor-dette-notatet.html"><i class="fa fa-check"></i><b>1</b> Hvorfor dette notatet?<span></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="hvorfor-dette-notatet.html"><a href="hvorfor-dette-notatet.html#programvare"><i class="fa fa-check"></i><b>1.1</b> Programvare<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html"><i class="fa fa-check"></i><b>2</b> Regresjonsanalyse<span></span></a></li>
+<li class="chapter" data-level="3" data-path="innledning.html"><a href="innledning.html"><i class="fa fa-check"></i><b>3</b> Innledning<span></span></a></li>
+<li class="chapter" data-level="4" data-path="teori.html"><a href="teori.html"><i class="fa fa-check"></i><b>4</b> Teori<span></span></a></li>
+<li class="chapter" data-level="4.1" data-path="teori.html"><a href="teori.html#minste-kvadratsum-ordinary-least-squares---ols"><i class="fa fa-check"></i><b>4.1</b> Minste kvadratsum (Ordinary Least Squares - OLS)<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="teori.html"><a href="teori.html#konfidensintervall"><i class="fa fa-check"></i><b>4.2</b> Konfidensintervall<span></span></a></li>
+<li class="chapter" data-level="4.3" data-path="teori.html"><a href="teori.html#steg-i-analyse"><i class="fa fa-check"></i><b>4.3</b> Steg i analyse<span></span></a></li>
+<li class="chapter" data-level="5" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html"><i class="fa fa-check"></i><b>5</b> Enkel, lineær regresjonsanalyse<span></span></a></li>
+<li class="chapter" data-level="5.1" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#steg-1-analyse-av-dataene"><i class="fa fa-check"></i><b>5.1</b> Steg 1: Analyse av dataene<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#histogram"><i class="fa fa-check"></i><b>5.1.1</b> Histogram<span></span></a></li>
+<li class="chapter" data-level="5.1.2" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#quantile-quantile-plott-qq"><i class="fa fa-check"></i><b>5.1.2</b> Quantile-Quantile plott (qq)<span></span></a></li>
+<li class="chapter" data-level="5.1.3" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#statistiske-tester-for-vurdering-av-dataenes-distribusjon"><i class="fa fa-check"></i><b>5.1.3</b> Statistiske tester for vurdering av dataenes distribusjon<span></span></a></li>
+<li class="chapter" data-level="5.1.4" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#boxplott"><i class="fa fa-check"></i><b>5.1.4</b> Boxplott<span></span></a></li>
+<li class="chapter" data-level="5.1.5" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#scatterplott"><i class="fa fa-check"></i><b>5.1.5</b> Scatterplott<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#steg-2-evtentuelt-valg-av-prediktorer-ut-fra-analyse-av-dataene"><i class="fa fa-check"></i><b>5.2</b> Steg 2: Evtentuelt valg av prediktorer ut fra analyse av dataene<span></span></a></li>
+<li class="chapter" data-level="5.3" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#lage-modell-kjøre-regresjonsanalysen"><i class="fa fa-check"></i><b>5.3</b> Lage modell (kjøre regresjonsanalysen)<span></span></a></li>
+<li class="chapter" data-level="5.4" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#analyse-av-resultatene-diagnostikk"><i class="fa fa-check"></i><b>5.4</b> Analyse av resultatene (diagnostikk)<span></span></a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#hvor-mye-forklarer-modellen-vår"><i class="fa fa-check"></i><b>5.4.1</b> Hvor mye forklarer modellen vår?<span></span></a></li>
+<li class="chapter" data-level="5.4.2" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#modellens-koeffisienter-og-regresjonslikning"><i class="fa fa-check"></i><b>5.4.2</b> Modellens koeffisienter og regresjonslikning<span></span></a></li>
+<li class="chapter" data-level="5.4.3" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#hvor-god-er-modellen-vår-goodness-of-fit"><i class="fa fa-check"></i><b>5.4.3</b> Hvor god er modellen vår (goodness of fit)?<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#sjekk-av-forutsetningene"><i class="fa fa-check"></i><b>5.5</b> Sjekk av forutsetningene<span></span></a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#kausalitet"><i class="fa fa-check"></i><b>5.5.1</b> Kausalitet<span></span></a></li>
+<li class="chapter" data-level="5.5.2" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#variablene-er-uten-målefeil"><i class="fa fa-check"></i><b>5.5.2</b> Variablene er uten målefeil<span></span></a></li>
+<li class="chapter" data-level="5.5.3" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#relevante-og-irrelevante-variabler"><i class="fa fa-check"></i><b>5.5.3</b> Relevante og irrelevante variabler<span></span></a></li>
+<li class="chapter" data-level="5.5.4" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#forholdstall-mellom-caserobservasjoner-og-uavhengige-variabler"><i class="fa fa-check"></i><b>5.5.4</b> Forholdstall mellom caser/observasjoner og uavhengige variabler<span></span></a></li>
+<li class="chapter" data-level="5.5.5" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#de-uavhengige-variablene-er-additiv-for-den-avhengige-variabelen"><i class="fa fa-check"></i><b>5.5.5</b> De uavhengige variablene er additiv for den avhengige variabelen<span></span></a></li>
+<li class="chapter" data-level="5.5.6" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#linearitet"><i class="fa fa-check"></i><b>5.5.6</b> Linearitet<span></span></a></li>
+<li class="chapter" data-level="5.5.7" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#residualene-skal-være-normalfordelte"><i class="fa fa-check"></i><b>5.5.7</b> Residualene skal være normalfordelte<span></span></a></li>
+<li class="chapter" data-level="5.5.8" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#fravær-av-multikolinearitet"><i class="fa fa-check"></i><b>5.5.8</b> Fravær av multikolinearitet<span></span></a></li>
+<li class="chapter" data-level="5.5.9" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#fravær-av-heteroskedasisitet"><i class="fa fa-check"></i><b>5.5.9</b> Fravær av heteroskedasisitet<span></span></a></li>
+<li class="chapter" data-level="5.5.10" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#fravær-av-autokorrelasjon"><i class="fa fa-check"></i><b>5.5.10</b> Fravær av autokorrelasjon<span></span></a></li>
+<li class="chapter" data-level="5.5.11" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#fravær-av-innflytelsesrike-observasjonercaser"><i class="fa fa-check"></i><b>5.5.11</b> Fravær av innflytelsesrike observasjoner/caser<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#eventuell-revisjon-av-modell"><i class="fa fa-check"></i><b>5.6</b> Eventuell revisjon av modell<span></span></a></li>
+<li class="chapter" data-level="5.7" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#eventuell-analyse-av-revidert-modell"><i class="fa fa-check"></i><b>5.7</b> Eventuell analyse av revidert modell<span></span></a></li>
+<li class="chapter" data-level="5.8" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#konklusjon-oppsummering-rapportering-av-resultater"><i class="fa fa-check"></i><b>5.8</b> Konklusjon / oppsummering / rapportering av resultater<span></span></a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="enkel-lineær-regresjonsanalyse.html"><a href="enkel-lineær-regresjonsanalyse.html#til-slutt-for-r-brukere"><i class="fa fa-check"></i><b>5.8.1</b> Til slutt for R-brukere…<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="standard-multippel-regresjonsanalyse.html"><a href="standard-multippel-regresjonsanalyse.html"><i class="fa fa-check"></i><b>6</b> Standard multippel regresjonsanalyse<span></span></a></li>
+<li class="chapter" data-level="6.1" data-path="standard-multippel-regresjonsanalyse.html"><a href="standard-multippel-regresjonsanalyse.html#antall-prediktoreruavhengige-variabler-overfitting-og-predicted-r-square"><i class="fa fa-check"></i><b>6.1</b> Antall prediktorer/uavhengige variabler, overfitting og predicted R-square<span></span></a></li>
+<li class="chapter" data-level="6.2" data-path="standard-multippel-regresjonsanalyse.html"><a href="standard-multippel-regresjonsanalyse.html#eksempel-standard-multippel-regresjonsanalyse"><i class="fa fa-check"></i><b>6.2</b> Eksempel standard multippel regresjonsanalyse<span></span></a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="standard-multippel-regresjonsanalyse.html"><a href="standard-multippel-regresjonsanalyse.html#analyse-av-dataene"><i class="fa fa-check"></i><b>6.2.1</b> Analyse av dataene<span></span></a></li>
+<li class="chapter" data-level="6.2.2" data-path="standard-multippel-regresjonsanalyse.html"><a href="standard-multippel-regresjonsanalyse.html#evtentuelt-valg-av-prediktorer-ut-fra-analyse-av-dataene"><i class="fa fa-check"></i><b>6.2.2</b> Evtentuelt valg av prediktorer ut fra analyse av dataene<span></span></a></li>
+<li class="chapter" data-level="6.2.3" data-path="standard-multippel-regresjonsanalyse.html"><a href="standard-multippel-regresjonsanalyse.html#lage-modell-kjøre-regresjonsanalysen-1"><i class="fa fa-check"></i><b>6.2.3</b> Lage modell (kjøre regresjonsanalysen)<span></span></a></li>
+<li class="chapter" data-level="6.2.4" data-path="standard-multippel-regresjonsanalyse.html"><a href="standard-multippel-regresjonsanalyse.html#analyse-av-resultatene-diagnostikk-1"><i class="fa fa-check"></i><b>6.2.4</b> Analyse av resultatene (diagnostikk)<span></span></a></li>
+<li class="chapter" data-level="6.2.5" data-path="standard-multippel-regresjonsanalyse.html"><a href="standard-multippel-regresjonsanalyse.html#sjekk-av-forutsetningene-1"><i class="fa fa-check"></i><b>6.2.5</b> Sjekk av forutsetningene<span></span></a></li>
+<li class="chapter" data-level="6.2.6" data-path="standard-multippel-regresjonsanalyse.html"><a href="standard-multippel-regresjonsanalyse.html#eventuell-revisjon-av-modellen"><i class="fa fa-check"></i><b>6.2.6</b> Eventuell revisjon av modellen<span></span></a></li>
+<li class="chapter" data-level="6.2.7" data-path="standard-multippel-regresjonsanalyse.html"><a href="standard-multippel-regresjonsanalyse.html#eventuell-analyse-av-revidert-modell-1"><i class="fa fa-check"></i><b>6.2.7</b> Eventuell analyse av revidert modell<span></span></a></li>
+<li class="chapter" data-level="6.2.8" data-path="standard-multippel-regresjonsanalyse.html"><a href="standard-multippel-regresjonsanalyse.html#konklusjon-oppsummering-rapportering-av-resultater-1"><i class="fa fa-check"></i><b>6.2.8</b> Konklusjon / oppsummering / rapportering av resultater<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="hierarkisk-multippel-regresjonsanalyse.html"><a href="hierarkisk-multippel-regresjonsanalyse.html"><i class="fa fa-check"></i><b>7</b> Hierarkisk multippel regresjonsanalyse<span></span></a></li>
+<li class="chapter" data-level="7.0.1" data-path="hierarkisk-multippel-regresjonsanalyse.html"><a href="hierarkisk-multippel-regresjonsanalyse.html#analyse-av-dataene-1"><i class="fa fa-check"></i><b>7.0.1</b> Analyse av dataene<span></span></a></li>
+<li class="chapter" data-level="7.0.2" data-path="hierarkisk-multippel-regresjonsanalyse.html"><a href="hierarkisk-multippel-regresjonsanalyse.html#evtentuelt-valg-av-prediktorer-ut-fra-analyse-av-dataene-1"><i class="fa fa-check"></i><b>7.0.2</b> Evtentuelt valg av prediktorer ut fra analyse av dataene<span></span></a></li>
+<li class="chapter" data-level="7.0.3" data-path="hierarkisk-multippel-regresjonsanalyse.html"><a href="hierarkisk-multippel-regresjonsanalyse.html#lage-modell-kjøre-regresjonsanalysen-2"><i class="fa fa-check"></i><b>7.0.3</b> Lage modell (kjøre regresjonsanalysen)<span></span></a></li>
+<li class="chapter" data-level="7.0.4" data-path="hierarkisk-multippel-regresjonsanalyse.html"><a href="hierarkisk-multippel-regresjonsanalyse.html#analyse-av-resultatene-diagnostikk-2"><i class="fa fa-check"></i><b>7.0.4</b> Analyse av resultatene (diagnostikk)<span></span></a></li>
+<li class="chapter" data-level="7.0.5" data-path="hierarkisk-multippel-regresjonsanalyse.html"><a href="hierarkisk-multippel-regresjonsanalyse.html#sjekk-av-forutsetningene-2"><i class="fa fa-check"></i><b>7.0.5</b> Sjekk av forutsetningene<span></span></a></li>
+<li class="chapter" data-level="7.0.6" data-path="hierarkisk-multippel-regresjonsanalyse.html"><a href="hierarkisk-multippel-regresjonsanalyse.html#eventuell-revisjon-av-modellen-1"><i class="fa fa-check"></i><b>7.0.6</b> Eventuell revisjon av modellen<span></span></a></li>
+<li class="chapter" data-level="7.0.7" data-path="hierarkisk-multippel-regresjonsanalyse.html"><a href="hierarkisk-multippel-regresjonsanalyse.html#eventuell-analyse-av-revidert-modell-2"><i class="fa fa-check"></i><b>7.0.7</b> Eventuell analyse av revidert modell<span></span></a></li>
+<li class="chapter" data-level="7.0.8" data-path="hierarkisk-multippel-regresjonsanalyse.html"><a href="hierarkisk-multippel-regresjonsanalyse.html#konklusjon-oppsummering-rapportering-av-resultater-2"><i class="fa fa-check"></i><b>7.0.8</b> Konklusjon / oppsummering / rapportering av resultater<span></span></a></li>
+<li class="chapter" data-level="8" data-path="stegvis-mutlippel-regresjonsanalyse.html"><a href="stegvis-mutlippel-regresjonsanalyse.html"><i class="fa fa-check"></i><b>8</b> Stegvis mutlippel regresjonsanalyse<span></span></a></li>
+<li class="chapter" data-level="8.1" data-path="stegvis-mutlippel-regresjonsanalyse.html"><a href="stegvis-mutlippel-regresjonsanalyse.html#eksempel-stegvis-multippel-regresjonsanalyse"><i class="fa fa-check"></i><b>8.1</b> Eksempel stegvis multippel regresjonsanalyse<span></span></a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="stegvis-mutlippel-regresjonsanalyse.html"><a href="stegvis-mutlippel-regresjonsanalyse.html#analyse-av-dataene-2"><i class="fa fa-check"></i><b>8.1.1</b> Analyse av dataene<span></span></a></li>
+<li class="chapter" data-level="8.1.2" data-path="stegvis-mutlippel-regresjonsanalyse.html"><a href="stegvis-mutlippel-regresjonsanalyse.html#lage-modell-kjøre-regresjonsanalysen-3"><i class="fa fa-check"></i><b>8.1.2</b> Lage modell (kjøre regresjonsanalysen)<span></span></a></li>
+<li class="chapter" data-level="8.1.3" data-path="stegvis-mutlippel-regresjonsanalyse.html"><a href="stegvis-mutlippel-regresjonsanalyse.html#analyse-av-resultatene-diagnostikk---forward"><i class="fa fa-check"></i><b>8.1.3</b> Analyse av resultatene (diagnostikk) - <em>forward</em><span></span></a></li>
+<li class="chapter" data-level="8.1.4" data-path="stegvis-mutlippel-regresjonsanalyse.html"><a href="stegvis-mutlippel-regresjonsanalyse.html#analyse-av-resultatene-diagnostikk---backward"><i class="fa fa-check"></i><b>8.1.4</b> Analyse av resultatene (diagnostikk) - <em>backward</em><span></span></a></li>
+<li class="chapter" data-level="8.1.5" data-path="stegvis-mutlippel-regresjonsanalyse.html"><a href="stegvis-mutlippel-regresjonsanalyse.html#analyse-av-resultatene-diagnostikk---bidirectional"><i class="fa fa-check"></i><b>8.1.5</b> Analyse av resultatene (diagnostikk) - <em>bidirectional</em><span></span></a></li>
+<li class="chapter" data-level="8.1.6" data-path="stegvis-mutlippel-regresjonsanalyse.html"><a href="stegvis-mutlippel-regresjonsanalyse.html#konklusjon-oppsummering-rapportering-av-resultater-3"><i class="fa fa-check"></i><b>8.1.6</b> Konklusjon / oppsummering / rapportering av resultater<span></span></a></li>
+</ul></li>
+<li><a href="referanser.html#referanser">Referanser<span></span></a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Anvendt kvantitativ analyse</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="innledning" class="section level1 hasAnchor blue" number="3">
+<h1><span class="header-section-number">3</span> Innledning<a href="innledning.html#innledning" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+</div>
+<p>Regresjonsanalyse er et særtilfelle av variansanalyse, og er i følge <span class="citation">Mehmetoglu &amp; Mittner (2020)</span> muligens en mest brukte analysemetoden for dataanalyse, eller arbeidshesten i foskning på økonomiske og sosiale forhold <span class="citation">(Thrane, 2019)</span>. Det er først og fremst metodens er fleksibilitet som en hovedgrunn til dette.</p>
+<p>En regresjonsanalyse er en statistisk analyse som undersøker sammenhengen mellom en kontinuerlig avhengig variabel og en eller flere kontinuerlige og/eller kategoriske uavhengige variabler. Selv om korrelasjon kan være veldig hjelpsomt å forstå vil en regresjonsanalyse søke å ta vår forståelse av sammenhengen litt videre, til for eksempel å forsøke å predikere nivået i en avhengig variabel ut fra nivået på den/de uavhengige variabler. Hvis vi lykkes med dette vil vi kunne klare å si noe om forventet verdi på et fenomen vi er interessert i ut fra kjente verdier på andre variabler. La oss anta at vi har variabler som beliggenhet (avstand fra sentrum), areal, etasje, solforhold, antall rom, antall bad, standard på bad og liknende for en leilighet kan vi bruke disse uavhengige variablene til å predikere en salgssum for denne boligen (som en avhengig variabel). Vi lager da en modell for dette forholdet - i dette tilfellet en regresjonsmodell. Vi går dermed fra å spørre <strong>om</strong> det er en sammenheng til å spørre <strong>hvilken</strong> sammenheng det er.</p>
+<p>La oss forsøke å illustrere prinsippet med regresjonsanalyse gjennom er såkalt Venndiagram.</p>
+<p><img src="Venn1.png" style="width:40.0%" /></p>
+<p>Den gule sirkelen illustrerer det forholdet vi er interessert i å “finne ut noe om”. Den representerer det vi kaller den avhengige variabelen - fordi det vi ønsker å finne ut er avhengig av andre forhold (andre variabler). Vi kan si at den gule sirkelen viser variasjonen i drivstofforbruket til alle biler vi har med i undersøkelsen vår, og vi betegner denne variabelen <span class="math inline">\(Y\)</span>. Biler har ulikt drivstofforbruk, så vi har altså en variasjon i drivstofforbruket mellom bilene. Den blå sirkelen viser variasjonen i motorstørrelse (vi kaller denne variabelen for <span class="math inline">\(x_1\)</span>). Ulike biler har ulik motorstørrelse, og vi tenker at større motor betyr mer drivstofforbruk enn mindre motor. Den grønne sirkelen representerer en variabel vi har kalt kjørestil (<span class="math inline">\(x_2\)</span>).</p>
+<p>Vi har en hypotese om at vi kan predikere (forutsi) drifstofforbruket til en gitt bil ut fra motorstørrelse og kjørestil. Så det vi ønsker å se på er hvor mye av korrelasjonen mellom drivstofforbruk og motorstørrelse skyldes faktisk motorstørrelse, og hvor mye skyldes kjørestil. Vi tenker også at kjørestil og drivstofforbruk er korrelert (det er naturlig å tenke seg at personer med en aggresiv kjørestil har biler med større motorer - det er altså en korrelasjon mellom kjørestil og motorstørrelse). Vi ser dette i figuren under. Korrelasjonen mellom drivstofforbruk og motorstørrelse er gitt i områdene merket 1 og 2. Korrelasjonen mellom drivstofforbruk og kjørestil er gitt i områdene 2 og 3. Korrelasjonen mellom kjørestil og motorstørrelse er gitt i 2 og 4.</p>
+<p><img src="Venn2.png" style="width:40.0%" /></p>
+<p>Området 2 viser den delte variasjonen mellom drivstofforbruk, motorstørrelse og kjørestil. Det vil innebære at vi kan bruke regresjonsanalsye til å isolere ut område 1 ved å se på motorstørrelsens totale korrelasjon med drivstofforbruk og trekke fra den delen av den totale korrelasjonen som deles med kjørestil (område 2). Da finner vi motorstørrelsens (<span class="math inline">\(x_1\)</span>’s) unike bidrag. !</p>
+<p><img src="Venn3.png" style="width:40.0%" /></p>
+<p>Det samme kan vi gjøre for kjørestil, der det unike bidraget utgjøres av område 3. Vi kan selvsagt ha flere prediktorer (uavhengige variabler) - noe vi veldig ofte vil ha. Det vi gjør er i prisnippet det samme: vi tar bort biter av korrelasjonen mellom motorstørrelse og drivstofforbruk som skyldes samvariasjon med andre variabler slik at vi får isolert den delen av korrelasjonen som utelukkende skyldes motorstørelse. Man kan tenke seg en ny variabel med rød sirkel. Igjen - regresjonsanalysen forsøker å isolere den unike delen for korrelasjonen mellom motorstørrelse og drivstofforbruk (og det samme for de andre variablene: den unike delen). Når vi klarer å isolere den unike korrelasjonen kan vi også si at vi har isolert den unike kausale effekten motorstørrelse har på drivstofforbruket (gitt at vi har inkludert alle relevant uavhengige variabler i modellen, noe vi i praksis sjelden vil klare).</p>
+<p><img src="Venn4.png" style="width:40.0%" /></p>
+<p>Den videre innledningen til regresjonsanalyse tar utgangspunkt i eksempelet i <span class="citation">Løvås (2013)</span> (boka kom ut i 4. utgave i 2018). Illustrasjonene som er brukt er hentet fra bokas <a href="www.nettressurser.no/statistikk">nettressurser</a>. Løvås’ bok «Statistikk for universiteter og høgskoler» kan anbefales som introduksjonsbok til statistikk på universitets- og høgskolenivået. En annen bok som fungerer fint til dette formålet er Jan Ubøes “Statistikk for økonomifag” (vi har brukt 4. utgave, 2014 - 5. utgave kom i 2015) <span class="citation">(Ubøe, 2014)</span>.</p>
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 5px;}
+</style>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regresjonsanalyse.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="teori.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/nilskvilvang/AKA/edit/master/02_Kap_2.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/nilskvilvang/AKA/blob/master/02_Kap_2.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

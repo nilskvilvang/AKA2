@@ -1,8 +1,8 @@
-book_filename: "AKA2-book"
+book_filename: "AKA-book"
 output_dir: docs
 delete_merged_file: true
-edit: https://github.com/nilskvilvang/AKA2/edit/master/%s
-view: https://github.com/nilskvilvang/AKA2/blob/master/%s
+edit: https://github.com/nilskvilvang/AKA/edit/master/%s
+view: https://github.com/nilskvilvang/AKA/blob/master/%s
 language:
   ui:
     chapter_name: ""
