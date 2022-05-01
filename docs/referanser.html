@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Referanser | Anvendt kvantitativ analyse</title>
   <meta name="description" content="Referanser | Anvendt kvantitativ analyse" />
-  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Referanser | Anvendt kvantitativ analyse" />
   <meta property="og:type" content="book" />
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="regresjonsanalyse.html"/>
-<link rel="next" href="vedlegg-9---session-info.html"/>
+<link rel="prev" href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"/>
+<link rel="next" href="vedlegg-x---session-info.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -54,6 +54,13 @@
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
 <link href="libs/table1-1.0/table1_defaults.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -160,69 +167,79 @@ div.csl-indent {
 <li><a href="./">AKA</a></li>
 
 <li class="divider"></li>
-<li><a href="index.html#introduksjon">Introduksjon<span></span></a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduksjon</a>
 <ul>
-<li><a href="index.html#versjoner">Versjoner<span></span></a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#versjoner"><i class="fa fa-check"></i>Versjoner</a></li>
 </ul></li>
-<li><a href="hvorfor-dette-notatet.html#hvorfor-dette-notatet">Hvorfor dette notatet?<span></span></a>
+<li class="chapter" data-level="" data-path="hvorfor-dette-notatet.html"><a href="hvorfor-dette-notatet.html"><i class="fa fa-check"></i>Hvorfor dette notatet?</a>
 <ul>
-<li><a href="hvorfor-dette-notatet.html#programvare">Programvare<span></span></a></li>
+<li class="chapter" data-level="" data-path="hvorfor-dette-notatet.html"><a href="hvorfor-dette-notatet.html#programvare"><i class="fa fa-check"></i>Programvare</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html"><i class="fa fa-check"></i><b>1</b> Regresjonsanalyse<span></span></a></li>
-<li class="chapter" data-level="1.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#innledning"><i class="fa fa-check"></i><b>1.1</b> Innledning<span></span></a></li>
-<li class="chapter" data-level="1.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#teori"><i class="fa fa-check"></i><b>1.2</b> Teori<span></span></a>
+<li class="chapter" data-level="1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html"><i class="fa fa-check"></i><b>1</b> Regresjonsanalyse</a></li>
+<li class="chapter" data-level="1.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#innledning"><i class="fa fa-check"></i><b>1.1</b> Innledning</a></li>
+<li class="chapter" data-level="1.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#teori"><i class="fa fa-check"></i><b>1.2</b> Teori</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#minste-kvadratsum-ordinary-least-squares---ols"><i class="fa fa-check"></i><b>1.2.1</b> Minste kvadratsum (Ordinary Least Squares - OLS)<span></span></a></li>
-<li class="chapter" data-level="1.2.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#konfidensintervall"><i class="fa fa-check"></i><b>1.2.2</b> Konfidensintervall<span></span></a></li>
-<li class="chapter" data-level="1.2.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-i-analyse"><i class="fa fa-check"></i><b>1.2.3</b> Steg i analyse<span></span></a></li>
+<li class="chapter" data-level="1.2.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#minste-kvadratsum-ordinary-least-squares---ols"><i class="fa fa-check"></i><b>1.2.1</b> Minste kvadratsum (Ordinary Least Squares - OLS)</a></li>
+<li class="chapter" data-level="1.2.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#konfidensintervall"><i class="fa fa-check"></i><b>1.2.2</b> Konfidensintervall</a></li>
+<li class="chapter" data-level="1.2.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-i-analyse"><i class="fa fa-check"></i><b>1.2.3</b> Steg i analyse</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#enkel-lineær-regresjonsanalyse"><i class="fa fa-check"></i><b>1.3</b> Enkel, lineær regresjonsanalyse<span></span></a>
+<li class="chapter" data-level="1.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#enkel-lineær-regresjonsanalyse"><i class="fa fa-check"></i><b>1.3</b> Enkel, lineær regresjonsanalyse</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-1-analyse-av-dataene"><i class="fa fa-check"></i><b>1.3.1</b> Steg 1: Analyse av dataene<span></span></a></li>
-<li class="chapter" data-level="1.3.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-2-evtentuelt-valg-av-prediktorer-ut-fra-analyse-av-dataene"><i class="fa fa-check"></i><b>1.3.2</b> Steg 2: Evtentuelt valg av prediktorer ut fra analyse av dataene<span></span></a></li>
-<li class="chapter" data-level="1.3.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-3-lage-modell-og-kjøre-regresjonsanalysen"><i class="fa fa-check"></i><b>1.3.3</b> Steg 3: Lage modell (og kjøre regresjonsanalysen)<span></span></a></li>
-<li class="chapter" data-level="1.3.4" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-4-analyse-av-resultatene-diagnostikk"><i class="fa fa-check"></i><b>1.3.4</b> Steg 4: Analyse av resultatene (diagnostikk)<span></span></a></li>
-<li class="chapter" data-level="1.3.5" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-5-sjekk-av-forutsetningene"><i class="fa fa-check"></i><b>1.3.5</b> Steg 5: Sjekk av forutsetningene<span></span></a></li>
-<li class="chapter" data-level="1.3.6" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-6-eventuell-revisjon-av-modell"><i class="fa fa-check"></i><b>1.3.6</b> Steg 6: Eventuell revisjon av modell<span></span></a></li>
-<li class="chapter" data-level="1.3.7" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-7-eventuell-analyse-av-revidert-modell"><i class="fa fa-check"></i><b>1.3.7</b> Steg 7: Eventuell analyse av revidert modell<span></span></a></li>
-<li class="chapter" data-level="1.3.8" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-8-konklusjon-oppsummering-rapportering-av-resultater"><i class="fa fa-check"></i><b>1.3.8</b> Steg 8: Konklusjon / oppsummering / rapportering av resultater<span></span></a></li>
-<li class="chapter" data-level="1.3.9" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#til-slutt-for-r-brukere"><i class="fa fa-check"></i><b>1.3.9</b> Til slutt for R-brukere…<span></span></a></li>
+<li class="chapter" data-level="1.3.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-1-analyse-av-dataene"><i class="fa fa-check"></i><b>1.3.1</b> Steg 1: Analyse av dataene</a></li>
+<li class="chapter" data-level="1.3.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-2-evtentuelt-valg-av-prediktorer-ut-fra-analyse-av-dataene"><i class="fa fa-check"></i><b>1.3.2</b> Steg 2: Evtentuelt valg av prediktorer ut fra analyse av dataene</a></li>
+<li class="chapter" data-level="1.3.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-3-lage-modell-og-kjøre-regresjonsanalysen"><i class="fa fa-check"></i><b>1.3.3</b> Steg 3: Lage modell (og kjøre regresjonsanalysen)</a></li>
+<li class="chapter" data-level="1.3.4" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-4-analyse-av-resultatene-diagnostikk"><i class="fa fa-check"></i><b>1.3.4</b> Steg 4: Analyse av resultatene (diagnostikk)</a></li>
+<li class="chapter" data-level="1.3.5" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-5-sjekk-av-forutsetningene"><i class="fa fa-check"></i><b>1.3.5</b> Steg 5: Sjekk av forutsetningene</a></li>
+<li class="chapter" data-level="1.3.6" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-6-eventuell-revisjon-av-modell"><i class="fa fa-check"></i><b>1.3.6</b> Steg 6: Eventuell revisjon av modell</a></li>
+<li class="chapter" data-level="1.3.7" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-7-eventuell-analyse-av-revidert-modell"><i class="fa fa-check"></i><b>1.3.7</b> Steg 7: Eventuell analyse av revidert modell</a></li>
+<li class="chapter" data-level="1.3.8" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-8-konklusjon-oppsummering-rapportering-av-resultater"><i class="fa fa-check"></i><b>1.3.8</b> Steg 8: Konklusjon / oppsummering / rapportering av resultater</a></li>
+<li class="chapter" data-level="1.3.9" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#til-slutt-for-r-brukere"><i class="fa fa-check"></i><b>1.3.9</b> Til slutt for R-brukere…</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#standard-multippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.4</b> Standard multippel regresjonsanalyse<span></span></a>
+<li class="chapter" data-level="1.4" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#standard-multippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.4</b> Standard multippel regresjonsanalyse</a>
 <ul>
-<li class="chapter" data-level="1.4.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eksempel-standard-multippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.4.1</b> Eksempel standard multippel regresjonsanalyse<span></span></a></li>
-<li class="chapter" data-level="1.4.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-dataene"><i class="fa fa-check"></i><b>1.4.2</b> Analyse av dataene<span></span></a></li>
-<li class="chapter" data-level="1.4.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#evtentuelt-valg-av-prediktorer-ut-fra-analyse-av-dataene"><i class="fa fa-check"></i><b>1.4.3</b> Evtentuelt valg av prediktorer ut fra analyse av dataene<span></span></a></li>
-<li class="chapter" data-level="1.4.4" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#lage-modell-kjøre-regresjonsanalysen"><i class="fa fa-check"></i><b>1.4.4</b> Lage modell (kjøre regresjonsanalysen)<span></span></a></li>
-<li class="chapter" data-level="1.4.5" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-resultatene-diagnostikk"><i class="fa fa-check"></i><b>1.4.5</b> Analyse av resultatene (diagnostikk)<span></span></a></li>
-<li class="chapter" data-level="1.4.6" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#sjekk-av-forutsetningene"><i class="fa fa-check"></i><b>1.4.6</b> Sjekk av forutsetningene<span></span></a></li>
-<li class="chapter" data-level="1.4.7" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eventuell-revisjon-av-modellen"><i class="fa fa-check"></i><b>1.4.7</b> Eventuell revisjon av modellen<span></span></a></li>
-<li class="chapter" data-level="1.4.8" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eventuell-analyse-av-revidert-modell"><i class="fa fa-check"></i><b>1.4.8</b> Eventuell analyse av revidert modell<span></span></a></li>
-<li class="chapter" data-level="1.4.9" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#konklusjon-oppsummering-rapportering-av-resultater"><i class="fa fa-check"></i><b>1.4.9</b> Konklusjon / oppsummering / rapportering av resultater<span></span></a></li>
+<li class="chapter" data-level="1.4.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eksempel-standard-multippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.4.1</b> Eksempel standard multippel regresjonsanalyse</a></li>
+<li class="chapter" data-level="1.4.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-dataene"><i class="fa fa-check"></i><b>1.4.2</b> Analyse av dataene</a></li>
+<li class="chapter" data-level="1.4.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#evtentuelt-valg-av-prediktorer-ut-fra-analyse-av-dataene"><i class="fa fa-check"></i><b>1.4.3</b> Evtentuelt valg av prediktorer ut fra analyse av dataene</a></li>
+<li class="chapter" data-level="1.4.4" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#lage-modell-kjøre-regresjonsanalysen"><i class="fa fa-check"></i><b>1.4.4</b> Lage modell (kjøre regresjonsanalysen)</a></li>
+<li class="chapter" data-level="1.4.5" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-resultatene-diagnostikk"><i class="fa fa-check"></i><b>1.4.5</b> Analyse av resultatene (diagnostikk)</a></li>
+<li class="chapter" data-level="1.4.6" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#sjekk-av-forutsetningene"><i class="fa fa-check"></i><b>1.4.6</b> Sjekk av forutsetningene</a></li>
+<li class="chapter" data-level="1.4.7" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eventuell-revisjon-av-modellen"><i class="fa fa-check"></i><b>1.4.7</b> Eventuell revisjon av modellen</a></li>
+<li class="chapter" data-level="1.4.8" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eventuell-analyse-av-revidert-modell"><i class="fa fa-check"></i><b>1.4.8</b> Eventuell analyse av revidert modell</a></li>
+<li class="chapter" data-level="1.4.9" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#konklusjon-oppsummering-rapportering-av-resultater"><i class="fa fa-check"></i><b>1.4.9</b> Konklusjon / oppsummering / rapportering av resultater</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#hierarkisk-multippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.5</b> Hierarkisk multippel regresjonsanalyse<span></span></a>
+<li class="chapter" data-level="1.5" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#hierarkisk-multippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.5</b> Hierarkisk multippel regresjonsanalyse</a>
 <ul>
-<li class="chapter" data-level="1.5.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-dataene-1"><i class="fa fa-check"></i><b>1.5.1</b> Analyse av dataene<span></span></a></li>
-<li class="chapter" data-level="1.5.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#evtentuelt-valg-av-prediktorer-ut-fra-analyse-av-dataene-1"><i class="fa fa-check"></i><b>1.5.2</b> Evtentuelt valg av prediktorer ut fra analyse av dataene<span></span></a></li>
-<li class="chapter" data-level="1.5.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#lage-modell-kjøre-regresjonsanalysen-1"><i class="fa fa-check"></i><b>1.5.3</b> Lage modell (kjøre regresjonsanalysen)<span></span></a></li>
-<li class="chapter" data-level="1.5.4" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-resultatene-diagnostikk-1"><i class="fa fa-check"></i><b>1.5.4</b> Analyse av resultatene (diagnostikk)<span></span></a></li>
-<li class="chapter" data-level="1.5.5" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#sjekk-av-forutsetningene-1"><i class="fa fa-check"></i><b>1.5.5</b> Sjekk av forutsetningene<span></span></a></li>
-<li class="chapter" data-level="1.5.6" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eventuell-revisjon-av-modellen-1"><i class="fa fa-check"></i><b>1.5.6</b> Eventuell revisjon av modellen<span></span></a></li>
-<li class="chapter" data-level="1.5.7" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eventuell-analyse-av-revidert-modell-1"><i class="fa fa-check"></i><b>1.5.7</b> Eventuell analyse av revidert modell<span></span></a></li>
-<li class="chapter" data-level="1.5.8" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#konklusjon-oppsummering-rapportering-av-resultater-1"><i class="fa fa-check"></i><b>1.5.8</b> Konklusjon / oppsummering / rapportering av resultater<span></span></a></li>
+<li class="chapter" data-level="1.5.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-dataene-1"><i class="fa fa-check"></i><b>1.5.1</b> Analyse av dataene</a></li>
+<li class="chapter" data-level="1.5.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#evtentuelt-valg-av-prediktorer-ut-fra-analyse-av-dataene-1"><i class="fa fa-check"></i><b>1.5.2</b> Evtentuelt valg av prediktorer ut fra analyse av dataene</a></li>
+<li class="chapter" data-level="1.5.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#lage-modell-kjøre-regresjonsanalysen-1"><i class="fa fa-check"></i><b>1.5.3</b> Lage modell (kjøre regresjonsanalysen)</a></li>
+<li class="chapter" data-level="1.5.4" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-resultatene-diagnostikk-1"><i class="fa fa-check"></i><b>1.5.4</b> Analyse av resultatene (diagnostikk)</a></li>
+<li class="chapter" data-level="1.5.5" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#sjekk-av-forutsetningene-1"><i class="fa fa-check"></i><b>1.5.5</b> Sjekk av forutsetningene</a></li>
+<li class="chapter" data-level="1.5.6" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eventuell-revisjon-av-modellen-1"><i class="fa fa-check"></i><b>1.5.6</b> Eventuell revisjon av modellen</a></li>
+<li class="chapter" data-level="1.5.7" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eventuell-analyse-av-revidert-modell-1"><i class="fa fa-check"></i><b>1.5.7</b> Eventuell analyse av revidert modell</a></li>
+<li class="chapter" data-level="1.5.8" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#konklusjon-oppsummering-rapportering-av-resultater-1"><i class="fa fa-check"></i><b>1.5.8</b> Konklusjon / oppsummering / rapportering av resultater</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#stegvis-mutlippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.6</b> Stegvis mutlippel regresjonsanalyse<span></span></a>
+<li class="chapter" data-level="1.6" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#stegvis-mutlippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.6</b> Stegvis mutlippel regresjonsanalyse</a>
 <ul>
-<li class="chapter" data-level="1.6.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eksempel-stegvis-multippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.6.1</b> Eksempel stegvis multippel regresjonsanalyse<span></span></a></li>
-<li class="chapter" data-level="1.6.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-dataene-2"><i class="fa fa-check"></i><b>1.6.2</b> Analyse av dataene<span></span></a></li>
-<li class="chapter" data-level="1.6.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#lage-modell-kjøre-regresjonsanalysen-2"><i class="fa fa-check"></i><b>1.6.3</b> Lage modell (kjøre regresjonsanalysen)<span></span></a></li>
-<li class="chapter" data-level="1.6.4" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-resultatene-diagnostikk---forward"><i class="fa fa-check"></i><b>1.6.4</b> Analyse av resultatene (diagnostikk) - <em>forward</em><span></span></a></li>
-<li class="chapter" data-level="1.6.5" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-resultatene-diagnostikk---backward"><i class="fa fa-check"></i><b>1.6.5</b> Analyse av resultatene (diagnostikk) - <em>backward</em><span></span></a></li>
-<li class="chapter" data-level="1.6.6" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-resultatene-diagnostikk---bidirectional"><i class="fa fa-check"></i><b>1.6.6</b> Analyse av resultatene (diagnostikk) - <em>bidirectional</em><span></span></a></li>
-<li class="chapter" data-level="1.6.7" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#konklusjon-oppsummering-rapportering-av-resultater-2"><i class="fa fa-check"></i><b>1.6.7</b> Konklusjon / oppsummering / rapportering av resultater<span></span></a></li>
+<li class="chapter" data-level="1.6.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eksempel-stegvis-multippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.6.1</b> Eksempel stegvis multippel regresjonsanalyse</a></li>
+<li class="chapter" data-level="1.6.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-dataene-2"><i class="fa fa-check"></i><b>1.6.2</b> Analyse av dataene</a></li>
+<li class="chapter" data-level="1.6.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#lage-modell-kjøre-regresjonsanalysen-2"><i class="fa fa-check"></i><b>1.6.3</b> Lage modell (kjøre regresjonsanalysen)</a></li>
+<li class="chapter" data-level="1.6.4" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-resultatene-diagnostikk---forward"><i class="fa fa-check"></i><b>1.6.4</b> Analyse av resultatene (diagnostikk) - <em>forward</em></a></li>
+<li class="chapter" data-level="1.6.5" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-resultatene-diagnostikk---backward"><i class="fa fa-check"></i><b>1.6.5</b> Analyse av resultatene (diagnostikk) - <em>backward</em></a></li>
+<li class="chapter" data-level="1.6.6" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-resultatene-diagnostikk---bidirectional"><i class="fa fa-check"></i><b>1.6.6</b> Analyse av resultatene (diagnostikk) - <em>bidirectional</em></a></li>
+<li class="chapter" data-level="1.6.7" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#konklusjon-oppsummering-rapportering-av-resultater-2"><i class="fa fa-check"></i><b>1.6.7</b> Konklusjon / oppsummering / rapportering av resultater</a></li>
 </ul></li>
-<li><a href="referanser.html#referanser">Referanser<span></span></a></li>
-<li><a href="vedlegg-9---session-info.html#vedlegg-9---session-info">Vedlegg 9 - Session Info<span></span></a></li>
+<li class="chapter" data-level="2" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><i class="fa fa-check"></i><b>2</b> Dimension reduction: Factor Analysis (FA) og Principal Component Analysis (PCA)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html#innledning-1"><i class="fa fa-check"></i><b>2.1</b> Innledning</a></li>
+<li class="chapter" data-level="2.2" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>2.2</b> Principal Component Analysis (PCA)</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html#pca-gjennom-et-lite-eksempel"><i class="fa fa-check"></i><b>2.2.1</b> PCA gjennom et lite eksempel</a></li>
+<li class="chapter" data-level="2.2.2" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html#pca-gjennom-et-lite-eksempel---del-2"><i class="fa fa-check"></i><b>2.2.2</b> PCA gjennom et lite eksempel - del 2</a></li>
+<li class="chapter" data-level="2.2.3" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html#eksempel-pca"><i class="fa fa-check"></i><b>2.2.3</b> Eksempel PCA</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referanser.html"><a href="referanser.html"><i class="fa fa-check"></i>Referanser</a></li>
+<li class="chapter" data-level="" data-path="vedlegg-x---session-info.html"><a href="vedlegg-x---session-info.html"><i class="fa fa-check"></i>Vedlegg X - Session Info</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -255,13 +272,25 @@ Anderson, T. W. &amp; Darling, D. A. (1954). A <span>Test</span> of <span>Goodne
 Anderson, Theodore W. &amp; Darling, D. A. (1952). Asymptotic theory of certain "goodness of fit" criteria based on stochastic processes. <em>The Annals of Mathematical Statistics</em>, <em>23</em>(2), 193–212.
 </div>
 <div class="csl-entry">
+Arrindell, W. A. &amp; van der Ende, J. (1985). An <span>Empirical Test</span> of the <span>Utility</span> of the <span>Observations-To-Variables Ratio</span> in <span>Factor</span> and <span>Components Analysis</span>. <em>Applied Psychological Measurement</em>, <em>9</em>(2), 165–178. <a href="https://doi.org/10.1177/014662168500900205">https://doi.org/10.1177/014662168500900205</a>
+</div>
+<div class="csl-entry">
+Bastos, R. V. S. (2021). Exploratory <span>Factor Analysis</span> vs <span>Principal Components</span>: From concept to application. In <em>Medium</em>. https://towardsdatascience.com/exploratory-factor-analysis-vs-principal-components-from-concept-to-application-b67bbbdb82c4.
+</div>
+<div class="csl-entry">
 Belsley, D. A., Kuh, E. &amp; Welsch, R. E. (1980). <em>Regression <span>Diagnostics</span>: <span>Identifying Influential Data</span> and <span>Sources</span> of <span>Collinearity</span></em>. <span>John Wiley &amp; Sons</span>.
 </div>
 <div class="csl-entry">
 Berry, W. D. (1993). <em>Understanding regression assumptions</em>. <span>Sage Publications</span>.
 </div>
 <div class="csl-entry">
+Bjerkan, A. M. (2007). Faktoranalyse. In T. A. Eikemo &amp; T. Høyvarde (Eds.), <em>Kvantitativ analyse med <span>SPSS</span></em> (pp. 220–234). <span>Tapir Akademisk Forlag</span>.
+</div>
+<div class="csl-entry">
 Bowerman, B. L. &amp; O’Connell, R. T. (1990). <em>Linear statistical models: <span>An</span> applied approach</em> (Second). <span>Duxbury</span>.
+</div>
+<div class="csl-entry">
+Cattell, R. B. (1966). The scree test for the number of factors. <em>Multivariate Behavioral Research</em>, <em>1</em>, 245–276. <a href="https://doi.org/10.1207/s15327906mbr0102_10">https://doi.org/10.1207/s15327906mbr0102_10</a>
 </div>
 <div class="csl-entry">
 Cook, R. D. &amp; Weisberg, S. (1982). <em>Residuals and <span>Influence</span> in <span>Regression</span></em>. <span>Chapman and Hall</span>.
@@ -270,10 +299,16 @@ Cook, R. D. &amp; Weisberg, S. (1982). <em>Residuals and <span>Influence</span> 
 Cumming, G. &amp; Calin-Jageman, R. (2017). <em>Introduction to the new statistics: <span>Estimation</span>, open science, &amp; beyond</em>. <span>Routledge</span>.
 </div>
 <div class="csl-entry">
+DataViz. (2020). How <span>To Make Scree Plot</span> in <span>R</span> with Ggplot2. In <em>Data Viz with Python and R</em>.
+</div>
+<div class="csl-entry">
 Durbin, J. &amp; Watson, G. S. (1951). Testing for <span>Serial Correlation</span> in <span>Least Squares Regression</span>. <span>II</span>. <em>Biometrika</em>, <em>38</em>(1/2), 159–177. <a href="https://doi.org/10.2307/2332325">https://doi.org/10.2307/2332325</a>
 </div>
 <div class="csl-entry">
 Eikemo, T. A. &amp; Clausen, T. H. (Eds.). (2007). <em>Kvantitativ analyse med <span>SPSS</span>. <span>En</span> praktisk innføring i kvantitative analyseteknikker.</em> <span>Tapir Akademisk Forlag</span>.
+</div>
+<div class="csl-entry">
+Fabrigar, L. R., Wegener, D. T., MacCallum, R. C. &amp; Strahan, E. J. (1999). Evaluating the use of exploratory factor analysis in psychological research. <em>Psychological Methods</em>, <em>4</em>(3), 272–272.
 </div>
 <div class="csl-entry">
 Field, A. (2009). <em>Discovering <span>Statistics Using SPSS</span></em> (Third). <span>SAGE Publications Ltd</span>.
@@ -297,6 +332,9 @@ Galarnyk, M. (2018). Understanding <span>Boxplots</span>. <em>Towards Data Scien
 Green, S. B. (1991). How <span>Many Subjects Does It Take To Do A Regression Analysis</span>. <em>Multivariate Behavioral Research</em>, <em>26</em>(3), 499–510. <a href="https://doi.org/10.1207/s15327906mbr2603_7">https://doi.org/10.1207/s15327906mbr2603_7</a>
 </div>
 <div class="csl-entry">
+Guadagnoli, E. &amp; Velicer, W. F. (1988). Relation of <span>Sample Size</span> to the <span>Stability</span> of <span>Component Patterns</span>. <em>Psychological Bulletin</em>, <em>103</em>(2), 265–275.
+</div>
+<div class="csl-entry">
 Hair Jr., J. H., Black, W. C., Babin, B. J. &amp; Anderson, R. E. (2010). <em>Multivariate <span>Data Analysis</span>: <span>A Global Perspective</span></em> (Seventh). <span>Pearson</span>.
 </div>
 <div class="csl-entry">
@@ -312,7 +350,22 @@ Henderson, H. V. &amp; Velleman, P. F. (1981). Building multiple regression mode
 Hinkle, D. E., Wiersma, W. &amp; Jurs, S. G. (2003). <em>Applied statistics for the behavioral sciences</em> (Fifth). <span>Wadsworth, Cengagae Learning</span>.
 </div>
 <div class="csl-entry">
+Hogarty, K. Y., Hines, C. V., Kromrey, J. D., Ferron, J. M. &amp; Mumford, K. R. (2005). The quality of factor solutions in exploratory factor analysis: <span>The</span> influence of sample size, communality, and overdetermination. <em>Educational and Psychological Measurement</em>, <em>65</em>(2), 202–226.
+</div>
+<div class="csl-entry">
+Horn, J. L. (1965). A rationale and test for the number of factors in factor analysis. <em>Psychometrika</em>, <em>30</em>(2), 179–185. <a href="https://doi.org/10.1007/BF02289447">https://doi.org/10.1007/BF02289447</a>
+</div>
+<div class="csl-entry">
 Huber, P. J. (1981). <em>Robust <span>Statistics</span></em>. <span>Wiley</span>.
+</div>
+<div class="csl-entry">
+Jöreskog, K. G., Olsson, U. H. &amp; Wallentin, F. Y. (2016). <em>Multivariate <span>Analysis</span> with <span>LISREL</span></em>. <span>Springer</span>.
+</div>
+<div class="csl-entry">
+Kaiser, H. F. (1960). The application of electronic computers to factor analysis. <em>Educational and Psychological Measurement</em>, <em>20</em>, 141–151.
+</div>
+<div class="csl-entry">
+Kaiser, H. F. (1974). An <span>Index</span> of <span>Factorial Simplicity</span>. <em>Psychometrika</em>, <em>39</em>(1), 31–36. <a href="https://doi.org/10.1007/BF02291575">https://doi.org/10.1007/BF02291575</a>
 </div>
 <div class="csl-entry">
 Kristensen, P. (2005). Avhengige målefeil i observasjonsstudier. <em>Tidsskr Nor Lægeforen</em>, <em>125</em>, 173175–173175.
@@ -321,7 +374,13 @@ Kristensen, P. (2005). Avhengige målefeil i observasjonsstudier. <em>Tidsskr No
 Lomax, R. G. &amp; Hahs-Vaughn, D. L. (2012). <em>Statistical <span>Concepts</span>. <span>A Second Course</span>.</em> (Fourth). <span>Routledge</span>.
 </div>
 <div class="csl-entry">
+Long, J. D. (2010). Principal <span>Component Analysis</span> (<span>PCA</span>) vs <span>Ordinary Least Squares</span> (<span>OLS</span>): <span>A Visual Explanation</span>. In <em>Cerebral Mastication</em>. https://cerebralmastication.com/2010/09/principal-component-analysis-pca-vs-ordinary-least-squares-ols-a-visual-explination/.
+</div>
+<div class="csl-entry">
 Løvås, G. G. (2013). <em>Statistikk for universiteter og høgskoler</em> (Third). <span>Universitetsforlaget</span>.
+</div>
+<div class="csl-entry">
+MacCallum, R. C., Widaman, K. F., Zhang, S. &amp; Hong, S. (1999). Sample size in factor analysis. <em>Psychological Methods</em>, <em>4</em>(1), 84–84.
 </div>
 <div class="csl-entry">
 MacMahon, S., Peto, R., Collins, R., Godwin, J., MacMahon, S., Cutler, J., Sorlie, P., Abbott, R., Collins, R., Neaton, J., Abbott, R., Dyer, A. &amp; Stamler, J. (1990). Blood pressure, stroke, and coronary heart disease: <span>Part</span> 1, prolonged differences in blood pressure: Prospective observational studies corrected for the regression dilution bias. <em>Originally Published as Volume 1, Issue 8692</em>, <em>335</em>(8692), 765–774. <a href="https://doi.org/10.1016/0140-6736(90)90878-9">https://doi.org/10.1016/0140-6736(90)90878-9</a>
@@ -351,6 +410,9 @@ Pallant, J. (2010). <em><span>SPSS Survival Manual</span></em> (Fourth). <span>M
 Pallant, J. F. (2000). Development and <span>Validation</span> of a <span>Scale</span> to <span>Measure Perceived Control</span> of <span>Internal States</span>. <em>Journal of Personality Assessment</em>, <em>75</em>(2), 308–337. <a href="https://doi.org/10.1207/S15327752JPA7502_10">https://doi.org/10.1207/S15327752JPA7502_10</a>
 </div>
 <div class="csl-entry">
+Pittard. (2012). <em>Principal <span>Components Analysis Using R</span></em>.
+</div>
+<div class="csl-entry">
 Preiss, M., Mejzlíková, T., Rudá, A., Krámský, D. &amp; Pitáková, J. (2015). Testing the <span>Level</span> of <span>Social Desirability During Job Interview</span> on <span>White-Collar Profession</span>. <em>Frontiers in Psychology</em>, <em>6</em>. <a href="https://doi.org/10.3389/fpsyg.2015.01886">https://doi.org/10.3389/fpsyg.2015.01886</a>
 </div>
 <div class="csl-entry">
@@ -372,7 +434,19 @@ Schmidt, F. L. (1971). The <span>Relative Efficiency</span> of <span>Regression<
 Singer, J. D. &amp; Willett, J. B. (2003). <em>Applied <span>Longitudinal Data Analysis</span>. <span>Modeling Change</span> and <span>Event Occurence</span>.</em> <span>Oxford University Press</span>.
 </div>
 <div class="csl-entry">
+Smith, L. I. (2002). <em>A tutorial on <span>Principal Components Analysis</span></em>.
+</div>
+<div class="csl-entry">
+Starmer, J. (2018). <em><span>StatQuest</span>: <span>Principal Component Analysis</span> (<span>PCA</span>), <span class="nocase">Step-by-Step</span></em>.
+</div>
+<div class="csl-entry">
 Stevens, J. P. (1996). <em>Applied multivariate statistics for the social sciences</em> (Third). <span>Lawrence Erlbaum</span>.
+</div>
+<div class="csl-entry">
+Stevens, J. P. (2002). <em>Applied <span>Multivariate Statistics</span> for the <span>Social Sciences</span></em> (5, Ed.). <span>Routledge</span>.
+</div>
+<div class="csl-entry">
+Szczęsna, K. (2022). Principal <span>Component Analysis</span> (<span>PCA</span>). In <em>RPubs</em>. https://rpubs.com/KarolinaSzczesna/862710.
 </div>
 <div class="csl-entry">
 Tabachnik, B. G. &amp; Fidell, L. S. (2007). <em>Using multivariate statistics</em> (Fifth). <span>Pearson Education</span>.
@@ -387,10 +461,16 @@ Thoresen, M. (2003). Målefeil i regresjonsanalyse. <em>Norsk Epidemiologi</em>,
 Thrane, C. (2019). <em>Applied <span>Regression Analysis</span>. <span>Doing</span>, <span>Interpreting</span> and <span>Reporting</span></em>. <span>Routledge</span>.
 </div>
 <div class="csl-entry">
+Tinsley, H. E. A. &amp; Tinsley, D. J. (1987). Uses of factor analysis in counseling psychology research. <em>Journal of Counseling Psychology</em>, <em>34</em>(4), 414–424. <a href="https://doi.org/10.1037/0022-0167.34.4.414">https://doi.org/10.1037/0022-0167.34.4.414</a>
+</div>
+<div class="csl-entry">
 Tukey, J. W. (1977). <em>Exploratory <span>Data Analysis</span></em>. <span>Addison-Wesley</span>.
 </div>
 <div class="csl-entry">
 Ubøe, J. (2014). <em>Statistikk for økonomifag</em> (Fourth). <span>Gyldendal Akademisk</span>.
+</div>
+<div class="csl-entry">
+Unkel, S. &amp; Trendafilov, N. T. (2010). Simultaneous <span>Parameter Estimation</span> in <span>Exploratory Factor Analysis</span>: <span>An Expository Review</span>: <span>Simultaneous Parameter Estimation</span> in <span>EFA</span>. <em>International Statistical Review</em>, <em>78</em>(3), 363–382. <a href="https://doi.org/10.1111/j.1751-5823.2010.00120.x">https://doi.org/10.1111/j.1751-5823.2010.00120.x</a>
 </div>
 <div class="csl-entry">
 van den Berg, R. G. (2018). Stepwise <span>Regression</span> in <span>SPSS</span>. <em>SPSS Tutorials</em>.
@@ -412,8 +492,8 @@ Zach. (2019). How to <span>Identify Influential Data Points Using Cook</span>’
           </div>
         </div>
       </div>
-<a href="regresjonsanalyse.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="vedlegg-9---session-info.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="vedlegg-x---session-info.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

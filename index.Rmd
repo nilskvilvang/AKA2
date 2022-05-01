@@ -26,8 +26,8 @@ Innholdet er under utvikling og oppdateres jevnlig om enn noe uregelmessig. Tilb
 
 pacman::p_load(kableExtra)
 
-versjon <- data.frame(Dato = c("22.apr 2022", "22.apr 2022", "23.apr 2022"),
-                            Endring = c("Grunnversjon", "Lagt til kapittel om regresjonsanalyse", "Oppdatert kode embedding av filer. Korrektur. Endret på rekkefølge to delkapitler."))
+versjon <- data.frame(Dato = c("22.apr 2022", "22.apr 2022", "23.apr 2022", "01.mai 2022"),
+                            Endring = c("Grunnversjon", "Lagt til kapittel om regresjonsanalyse", "Oppdatert kode embedding av filer. Korrektur. Endret på rekkefølge to delkapitler.", "Lagt til PCA."))
 
 kbl(versjon) %>%
   kable_classic(full_width = F, html_font = "Cambria", font_size = 12) %>%

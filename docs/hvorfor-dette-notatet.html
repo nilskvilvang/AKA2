@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Hvorfor dette notatet? | Anvendt kvantitativ analyse</title>
   <meta name="description" content="Hvorfor dette notatet? | Anvendt kvantitativ analyse" />
-  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Hvorfor dette notatet? | Anvendt kvantitativ analyse" />
   <meta property="og:type" content="book" />
@@ -54,6 +54,13 @@
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
 <link href="libs/table1-1.0/table1_defaults.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -160,69 +167,79 @@ div.csl-indent {
 <li><a href="./">AKA</a></li>
 
 <li class="divider"></li>
-<li><a href="index.html#introduksjon">Introduksjon<span></span></a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduksjon</a>
 <ul>
-<li><a href="index.html#versjoner">Versjoner<span></span></a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#versjoner"><i class="fa fa-check"></i>Versjoner</a></li>
 </ul></li>
-<li><a href="hvorfor-dette-notatet.html#hvorfor-dette-notatet">Hvorfor dette notatet?<span></span></a>
+<li class="chapter" data-level="" data-path="hvorfor-dette-notatet.html"><a href="hvorfor-dette-notatet.html"><i class="fa fa-check"></i>Hvorfor dette notatet?</a>
 <ul>
-<li><a href="hvorfor-dette-notatet.html#programvare">Programvare<span></span></a></li>
+<li class="chapter" data-level="" data-path="hvorfor-dette-notatet.html"><a href="hvorfor-dette-notatet.html#programvare"><i class="fa fa-check"></i>Programvare</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html"><i class="fa fa-check"></i><b>1</b> Regresjonsanalyse<span></span></a></li>
-<li class="chapter" data-level="1.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#innledning"><i class="fa fa-check"></i><b>1.1</b> Innledning<span></span></a></li>
-<li class="chapter" data-level="1.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#teori"><i class="fa fa-check"></i><b>1.2</b> Teori<span></span></a>
+<li class="chapter" data-level="1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html"><i class="fa fa-check"></i><b>1</b> Regresjonsanalyse</a></li>
+<li class="chapter" data-level="1.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#innledning"><i class="fa fa-check"></i><b>1.1</b> Innledning</a></li>
+<li class="chapter" data-level="1.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#teori"><i class="fa fa-check"></i><b>1.2</b> Teori</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#minste-kvadratsum-ordinary-least-squares---ols"><i class="fa fa-check"></i><b>1.2.1</b> Minste kvadratsum (Ordinary Least Squares - OLS)<span></span></a></li>
-<li class="chapter" data-level="1.2.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#konfidensintervall"><i class="fa fa-check"></i><b>1.2.2</b> Konfidensintervall<span></span></a></li>
-<li class="chapter" data-level="1.2.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-i-analyse"><i class="fa fa-check"></i><b>1.2.3</b> Steg i analyse<span></span></a></li>
+<li class="chapter" data-level="1.2.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#minste-kvadratsum-ordinary-least-squares---ols"><i class="fa fa-check"></i><b>1.2.1</b> Minste kvadratsum (Ordinary Least Squares - OLS)</a></li>
+<li class="chapter" data-level="1.2.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#konfidensintervall"><i class="fa fa-check"></i><b>1.2.2</b> Konfidensintervall</a></li>
+<li class="chapter" data-level="1.2.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-i-analyse"><i class="fa fa-check"></i><b>1.2.3</b> Steg i analyse</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#enkel-lineær-regresjonsanalyse"><i class="fa fa-check"></i><b>1.3</b> Enkel, lineær regresjonsanalyse<span></span></a>
+<li class="chapter" data-level="1.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#enkel-lineær-regresjonsanalyse"><i class="fa fa-check"></i><b>1.3</b> Enkel, lineær regresjonsanalyse</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-1-analyse-av-dataene"><i class="fa fa-check"></i><b>1.3.1</b> Steg 1: Analyse av dataene<span></span></a></li>
-<li class="chapter" data-level="1.3.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-2-evtentuelt-valg-av-prediktorer-ut-fra-analyse-av-dataene"><i class="fa fa-check"></i><b>1.3.2</b> Steg 2: Evtentuelt valg av prediktorer ut fra analyse av dataene<span></span></a></li>
-<li class="chapter" data-level="1.3.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-3-lage-modell-og-kjøre-regresjonsanalysen"><i class="fa fa-check"></i><b>1.3.3</b> Steg 3: Lage modell (og kjøre regresjonsanalysen)<span></span></a></li>
-<li class="chapter" data-level="1.3.4" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-4-analyse-av-resultatene-diagnostikk"><i class="fa fa-check"></i><b>1.3.4</b> Steg 4: Analyse av resultatene (diagnostikk)<span></span></a></li>
-<li class="chapter" data-level="1.3.5" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-5-sjekk-av-forutsetningene"><i class="fa fa-check"></i><b>1.3.5</b> Steg 5: Sjekk av forutsetningene<span></span></a></li>
-<li class="chapter" data-level="1.3.6" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-6-eventuell-revisjon-av-modell"><i class="fa fa-check"></i><b>1.3.6</b> Steg 6: Eventuell revisjon av modell<span></span></a></li>
-<li class="chapter" data-level="1.3.7" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-7-eventuell-analyse-av-revidert-modell"><i class="fa fa-check"></i><b>1.3.7</b> Steg 7: Eventuell analyse av revidert modell<span></span></a></li>
-<li class="chapter" data-level="1.3.8" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-8-konklusjon-oppsummering-rapportering-av-resultater"><i class="fa fa-check"></i><b>1.3.8</b> Steg 8: Konklusjon / oppsummering / rapportering av resultater<span></span></a></li>
-<li class="chapter" data-level="1.3.9" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#til-slutt-for-r-brukere"><i class="fa fa-check"></i><b>1.3.9</b> Til slutt for R-brukere…<span></span></a></li>
+<li class="chapter" data-level="1.3.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-1-analyse-av-dataene"><i class="fa fa-check"></i><b>1.3.1</b> Steg 1: Analyse av dataene</a></li>
+<li class="chapter" data-level="1.3.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-2-evtentuelt-valg-av-prediktorer-ut-fra-analyse-av-dataene"><i class="fa fa-check"></i><b>1.3.2</b> Steg 2: Evtentuelt valg av prediktorer ut fra analyse av dataene</a></li>
+<li class="chapter" data-level="1.3.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-3-lage-modell-og-kjøre-regresjonsanalysen"><i class="fa fa-check"></i><b>1.3.3</b> Steg 3: Lage modell (og kjøre regresjonsanalysen)</a></li>
+<li class="chapter" data-level="1.3.4" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-4-analyse-av-resultatene-diagnostikk"><i class="fa fa-check"></i><b>1.3.4</b> Steg 4: Analyse av resultatene (diagnostikk)</a></li>
+<li class="chapter" data-level="1.3.5" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-5-sjekk-av-forutsetningene"><i class="fa fa-check"></i><b>1.3.5</b> Steg 5: Sjekk av forutsetningene</a></li>
+<li class="chapter" data-level="1.3.6" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-6-eventuell-revisjon-av-modell"><i class="fa fa-check"></i><b>1.3.6</b> Steg 6: Eventuell revisjon av modell</a></li>
+<li class="chapter" data-level="1.3.7" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-7-eventuell-analyse-av-revidert-modell"><i class="fa fa-check"></i><b>1.3.7</b> Steg 7: Eventuell analyse av revidert modell</a></li>
+<li class="chapter" data-level="1.3.8" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#steg-8-konklusjon-oppsummering-rapportering-av-resultater"><i class="fa fa-check"></i><b>1.3.8</b> Steg 8: Konklusjon / oppsummering / rapportering av resultater</a></li>
+<li class="chapter" data-level="1.3.9" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#til-slutt-for-r-brukere"><i class="fa fa-check"></i><b>1.3.9</b> Til slutt for R-brukere…</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#standard-multippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.4</b> Standard multippel regresjonsanalyse<span></span></a>
+<li class="chapter" data-level="1.4" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#standard-multippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.4</b> Standard multippel regresjonsanalyse</a>
 <ul>
-<li class="chapter" data-level="1.4.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eksempel-standard-multippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.4.1</b> Eksempel standard multippel regresjonsanalyse<span></span></a></li>
-<li class="chapter" data-level="1.4.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-dataene"><i class="fa fa-check"></i><b>1.4.2</b> Analyse av dataene<span></span></a></li>
-<li class="chapter" data-level="1.4.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#evtentuelt-valg-av-prediktorer-ut-fra-analyse-av-dataene"><i class="fa fa-check"></i><b>1.4.3</b> Evtentuelt valg av prediktorer ut fra analyse av dataene<span></span></a></li>
-<li class="chapter" data-level="1.4.4" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#lage-modell-kjøre-regresjonsanalysen"><i class="fa fa-check"></i><b>1.4.4</b> Lage modell (kjøre regresjonsanalysen)<span></span></a></li>
-<li class="chapter" data-level="1.4.5" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-resultatene-diagnostikk"><i class="fa fa-check"></i><b>1.4.5</b> Analyse av resultatene (diagnostikk)<span></span></a></li>
-<li class="chapter" data-level="1.4.6" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#sjekk-av-forutsetningene"><i class="fa fa-check"></i><b>1.4.6</b> Sjekk av forutsetningene<span></span></a></li>
-<li class="chapter" data-level="1.4.7" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eventuell-revisjon-av-modellen"><i class="fa fa-check"></i><b>1.4.7</b> Eventuell revisjon av modellen<span></span></a></li>
-<li class="chapter" data-level="1.4.8" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eventuell-analyse-av-revidert-modell"><i class="fa fa-check"></i><b>1.4.8</b> Eventuell analyse av revidert modell<span></span></a></li>
-<li class="chapter" data-level="1.4.9" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#konklusjon-oppsummering-rapportering-av-resultater"><i class="fa fa-check"></i><b>1.4.9</b> Konklusjon / oppsummering / rapportering av resultater<span></span></a></li>
+<li class="chapter" data-level="1.4.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eksempel-standard-multippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.4.1</b> Eksempel standard multippel regresjonsanalyse</a></li>
+<li class="chapter" data-level="1.4.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-dataene"><i class="fa fa-check"></i><b>1.4.2</b> Analyse av dataene</a></li>
+<li class="chapter" data-level="1.4.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#evtentuelt-valg-av-prediktorer-ut-fra-analyse-av-dataene"><i class="fa fa-check"></i><b>1.4.3</b> Evtentuelt valg av prediktorer ut fra analyse av dataene</a></li>
+<li class="chapter" data-level="1.4.4" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#lage-modell-kjøre-regresjonsanalysen"><i class="fa fa-check"></i><b>1.4.4</b> Lage modell (kjøre regresjonsanalysen)</a></li>
+<li class="chapter" data-level="1.4.5" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-resultatene-diagnostikk"><i class="fa fa-check"></i><b>1.4.5</b> Analyse av resultatene (diagnostikk)</a></li>
+<li class="chapter" data-level="1.4.6" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#sjekk-av-forutsetningene"><i class="fa fa-check"></i><b>1.4.6</b> Sjekk av forutsetningene</a></li>
+<li class="chapter" data-level="1.4.7" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eventuell-revisjon-av-modellen"><i class="fa fa-check"></i><b>1.4.7</b> Eventuell revisjon av modellen</a></li>
+<li class="chapter" data-level="1.4.8" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eventuell-analyse-av-revidert-modell"><i class="fa fa-check"></i><b>1.4.8</b> Eventuell analyse av revidert modell</a></li>
+<li class="chapter" data-level="1.4.9" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#konklusjon-oppsummering-rapportering-av-resultater"><i class="fa fa-check"></i><b>1.4.9</b> Konklusjon / oppsummering / rapportering av resultater</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#hierarkisk-multippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.5</b> Hierarkisk multippel regresjonsanalyse<span></span></a>
+<li class="chapter" data-level="1.5" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#hierarkisk-multippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.5</b> Hierarkisk multippel regresjonsanalyse</a>
 <ul>
-<li class="chapter" data-level="1.5.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-dataene-1"><i class="fa fa-check"></i><b>1.5.1</b> Analyse av dataene<span></span></a></li>
-<li class="chapter" data-level="1.5.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#evtentuelt-valg-av-prediktorer-ut-fra-analyse-av-dataene-1"><i class="fa fa-check"></i><b>1.5.2</b> Evtentuelt valg av prediktorer ut fra analyse av dataene<span></span></a></li>
-<li class="chapter" data-level="1.5.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#lage-modell-kjøre-regresjonsanalysen-1"><i class="fa fa-check"></i><b>1.5.3</b> Lage modell (kjøre regresjonsanalysen)<span></span></a></li>
-<li class="chapter" data-level="1.5.4" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-resultatene-diagnostikk-1"><i class="fa fa-check"></i><b>1.5.4</b> Analyse av resultatene (diagnostikk)<span></span></a></li>
-<li class="chapter" data-level="1.5.5" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#sjekk-av-forutsetningene-1"><i class="fa fa-check"></i><b>1.5.5</b> Sjekk av forutsetningene<span></span></a></li>
-<li class="chapter" data-level="1.5.6" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eventuell-revisjon-av-modellen-1"><i class="fa fa-check"></i><b>1.5.6</b> Eventuell revisjon av modellen<span></span></a></li>
-<li class="chapter" data-level="1.5.7" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eventuell-analyse-av-revidert-modell-1"><i class="fa fa-check"></i><b>1.5.7</b> Eventuell analyse av revidert modell<span></span></a></li>
-<li class="chapter" data-level="1.5.8" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#konklusjon-oppsummering-rapportering-av-resultater-1"><i class="fa fa-check"></i><b>1.5.8</b> Konklusjon / oppsummering / rapportering av resultater<span></span></a></li>
+<li class="chapter" data-level="1.5.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-dataene-1"><i class="fa fa-check"></i><b>1.5.1</b> Analyse av dataene</a></li>
+<li class="chapter" data-level="1.5.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#evtentuelt-valg-av-prediktorer-ut-fra-analyse-av-dataene-1"><i class="fa fa-check"></i><b>1.5.2</b> Evtentuelt valg av prediktorer ut fra analyse av dataene</a></li>
+<li class="chapter" data-level="1.5.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#lage-modell-kjøre-regresjonsanalysen-1"><i class="fa fa-check"></i><b>1.5.3</b> Lage modell (kjøre regresjonsanalysen)</a></li>
+<li class="chapter" data-level="1.5.4" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-resultatene-diagnostikk-1"><i class="fa fa-check"></i><b>1.5.4</b> Analyse av resultatene (diagnostikk)</a></li>
+<li class="chapter" data-level="1.5.5" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#sjekk-av-forutsetningene-1"><i class="fa fa-check"></i><b>1.5.5</b> Sjekk av forutsetningene</a></li>
+<li class="chapter" data-level="1.5.6" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eventuell-revisjon-av-modellen-1"><i class="fa fa-check"></i><b>1.5.6</b> Eventuell revisjon av modellen</a></li>
+<li class="chapter" data-level="1.5.7" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eventuell-analyse-av-revidert-modell-1"><i class="fa fa-check"></i><b>1.5.7</b> Eventuell analyse av revidert modell</a></li>
+<li class="chapter" data-level="1.5.8" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#konklusjon-oppsummering-rapportering-av-resultater-1"><i class="fa fa-check"></i><b>1.5.8</b> Konklusjon / oppsummering / rapportering av resultater</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#stegvis-mutlippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.6</b> Stegvis mutlippel regresjonsanalyse<span></span></a>
+<li class="chapter" data-level="1.6" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#stegvis-mutlippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.6</b> Stegvis mutlippel regresjonsanalyse</a>
 <ul>
-<li class="chapter" data-level="1.6.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eksempel-stegvis-multippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.6.1</b> Eksempel stegvis multippel regresjonsanalyse<span></span></a></li>
-<li class="chapter" data-level="1.6.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-dataene-2"><i class="fa fa-check"></i><b>1.6.2</b> Analyse av dataene<span></span></a></li>
-<li class="chapter" data-level="1.6.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#lage-modell-kjøre-regresjonsanalysen-2"><i class="fa fa-check"></i><b>1.6.3</b> Lage modell (kjøre regresjonsanalysen)<span></span></a></li>
-<li class="chapter" data-level="1.6.4" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-resultatene-diagnostikk---forward"><i class="fa fa-check"></i><b>1.6.4</b> Analyse av resultatene (diagnostikk) - <em>forward</em><span></span></a></li>
-<li class="chapter" data-level="1.6.5" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-resultatene-diagnostikk---backward"><i class="fa fa-check"></i><b>1.6.5</b> Analyse av resultatene (diagnostikk) - <em>backward</em><span></span></a></li>
-<li class="chapter" data-level="1.6.6" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-resultatene-diagnostikk---bidirectional"><i class="fa fa-check"></i><b>1.6.6</b> Analyse av resultatene (diagnostikk) - <em>bidirectional</em><span></span></a></li>
-<li class="chapter" data-level="1.6.7" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#konklusjon-oppsummering-rapportering-av-resultater-2"><i class="fa fa-check"></i><b>1.6.7</b> Konklusjon / oppsummering / rapportering av resultater<span></span></a></li>
+<li class="chapter" data-level="1.6.1" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#eksempel-stegvis-multippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.6.1</b> Eksempel stegvis multippel regresjonsanalyse</a></li>
+<li class="chapter" data-level="1.6.2" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-dataene-2"><i class="fa fa-check"></i><b>1.6.2</b> Analyse av dataene</a></li>
+<li class="chapter" data-level="1.6.3" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#lage-modell-kjøre-regresjonsanalysen-2"><i class="fa fa-check"></i><b>1.6.3</b> Lage modell (kjøre regresjonsanalysen)</a></li>
+<li class="chapter" data-level="1.6.4" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-resultatene-diagnostikk---forward"><i class="fa fa-check"></i><b>1.6.4</b> Analyse av resultatene (diagnostikk) - <em>forward</em></a></li>
+<li class="chapter" data-level="1.6.5" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-resultatene-diagnostikk---backward"><i class="fa fa-check"></i><b>1.6.5</b> Analyse av resultatene (diagnostikk) - <em>backward</em></a></li>
+<li class="chapter" data-level="1.6.6" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#analyse-av-resultatene-diagnostikk---bidirectional"><i class="fa fa-check"></i><b>1.6.6</b> Analyse av resultatene (diagnostikk) - <em>bidirectional</em></a></li>
+<li class="chapter" data-level="1.6.7" data-path="regresjonsanalyse.html"><a href="regresjonsanalyse.html#konklusjon-oppsummering-rapportering-av-resultater-2"><i class="fa fa-check"></i><b>1.6.7</b> Konklusjon / oppsummering / rapportering av resultater</a></li>
 </ul></li>
-<li><a href="referanser.html#referanser">Referanser<span></span></a></li>
-<li><a href="vedlegg-9---session-info.html#vedlegg-9---session-info">Vedlegg 9 - Session Info<span></span></a></li>
+<li class="chapter" data-level="2" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><i class="fa fa-check"></i><b>2</b> Dimension reduction: Factor Analysis (FA) og Principal Component Analysis (PCA)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html#innledning-1"><i class="fa fa-check"></i><b>2.1</b> Innledning</a></li>
+<li class="chapter" data-level="2.2" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>2.2</b> Principal Component Analysis (PCA)</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html#pca-gjennom-et-lite-eksempel"><i class="fa fa-check"></i><b>2.2.1</b> PCA gjennom et lite eksempel</a></li>
+<li class="chapter" data-level="2.2.2" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html#pca-gjennom-et-lite-eksempel---del-2"><i class="fa fa-check"></i><b>2.2.2</b> PCA gjennom et lite eksempel - del 2</a></li>
+<li class="chapter" data-level="2.2.3" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html#eksempel-pca"><i class="fa fa-check"></i><b>2.2.3</b> Eksempel PCA</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referanser.html"><a href="referanser.html"><i class="fa fa-check"></i>Referanser</a></li>
+<li class="chapter" data-level="" data-path="vedlegg-x---session-info.html"><a href="vedlegg-x---session-info.html"><i class="fa fa-check"></i>Vedlegg X - Session Info</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>

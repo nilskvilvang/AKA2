@@ -9,7 +9,7 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
 # Regresjonsanalyse
 </div>
 
-```{r include = FALSE, warning = FALSE, message = FALSE}
+```{r echo = FALSE, warning = FALSE, message = FALSE}
 library(car)
 library(readxl)
 library(effects)
@@ -702,19 +702,33 @@ Dette er altså ikke så enkelt. Det finnes mange statistiske tester, som kan gi
 # Base R
 
 par(mfrow=(c(1,2)))
-boxplot(Field_OLS_data$Sales, col=rgb(0.1,0.1,0.7,0.5))
-boxplot(Field_OLS_data$Adverts, col=rgb(0.8,0.1,0.3,0.6))
+Boxplot(Field_OLS_data$Adverts, id = list(n=Inf), ylab = "", main = "Adverts", col = "Blue")
+Boxplot(Field_OLS_data$Sales, id = list(n=Inf), ylab = "", main = "Sales", col = "Green")
+
+
 ```
+
+Vi ser at vi får først ut en liste over uteliggerne identifisert ved id/case/observasjonsnummer (43, 87 og 184) for variabelen Adverts. Dette vises også som tre små sirkler i boxplottet. 
 
 Et boxplott forteller oss mye om dataenes distribusjon.
 
 * Selve boksen representerer 50 % av observasjonene/casene, det vil si at nedre kant representerer første kvartil (= 25.prosentil) og øvre kant tredje kvartil (= 75.prosentil). 
 * Den tykkere horisontale streken i boksen viser medianverdien (= andre kvartil = 50.prosentil)
-* Dersom en observasjon ligger utenfor 1,5 x lengden på boksen vises dette med en liten sirkel. Dette defineres som uteliggere. Å identifisere uteliggere kan være viktig for mange statistiske tester.
+* Dersom en observasjon ligger utenfor en terkselverdi (jfr figur under) vises dette med en liten sirkel. Dette defineres som uteliggere. Å identifisere uteliggere kan være viktig for mange statistiske tester.  
 
 @galarnykUnderstandingBoxplots2018 illustrerer boxplott slik:
 
 ![](Boxplott.png)
+
+```{r}
+
+#nedre_grense <- median(dat$hwy) - 3 * mad(dat$hwy, constant = 1)
+#lower_bound
+
+```
+
+
+
 
 #### Scatterplott
 
