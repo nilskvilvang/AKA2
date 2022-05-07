@@ -5,7 +5,7 @@ fig:unnamed-chunk-21
 fig:unnamed-chunk-24
 fig:unnamed-chunk-27
 fig:unnamed-chunk-30
-tab:unnamed-chunk-46
+tab:unnamed-chunk-45
 regresjonsanalyse
 innledning
 teori
@@ -64,7 +64,6 @@ modellens-koeffisienter
 hvor-god-er-modellen-vår-goodness-of-fit-1
 sjekk-av-forutsetningene
 kausalitet-1
-variablene-er-uten-målefeil-1
 relevante-og-irrelevante-variabler-1
 forholdstall-mellom-caserobservasjoner-og-uavhengige-variabler-1
 de-uavhengige-variablene-er-additiv-for-den-avhengige-variabelen-1
@@ -87,7 +86,6 @@ modellens-koeffisienter-1
 hvor-god-er-modellen-vår-goodness-of-fit-2
 sjekk-av-forutsetningene-1
 kausalitet-2
-variablene-er-uten-målefeil-2
 relevante-og-irrelevante-variabler-2
 forholdstall-mellom-caserobservasjoner-og-uavhengige-variabler-2
 de-uavhengige-variablene-er-additiv-for-den-avhengige-variabelen-2

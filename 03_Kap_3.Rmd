@@ -1,5 +1,6 @@
 ---
 bibliography: bibliografi.bib  
+code_folding: hide
 ---
 ```{r}
 pacman::p_load(readxl, car, rgl, flextable, plotly, latex2exp, ggfortify, gridExtra, factoextra, corrplot, Directional, tidyverse, palmerpenguins, psych, paran, kableExtra, multiUS, xtable, GPArotation, EFAtools, nFactors, rstatix, calibrate, Matrix)

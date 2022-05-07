@@ -1,5 +1,6 @@
 ---
 bibliography: bibliografi.bib  
+code_folding: hide
 ---
 
 <style>
@@ -10,7 +11,6 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
 </div>
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE}
-
 pacman::p_load(car, readxl, effects, ggplot2, writexl, ggpubr, tidyverse, gridExtra, nortest, knitr, kableExtra, tseries, normtest, flextable, magrittr, ISLR, olsrr, lmtest, rnorsk, qwraps2, sjPlot, sjmisc, sjlabelled, xtable, Hmisc, gt, gtsummary, sjPlot, modelsummary, table1, jtools, interactions, outliers, EnvStats, qqplotr)
 ```
 
@@ -149,21 +149,17 @@ Dette eksempelet bygger på @fieldDiscoveringStatisticsUsing2009.
 Du kan laste ned datasettet i ulike formater her:
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE}
-
 # Bruker pakken: xfun
-
 xfun::embed_file('Field_datasett_OLS.xlsx')
 ```
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE}
 # Bruker pakken: xfun
-
 xfun::embed_file('Field_datasett_OLS.sav')
 ```
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE}
 # Bruker pakken: xfun
-
 xfun::embed_file('Field_datasett_OLS.dta')
 ```
 
@@ -178,13 +174,9 @@ Vi skal nå gå gjennom våre anbefalte steg i analysen, og starter med en analy
 Vi ser på datasettet.
 
 ```{r}
-
 # Bruker pakken: readxl
-
 Field_OLS_data <- read_excel("Field_datasett_OLS.xlsx")
-
 # Bruker pakken: car
-
 brief(Field_OLS_data)
 ```
 
@@ -200,9 +192,7 @@ Hvis vi ønsker å se på i hvilken grad vi kan predikere salgstall gjennom hvor
 I en analyse av dataene kan vi for eksempel være interessert i noen nøkkeltall:
 
 ```{r}
-
 # base R
-
 summary(Field_OLS_data)
 ```
 
@@ -211,9 +201,7 @@ Ofte er det imidlertd mer hensiktsmessig å se på dataene grafisk i en utforske
 #### Histogram
 
 ```{r}
-
 # base R
-
 par(mfrow=(c(1,2)))
 histSales <- with(Field_OLS_data, hist(Sales))
 histAdverts <- with(Field_OLS_data, hist(Adverts))
@@ -226,12 +214,11 @@ Det kan se ut som at salgstallene er rimelig normalfordelte, mens reklamevariabe
 Q-Q plottet (“quantile-quantile plot”) kan tolkes ved å se om dataverdiene ligger langs en rett linje med ca 45 graders vinkel. Q-Q plottet (se video for forklaring på utregning) innebærer å se to distribusjoner mot hverandre – empirisk fordeling (dataene) og teoretisk forventning ut fra en fordelingsmodell (som normalfordeling om vi snakker om “normal Q-Q plott - dvs vi ser om vår empiriske datafordeling og normalfordelingen er lik). Om de samsvarer perfekt ligger de på en helt rett linje (x = y). I eksempelet under vil da alle punktene ligge perfekt oppå den rette linjen. Siden vi vet den teoretiske distribusjonen til normalfordelingen, kan vi bruke denne teoretiske fordelingen til å plotte den mot datasettet vi sitter med.
 
 ```{r}
+# Bruker pakken: car
 par(mfrow=(c(1,2)))
-qqSales2 <- qqPlot(Field_OLS_data$Adverts)
-qqAdverts2 <- qqPlot(Field_OLS_data$Sales)
+qqSales2 <- car::qqPlot(Field_OLS_data$Adverts)
+qqAdverts2 <- car::qqPlot(Field_OLS_data$Sales)
 ```
-
-
 
 Som vi fikk indikert gjennom historgrammene er salgsvariabelen rimelig normalfordelt, mens reklamevariabelen viser avvik fra normalfordelingen - i dette tilfellet (ut fra histogram og qq-plott vil vi si den er høyreskjev).
 
@@ -240,31 +227,21 @@ Under viser vi typiske mønstre for histogram og "tilhørende" qq-plott som kan 
 ##### Normalfordelt
 
 ```{r}
-
 set.seed(89)
-
 # base R
-
-# Bruker pakken: tibble
-
+# Bruker pakken: tibble (Tidyverse)
 qqnorm <- as_tibble(rnorm(10000, mean=90, sd=5))
-
 # Bruker pakken: writexl
-
 write_xlsx(qqnorm,"QQ_norm.xlsx")
 ```
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE}
-
 # Bruker pakken: xfun
-
 xfun::embed_file('QQ_norm.xlsx')
 ```
 
 ```{r fig.cap = "Q-Q plott normalfordeling"}
-
 # Bruker pakken: ggpubr
-
 ggqqplot(qqnorm$value) + ggtitle("Normal Q-Q plott") + labs(x = "Teoretisk forventning", y = "Data")
 ```
 
@@ -273,49 +250,30 @@ Vi ser at dette Q-Q plottet viser oss at vi kan være ganske sikre på at dette 
 ##### Skjevhet høyre
 
 ```{r}
-
 # Lage datasett med right skew
-
 # base R
-
 # Bruker pakken: tibble
-
 set.seed(90)
-
 N <- 5000
 qqrightskew <- as_tibble(rnbinom(N, 10, .1))
- 
-
 # Eksportere datasettet
-
 # Bruker pakken: writexl
-
 write_xlsx(qqrightskew,"QQ_norm_rs.xlsx")
 ```
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE}
-
 # Bruker pakken: xfun
-
 xfun::embed_file('QQ_norm_rs.xlsx')
 ```
 
 ```{r fig.cap = "Q-Q plott - fordeling skjevhet høyre"}
-
 # Plotte histogram og Q-Q plott"
-
 # Bruker pakken: ggplot2
-
 qqrighthist <- ggplot(qqrightskew, aes(x=value)) + geom_histogram(color="black", fill="lightblue")
-
 # Bruker pakken: ggpubr
-
 qqrightskew_plott <- ggqqplot(qqrightskew$value) + ggtitle("Normal Q-Q plott - skjevhet høyre") + labs(x = "Teoretisk forventning", y = "Data")
-
 # Bruker pakken: gridExtra
-
 grid.arrange(qqrighthist, qqrightskew_plott, ncol=2)
-
 ```
 
 I et datasett med høyreskjevhet vil ofte Q-Q plottet vise en bananform med "bunnen"/midten av bananen ned mot høyre hjørne og endene pekende oppover/utover fra den rette linjen.
@@ -323,47 +281,30 @@ I et datasett med høyreskjevhet vil ofte Q-Q plottet vise en bananform med "bun
 ##### Skjevhet venstre
 
 ```{r}
-
 # Lage datasett med left skew
-
 # base R
-
 # Bruker pakken: tibble
-
 set.seed(91)
-
 N=5000
 qqleftskew <- as_tibble(rbeta(N,5,1,ncp=0))
-
 # Eksportere datasettet
-
 # Bruker pakken: writexl
-
 write_xlsx(qqleftskew,"QQ_norm_ls.xlsx")
 ```
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE}
-
 # Bruker pakken: xfun
-
 xfun::embed_file('QQ_norm_ls.xlsx')
 ```
 
 
 ```{r fig.cap = "Q-Q plott - fordeling skjevhet venstre"}
-
 # Plotte histogram og Q-Q plott
-
 # Bruker pakken: ggplot2
-
 qqlefthist <- ggplot(qqleftskew, aes(x=value)) + geom_histogram(color="black", fill="lightblue")
-
 # Bruker pakken: ggpubr
-
 qqleftskew_plott <- ggqqplot(qqleftskew$value) + ggtitle("Normal Q-Q plott - skjevhet venstre") + labs(x = "Teoretisk forventning", y = "Data")
-
 # Bruker pakken: gridExtra
-
 grid.arrange(qqlefthist, qqleftskew_plott, ncol=2)
 ```
 
@@ -372,43 +313,27 @@ I dette datasettet har vi generert en kraftig skjevhet til venstre. Q-Q plottet 
 ##### Tunge haler
 
 ```{r}
-
 set.seed(14)
-
 N=100
-
 # Bruker pakken: tibble
-
 # Base R
-
 qqcauchy <- as_tibble(rcauchy(N, scale = 5)) 
-
 # Eksportere datasettet
-
 # Bruker pakken: writexl
-
 write_xlsx(qqcauchy,"QQ_ht.xlsx")
 ```
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE}
-
 # Bruker pakken: xfun
-
 xfun::embed_file('QQ_ht.xlsx')
 ```
 
 ```{r fig.cap = "Q-Q plott - 'heavy-tail'"}
-
 # Bruker pakken: ggplot2
-
 qqcauchyhist <- ggplot(qqcauchy, aes(x=value)) + geom_histogram(color="black", fill="lightblue")
-
 # Bruker pakken: ggpubr
-
 qqcauchy_plott <- ggqqplot(qqcauchy$value) + ggtitle("Normal Q-Q plott - tung hale") + labs(x = "Teoretisk forventning", y = "Data")
-
 # Bruker pakken: gridExtra
-
 grid.arrange(qqcauchyhist, qqcauchy_plott, ncol=2)
 ```
 
@@ -417,42 +342,26 @@ grid.arrange(qqcauchyhist, qqcauchy_plott, ncol=2)
 ##### Lette haler
 
 ```{r}
-
 set.seed(81)
-
 # Base R
-
 # Bruker pakken: tibble
-
 qqlt <- as_tibble(runif(n = 1000, min = -1, max = 1))
-
-
 # Eksportere datasettet
-
 # Bruker pakken: writexl
-
 write_xlsx(qqlt,"QQ_lt.xlsx")
 ```
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE}
-
 # Bruker pakken: xfun
-
 xfun::embed_file('QQ_lt.xlsx')
 ```
 
 ```{r fig.cap = "Q-Q plott - 'light-tail'"}
-
 # Bruker pakken: ggplot2
-
 qqlthist <- ggplot(qqlt, aes(x=value)) + geom_histogram(color="black", fill="lightblue")
-
 # Bruker pakken ggpubr
-
 qqlt_plott <- ggqqplot(qqlt$value) + ggtitle("Normal Q-Q plott - lett hale") + labs(x = "Teoretisk forventning", y = "Data")
-
 # Bruker pakken: gridExtra
-
 grid.arrange(qqlthist, qqlt_plott, ncol=2)
 ```
 
@@ -461,49 +370,32 @@ grid.arrange(qqlthist, qqlt_plott, ncol=2)
 ##### Bimodalitet
 
 ```{r}
-
 set.seed(10) 
-
 # Base R
-
 # Bruker pakken: ggplot2
-
 # Bruker pakken: tibble
-
 mode1 <- rnorm(50,2,1)
 mode1 <- mode1[mode1 > 0] 
 mode2 <- rnorm(50,6,1)
 mode2 <- mode2[mode2 > 0] 
 qqbimod <- as_tibble(sort(c(mode1,mode2)))
-
 # Eksportere datasettet
-
 # Bruker pakken: writexl
-
 write_xlsx(qqbimod,"QQ_bimod.xlsx")
 ```
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE}
-
 # Bruker pakken. xfun
-
 xfun::embed_file('QQ_bimod.xlsx')
 ```
 
 ```{r fig.cap = "Q-Q plott - bimodal"}
-
 # Plotte histogram og Q-Q plott
-
 # Bruker pakken ggplot2
-
 qqbimodhist <- ggplot(qqbimod, aes(x=value)) + geom_histogram(color="black", fill="lightblue")
-
 # Bruker pakken: ggpubr
-
 qqbimod_plott <- ggqqplot(qqbimod$value) + ggtitle("Normal Q-Q plott - bimodial") + labs(x = "Teoretisk forventning", y = "Data")
-
 # Bruker pakken: gridExtra
-
 grid.arrange(qqbimodhist, qqbimod_plott, ncol=2)
 ```
 
@@ -512,42 +404,26 @@ Den bimodiale fordelingen viser ofte et brudd eller et distinkt knekkpunkt rundt
 ##### Multimodalitet
 
 ```{r}
-
 # Bruker pakken: readxl
-
 # Bruker pakken: tibble
-
 qqmultimod <- as_tibble(read_xlsx("Multimodal.xlsx"))
-
 # Eksportere datasettet
-
 # Bruker pakken: writexl
-
 write_xlsx(qqmultimod,"QQ_multimod.xlsx")
-
 ```
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE}
-
 # Bruker pakken: xfun
-
 xfun::embed_file('QQ_multimod.xlsx')
 ```
 
 ```{r fig.cap = "Q-Q plott - multimodal"}
-
 # Plotte histogram og Q-Q plott
-
 # Bruker pakken ggplot2
-
 qqmultimodhist <- ggplot(qqmultimod, aes(x=Verdi)) + geom_histogram(color="black", fill="lightblue")
-
 # Bruker pakken: ggpubr
-
 qqmultimod_plott <- ggqqplot(qqmultimod$Verdi) + ggtitle("Normal Q-Q plott - multimodial") + labs(x = "Teoretisk forventning", y = "Data")
-
 # Bruker pakken: gridExtra
-
 grid.arrange(qqmultimodhist, qqmultimod_plott, ncol=2)
 ```
 
@@ -565,22 +441,15 @@ Anderson-Darlings test er en test for å se om et datasett kommer fra en gitt fo
 * $H_1$: Dataene følger ikke normalfordelingen
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE}
-
 # Bruker pakken: xfun
-
 xfun::embed_file('Anderson-Darling_raw.xlsx')
 ```
 
 ```{r}
-
 # Bruker pakken: tibble
-
 # Bruker pakken: readxl
-
 addata <- as_tibble(read_excel("Anderson-Darling_raw.xlsx"))
-
 # Bruker pakken: nortest
-
 ad.test(addata$Values)
 ```
 Siden vi vet at nullhypotesen er at datasettet **har** en normalfordeling vil vi forkaste nullhypotesen dersom vi har en signifikant p-verdi (grensen for hva som er signifikant bestemmer vi forsåvidt selv, men vanlige verdier er 0.01, 0.05 og 0.1). Altså - i dette tilfellet har vi en p-verdi=0.04. Vi forkaster derfor nullhypotesen og aksepterer $H_1$ som sier at dataene er trolig ikke er normalfordelte (med andre ord: p-verdien må være større enn signifikansverdien for at vi skal si at dataene trolig er normalfordelte) - en huskeregel: "If p is low, the null must go" (her: "low" = under terskelverdien vi har satt, ofte 0.05).
@@ -597,9 +466,7 @@ adbet <- data.frame(
     'Betingelse' = c("p-verdi $\\le$ valgt signifikansnivå", "p-verdi > valgt signifikansnivå", "Testverdi ($A^2$ verdi) > kritisk verdi", "Testverdi ($A^2$ verdi) $\\le$ kritisk verdi"),
     'Vurdering'= c("Forkast $H_0$ - datene er trolig ikke normalfordelte", "Behold $H_0$ - dataene er trolig normalfordelte", "Forkast $H_0$ - datene er trolig ikke normalfordelte", "Behold $H_0$ - dataene er trolig normalfordelte")
 )
-
 # Bruker pakken: knitr
-
 kable(adbet, 
   align = "ll",
   escape = F, 
@@ -610,25 +477,15 @@ kable(adbet,
 Det finnes flere andre statistiske tester som kan kjøres for å teste for normalitet, f.eks. Kologorov-Smirnov, Shapiro-Wilks og Cramer Von-Mises test. Anderson-Darling er en modifisering/videreutvikling av Kolmogorov-Smirnov og anses ofte som en bedre test av de to. Andre kilder (se f.eks. @razaliPowerComparisonsShapiroWilk2011) finner at Shapiro-Wilks presterer best i 10 000 simuleringer på ulike distribusjoner. 
 
 ```{r}
-
 options(scipen=999)
-
 # Bruker pakken: tibble
-
 # Bruker pakken: readxl
-
 addata5 <- as_tibble(read_excel("Anderson-Darling_raw.xlsx"))
-
 # Base R
-
 ks.test(addata5, "pnorm")
-
 # Base R
-
 shapiro.test(addata5$Values)
-
 # bruker pakken: nortest
-
 cvm.test(addata$Values)
 ```
 
@@ -639,19 +496,12 @@ Tolkning av Shapiro-Wilks og Cramer-von Mieses test er lik som for Kolmogorov-Sm
 Som et siste eksempel på en statistisk test for normalitet kan vi bruke Jarque-Bera test. Denne skiller seg litt ut fra de andre ved at den spesifikt ser på skjevhet og kurtosis i datasettet opp mot hva en normalfordeling vil ha. For å gjøre lykken komplett finnes det versjoner av testen:
 
 ```{r}
-
 # Bruker pakken: tibble
-
 # bruker pakken: readxl
-
 addata6 <- as_tibble(read_excel("Anderson-Darling_raw.xlsx"))
-
 # Bruker pakken: tseries
-
 jarque.bera.test(addata6$Values)
-
 # Bruker pakken: normtest
-
 ajb.norm.test(addata6$Values, nrepl=2000)
 ```
 
@@ -662,14 +512,10 @@ Dette er altså ikke så enkelt. Det finnes mange statistiske tester, som kan gi
 #### Boxplott
 
 ```{r}
-
 # Base R
-
 par(mfrow=(c(1,2)))
 Boxplot(Field_OLS_data$Adverts, id = list(n=Inf), ylab = "", main = "Adverts", col = "Blue")
 Boxplot(Field_OLS_data$Sales, id = list(n=Inf), ylab = "", main = "Sales", col = "Green")
-
-
 ```
 
 Vi ser at vi får først ut en liste over uteliggerne identifisert ved id/case/observasjonsnummer (43, 87 og 184) for variabelen Adverts. Dette vises også som tre små sirkler i boxplottet. 
@@ -684,19 +530,10 @@ Et boxplott forteller oss mye om dataenes distribusjon.
 
 ![](Boxplott.png)
 
-```{r}
-
-#nedre_grense <- median(dat$hwy) - 3 * mad(dat$hwy, constant = 1)
-#lower_bound
-
-```
-
 #### Scatterplott
 
 ```{r}
-
 # Base R
-
 scatterField <- with(Field_OLS_data, plot(Sales, Adverts))
 ```
 
@@ -705,9 +542,7 @@ Et scatterplott viser oss på en god visuell måte hvordan de to variablene forh
 En god måte å fremstille et scatterplott på i R (gjennom pakken *car*) er denne:
 
 ```{r}
-
 # Bruker pakken: car
-
 scatterplot(Adverts ~ Sales, data = Field_OLS_data, id = list(n=4))
 ```
 
@@ -720,9 +555,7 @@ Dette er ikke relevant i en enkel lineær regresjonsanalyse. Når vi skal gjøre
 Vi lager en korrelasjonstabell for de tre uavhengige og den avhengige variabelen (Sales, Adverts, Airplay, Image):
 
 ```{r}
-
 # Base R
-
 cor(Field_OLS_data, method = "pearson")
 ```
 
@@ -735,27 +568,19 @@ Vi ønsker å se om Adverts kan predikere Sales. Grafisk kan vi vise dette:
 ![](OLS1.png)
 
 ```{r}
-
 # Base R
-
 lm(formula = Sales ~ Adverts, data = Field_OLS_data)
 ```
 
-
 ```{r}
-
 # Base R
-
 FieldOLS_reg <- lm(formula = Sales ~ Adverts, data = Field_OLS_data)
 ```
-
 
 ### Steg 4: Analyse av resultatene (diagnostikk)
 
 ```{r}
-
 # Base R
-
 summary(FieldOLS_reg)
 ```
 
@@ -783,9 +608,7 @@ Vi ser av resultatene fra analysen at antall df i teller er 1 og antall df i nev
 Helt nøyaktig kan vi regne ut kritisk verdi (som vi har gjort i R) for df 1 og df 198:
 
 ```{r}
-
 # Base R
-
 qf(p=.05, df1=1, df2=198, lower.tail=FALSE)
 ```
 
@@ -794,12 +617,9 @@ Ut fra dette kan vi si det er svært usannsynlig at forbedringen fra referansemo
 Til slutt vil vi se på konfidensintervallet:
 
 ```{r}
-
 # Bruker pakken: car
-
 Confint(FieldOLS_reg)
 ```
-
 
 ### Steg 5: Sjekk av forutsetningene
 
@@ -838,26 +658,19 @@ Forholdstallet mellom respondenter/caser/observasjoner og uavhengig variabler er
 Det finnes ulike anbefalte normer for vurdering av forholdstallet (vi tar her utgangspunkt i standard multippel regresjonsanalyse - stegvis multippel regresjonsanalyse kan gi andre vurderinger rundt forholdstallet). Under viser vi noen eksempler på hvordan man kan vurdere dette:
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE}
-
 # Bruker pakken: flextable
-
 set_flextable_defaults(fonts_ignore=TRUE) 
-
-forholdstall <- data.frame(Kilde = c("Marks (1966, i Harris (2013)", "Schmidt (1971)", "Nunally (1978)", "Stevens (1996)", "Green (1991)", "Miles & Shevlin (2001)"),                                
+forholdstall <- data.frame(Kilde = c("Marks (1966, i Harris (2013)", "Schmidt (1971)", "Nunally (1978)", "Stevens (1996)", "Green (1991)", "Miles & Shevlin (2001)"),                            
                          Antall = c("Minimum 200 uansett", "15-1 til 25-1", "2-3 IV = minst 100, 9-10 IV = 300-400", "15 pr IV", "N≥50+8m (m=antall uavhengige variabler) ved «medium-sized relationship between the IVs and the DV, α=.05 and β=.20", "Som Green (2001). Utvalgsstørrelse avhenger av størrelse på effekt og statistisk styrke (se Cohen, 1988 for effektstørrelser). Stor effekt: 80 respondenter er alltid nok for opptil 20 IVs. Middels effekt: 200 respondenter vil alltid være nok for opptil 20 IVs, 100 er nok for opptil 6 eller færre IVs. Lav effekt: Minst 600."))
-
 forholdstall<- flextable(forholdstall)
 forholdstall <- set_caption(forholdstall, "Forholdstall")
-
 forholdstall <- height(forholdstall, height = .3) %>% 
-  hrule(rule = "exact", part = "body")  
-                       
+  hrule(rule = "exact", part = "body")
 forholdstall %>%  
   theme_vanilla() %>% 
   width(j=~Kilde,width=2.5) %>% 
   width(j=~Antall,width=4.5) %>%
   bg(bg = "#ADDFAD", part = "header")
-  
 ```
 
 ---
@@ -876,9 +689,7 @@ Med andre ord, hvis effekten av $x_1$ på $y$ er avhengig av hvordan $x_2...x_n$
 La oss vise dette med et eksempel fra @thraneAppliedRegressionAnalysis2019 (se figur 6.1). Dersom vi har data for kvinners og menns inntekt relatert til antall års utdannelse vil vi kunne se i en regresjonsanalyse at antall års utdanning predikerer inntekt. Forutsetningen om additivitet sier da at antall års utdanning har lik effekt på inntekt for menn og kvinner. Slik er det imidlertid ikke. Generisk kan det framstilles som i grafen under:       
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE}
-
 # Base R
-
 lengdeutd <- c(1,2,3,4,5,6,7,8,9,10,11,12)
 menn <- seq(650000, 1000000, by = 30000)
 kvinner <- seq(600000, 1000000, by = 35000)
@@ -897,18 +708,14 @@ Vi kan altså sjekke dette ved å kjøre to regresjonsanalyser. En annen måte, 
 La oss se på et annet eksempel for å vise interaksjonsvariabel og -effekt basert på et eksempel fra @thomasAdditiveAssumptionMultiple2017. 
 
 ```{r}
-
 # Bruker pakken: ISLR
-
 data(Carseats)
 head(Carseats)
 ```
 Datasettet inneholder ni variabler i tillegg til det vi vil bruke som avhengig variabel: Sales. Vi vil altså se om vi kan bruke de ni variablene til å predikere salg.
 
 ```{r}
-
 # Base R
-
 saleslm <- lm(Sales~. ,Carseats)
 summary(saleslm)
 ```
@@ -917,22 +724,16 @@ Denne modellen kan altså forklare 87.3 % av variansen i Sales.
 Vi kan imidlertid mistenke at det kan være en interaksjon mellom variablene Income og Population - jo større befolkning, jo større inntekt tilgjengelig. 
 
 ```{r}
-
 # Base R
-
 saleslm1<-lm(Sales~.+Population*Income, Carseats)
-
 # Bruker pakken: car
-
 compareCoefs(saleslm, saleslm1)
 ```
 
 Forskjellen mellom modellene ligger altså i den nederste koeffisienten (Population * Income) som da er den kombinerte og samtidige effekten av de to variablene. Vi ser at effekten er veldig liten, men grafisk kan vi også se interaksjonseffekten:
 
 ```{r}
-
 # Bruker pakken: ggplot2
-
 ggplot(data=Carseats, aes(x=Income, y=Sales, group=1)) +geom_smooth(method=lm,se=F)+ 
     geom_smooth(aes(Population,Sales), method=lm, se=F,color="black")+xlab("Income and Population")+labs(
         title="Inntekt i blått - Befolkning i svart")
@@ -943,20 +744,15 @@ Vi ser en klar interaksjon ved at linjene krysser (jfr. Thranes merknad om at fo
 I R har vi et hjelpemiddel i pakken *interactions*:
 
 ```{r}
-
 # Bruker pakken: interactions
-
 interact_plot(saleslm1, pred = Population, modx = Income)
 ```
 
 Tolkningen av plottet fra pakken *interactions* er den samme: Parallelle linjer indikerer fravær av interaksjoneseffekt, mens ikke-parallelle linjer indikerer tilstedeværelse av interaksjoneseffekt.
 
 ```{r}
-
 # Bruker pakken: jtools
-
 summ(saleslm1)
-
 ```
 
 Vi ser i tillegg at interaksjonseffekten (Income:Population) er statistisk signifikant.
@@ -968,9 +764,7 @@ Vi tar, som navnet "linær regresjonsanalyse" ganske klart indikerer, utgangspun
 Vi har allerede sett en grafisk framstilling under punktet analyse av dataene som lar oss visuelt vurdere denne forutsetningen:
 
 ```{r}
-
 # Bruker pakken: car
-
 scatterplot(Adverts ~ Sales, data = Field_OLS_data)
 ```
 
@@ -983,27 +777,21 @@ Forutsetningen er at residualene i modellen er tilfeldige, normalfordelte variab
 En tilnærming til å se på denne forutsetningen er å se på et histogram over residualene. Når vi lagrer regresjonsmodellen som et objekt (i R) kan vi se hvilke parametere som lagres i modellen:
 
 ```{r}
-
 # Base R
-
 names(FieldOLS_reg)
 ```
 
 Residualene lagres altså i modellen og vi kan plotte ut disse:
 
 ```{r}
-
 # Base R
-
 hist(FieldOLS_reg$residuals)
 ```
 
 Vi kan også se på et Q-Q plott og hente ut testverdier for ulike normalitetstester:
 
 ```{r}
-
 # Bruker pakken: olsrr
-
 ols_plot_resid_qq(FieldOLS_reg)
 ols_test_normality(FieldOLS_reg)
 ```
@@ -1013,9 +801,7 @@ Q-Q plottet viser noe avvik (jfr. )
 En hendig graf er også et plott av residualene på y-aksen og "fitted values" på x-aksen:
 
 ```{r}
-
 # Bruker pakken: olsrr
-
 ols_plot_resid_fit(FieldOLS_reg)
 ```
 
@@ -1036,9 +822,7 @@ Samtidig sier @pallantSPSSSurvivalManual2010 at det (naturligvis) bør være en 
 Vi kan derfor sjekke for multikolinearitet gjennom å se på en korrelasjonsmatrisen:
 
 ```{r}
-
 # Base R
-
 FieldKorr <- cor(Field_OLS_data, method = "pearson")
 round(FieldKorr, 2)
 ```
@@ -1048,9 +832,7 @@ Hvis vi følger @pallantSPSSSurvivalManual2010 ser vi først at alle de tre uavh
 Dette er aktuelt i multippel regresjonsanalyse, så for å vise dette lager vi en slik for datasettet til Field der vi inkluderer tre uavhengige variabler:
 
 ```{r}
-
 # Base R
-
 FieldOLS_mult_reg <- lm(Sales ~ ., data = Field_OLS_data)
 brief(FieldOLS_mult_reg)
 ```
@@ -1058,9 +840,7 @@ brief(FieldOLS_mult_reg)
 Vi kan også se på Variance Inflation Factor (VIF), som måler hvor mye variansen til en estimert regresjonskoeffisient øker pga. multikollinearitet. 
 
 ```{r}
-
 # Bruker pakken: olsrr
-
 ols_vif_tol(FieldOLS_mult_reg)
 ```
 
@@ -1087,13 +867,9 @@ Variasjonen i residualene er like stor uansett verdien av x.
 Den såkalte White's test vil også kunne være et godt hjelpemiddel:
 
 ```{r}
-
 # Base R
-
 FieldOLS_mult2 <- lm(Sales ~ Adverts + Airplay + Image, data = Field_OLS_data)
-
 # Bruker pakken: lmtest
-
 bptest(FieldOLS_mult2, ~ Adverts*Airplay*Image + I(Adverts^2) + I(Airplay^2)+ I(Image^2), data = Field_OLS_data)
 ```
 
@@ -1107,9 +883,7 @@ To tilfeldige observasjoner bør ikke ha korrelasjon i residualen. Dette kan tes
 Durbin-Watson testen er en test på autokorrelasjon i residualene, og vil ha en verdi på mellom 0 og 4. Verdien 2 indikerer ingen autokorrelasjon. Verdier mellom 0 og 2 indikerer en positiv autokorrelasjon, mens verdier mellom 2 og 4 indikerer en negativ autokorrelasjon. En konservativ tommelfingerregel sier at verdier under 1 og over 3 er bekymringsfullt [@fieldDiscoveringStatisticsUsing2012].
 
 ```{r}
-
 # Bruker pakken: car
-
 durbinWatsonTest(FieldOLS_reg)
 ```
 
@@ -1132,7 +906,6 @@ Hampel filter innebærer at man ser alle observasjoner som ligger utenfor interv
 
 ```{r}
 #Base R
-
 nedregrense <- median(Field_OLS_data$Adverts) - 3*(mad(Field_OLS_data$Adverts, constant = 1))
 nedregrense
 
@@ -1149,7 +922,6 @@ Grubbs' test ser om den høyeste verdien i variabelen bør regnes som en uteligg
 
 ```{r}
 # Bruker pakken: outliers
-
 grubbstest <- grubbs.test(Field_OLS_data$Adverts)
 grubbstest
 ```
@@ -1160,11 +932,9 @@ Her angir vi det antallet vi tror er uteliggere, f.eks. fra et box plott.
 
 ```{r}
 # Bruker pakken: EnvStats
-
 rosnerstest <- rosnerTest(Field_OLS_data$Adverts,
   k = 3
 )
-
 rosnerstest$all.stats
 ```
 
@@ -1173,9 +943,7 @@ rosnerstest$all.stats
 Vi kan også kjøre analyser som identifiserer betydning/innvirkning ("influential cases"):
 
 ```{r}
-
 # Bruker pakken: car
-
 influenceIndexPlot(FieldOLS_reg, vars = "hat", id = list(n=3))
 ```
 
@@ -1184,21 +952,16 @@ Det som i grafen over kalles "hat values" er et vanlig mål for å finne observa
 "Hat values" er altså et mål på potensiell innflytelse. Neste mål - *DfBetas* - er et mål på observasjonens effekt på regresjonskoeffisinenten for hver variabel med og uten den innflytelsesrike observasjonen - eller med andre ord: observasjonenes innflytelse på variablene. @belsleyRegressionDiagnosticsIdentifying1980 anbefaler 2 som cut-off verdi for å indikere innflytelsesrike observasjoner.
 
 ```{r}
-
 # Bruker pakken: olsrr
-
 ols_plot_dfbetas(FieldOLS_reg, print_plot = TRUE)
 ```
 
 Pakken legger automatisk inn cutoff-verdi (i dette tilfellet 0.14). Formelen for utregning av dfbeta cutoff-verdi er $\frac{2}{\sqrt{n}}$, der n=antall observasjoner.
 
-
 Vi kan også se på *dffit* [@welschLinearRegressionDiagnostics1977]. 
 
 ```{r}
-
 # Bruker pakken: olsrr
-
 ols_plot_dffits(FieldOLS_reg)
 ```
 
@@ -1207,9 +970,7 @@ Cutoff-verdi i dette tilfellet er 0.2. Formel for utregning er $2*\frac{\sqrt{(k
 Det siste målet vi ønsker å se på (og trolig den mest brukte) er "Cook's distance", som gir et mål på observasjonens totale innflytelse på regresjonsmodellen. 
 
 ```{r}
-
 # Bruker pakken: car
-
 influenceIndexPlot(FieldOLS_reg, vars = "Cook", id = list(n=3))
 ```
 
@@ -1220,9 +981,7 @@ Så hva er høy verdi på Cook's distance? Kilder som  @cookResidualsInfluenceRe
 La oss hente opp Cook's distance for de største verdiene for de enkelte observasjoner:
 
 ```{r}
-
 # Base R
-
 mineCDverdier <- cooks.distance(FieldOLS_reg)
 mineCDverdier <- round(mineCDverdier, 3)
 head(sort(mineCDverdier, decreasing = TRUE), n = 10)
@@ -1233,9 +992,7 @@ Her kjenner vi igjen observasjonene 1, 169 og 42 som de med høyest verdi på Co
 Vi bør også undersøke "added variable plots" - i en regresjon kan observasjonene ha både en individuell og en sammensatt/felles påvirkning.
 
 ```{r}
-
 # Bruker pakken: car
-
 avPlots(FieldOLS_reg, id=list(cex=0.75, n=3, method="mahal"))
 ```
 
@@ -1248,11 +1005,8 @@ Her kan vi for eksempel se hvordan modellens presterer ved bortfall av visse ekt
 Vi bør vurdere punktene over og vurdere om vi ønsker å lage en revidert modell der vi tar ut veldig innflytelsesrike caser/observasjoner. Som tidligere nevnt har vi ikke svært store verdier her, men la oss som et eksempel si at vi ønsker å se om en modell uten observasjon 169. Vi anbefaler å ta bort en og en observasjon siden (som nevnt) observasjonene/casene har både en individuell og felles påvirkning.
 
 ```{r}
-
 FieldOLS_reg2 <- update(FieldOLS_reg, subset = -169)
-
 # Bruker pakken: car
-
 compareCoefs(FieldOLS_reg, FieldOLS_reg2)
 ```
 
@@ -1260,7 +1014,6 @@ Som forventet ser vi ikke de store forskjellene. Vi kan ta bort de andre observa
 
 ```{r}
 FieldOLS_reg3 <- update(FieldOLS_reg, subset = -c(1, 42, 169, 184))
-
 compareCoefs(FieldOLS_reg, FieldOLS_reg2, FieldOLS_reg3)
 ```
 
@@ -1269,31 +1022,20 @@ Igjen, ikke de store endringene. Vi kan se at Intercept ($\beta$) går litt ned 
 La oss, for eksempelets skyld, manipulere datasettet slik at en analyse av Cook's distance ser slik ut:
 
 ```{r}
-
 # Bruker pakken: readxl
-
 Field_OLS_data2 <- read_excel("Field_datasett_OLS2.xlsx")
-
 # Base R
-
 FieldOLS_man <- lm(formula = Sales ~ Adverts, data = Field_OLS_data2)
-
 # Bruker pakken: car
-
 influenceIndexPlot(FieldOLS_man, vars = c("Cook"), id = list(n=3))
-
 ```
 
 Hvis vi nå kjører denne modellen opp mot en modell der vi tar bort 11 og 23 får vi:
 
 ```{r}
-
 FieldOLS_man2 <- update(FieldOLS_man, subset = -c(11, 23))
-
 # Bruker pakken: car
-
 compareCoefs(FieldOLS_man, FieldOLS_man2)
-
 ```
 
 Her ser vi koeffisienten for Adverts stiger fra 0.01 til 0.09, eller en endring på 11.1%. 
@@ -1308,12 +1050,9 @@ Tabell 1: Deskriptiv statistikk
 
 <div align="left">
 ```{r}
-
 # Bruker pakken: table1
-
 table1::label(Field_OLS_data$Adverts) <- "Adverts"
 table1::label(Field_OLS_data$Sales) <- "Sales"
-
 table1::table1(~Adverts + Sales, data = Field_OLS_data)
 ```
 </div>
@@ -1324,11 +1063,8 @@ table1::table1(~Adverts + Sales, data = Field_OLS_data)
 Tabell 2: Korrelasjonsmatrise
 <div align="left">
 ```{r}
-
 # Bruker pakken: sjPlot
-
 FieldOLSkorr <- tab_corr(Field_OLS_data, triangle = "lower")
-
 FieldOLSkorr
 ```
 p < .0001**** , p < .001*** , p < .01**, p < .05*
@@ -1341,9 +1077,7 @@ Tabell 3: Hierarkisk regresjonsanalyse av prediktorer for totalt selvoppfattet s
 <div align="left">
 
 ```{r}
-
 # Bruker pakken: sjPlot
-
 tab_model(FieldOLS_reg)
 ```
 </div>
@@ -1359,11 +1093,8 @@ En enkel lineær regresjon ble gjennomført for å predikere salgstall per uke b
 Forfatterne har laget en samling av regresjonsdiagnostikk som vi viser her på Fields data der vi laget en multippel regresjonsmodell:
 
 ```{r}
-
 options(scipen=999)
-
 # Bruker pakken: rnorsk
-
 regression.diagnostics(FieldOLS_mult_reg)
 ```
 
@@ -1396,54 +1127,38 @@ Vi skal i gå gjennom et eksempel på multippel regresjonsanalyse, ved å følge
 Vi skal bruke et datasett fra @pallantSPSSSurvivalManual2010 som du kan finne [her](https://www.mheducation.co.uk/data-files). 
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE}
-
 # Bruker pakken: xfun
-
 xfun::embed_file('Pallant_survey.xlsx')
 ```
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE}
-
 # Bruker pakken: xfun
-
 xfun::embed_file('Pallant_survey.sav')
 ```
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE}
-
 # Bruker pakken: xfun
-
 xfun::embed_file('Pallant_survey.dta')
 ```
 
 ```{r}
-
 # Base R
-
 # Bruker pakken: readxl
-
 Pallant_survey <- as.data.frame(read_excel("Pallant_survey.xlsx"))
-
 brief(Pallant_survey)
 ```
 
 Vi skal bruke to uavhengige variabler - tmast (Control of external events) og tpcioss (Control of internal states) mot den avhengige variabelen tpstress (Perceived stress). Vi ønsker altså å se om en gruppe studenters (N = 439) egenrapporterte oppfattelse av sin kontroll over eksterne forhold som kan skape stress og deres evne til å kontrollere deres følelser, tanker og fysiske reaksjoner [@pallantDevelopmentValidationScale2000]. Vi kan derfor se nærmere på variablene.
 
 ```{r}
-
 # Base R
-
 Pallant_survey2 <- select(Pallant_survey, tmast, tpcoiss, tpstress)
-
 Pallant_survey2 <- na.omit(Pallant_survey2) 
-
 summary(Pallant_survey2)
 ```
 
 ```{r}
-
 # Base R
-
 par(mfrow=(c(2,2)))
 histtmast <- with(Pallant_survey2, hist(tmast))
 histtpcoiss <- with(Pallant_survey2, hist(tpcoiss))
@@ -1451,18 +1166,14 @@ histtpstress <- with(Pallant_survey2, hist(tpstress))
 ```
 
 ```{r}
-
 # Bruker pakken: car
-
 qqtmast <- car::qqPlot(~ tmast, data = Pallant_survey2)
 qqtpcoiss <- car::qqPlot(~ tpcoiss, data = Pallant_survey2)
 qqtpstress <- car::qqPlot(~ tpstress, data = Pallant_survey2)
 ```
 
 ```{r}
-
 # Base R
-
 boxplot(Pallant_survey2)
 ```
 
@@ -1494,27 +1205,19 @@ For å unngå dette er det viktig å tenke på forholdstallene som ble diskutert
 Vi skal illustrere overfitting basert på et eksempel fra @frostHowInterpretAdjusted2022 (dette eksempelet har altså ikke noe direkte med analysen vi er inne i - Pallant sitt datasett - men er tatt med for å illustrere poenget med *overfitting*). 
 
 ```{r}
-
 # Base R
-
 PresidentRanking <- read.csv("PresidentRanking.csv")
-
 head(PresidentRanking)
 ```
 
 Datasettet inneholder to variabler: Hvordan historikere rangerer amerikanske presidenter (Historians.rank) og hvor stor generell støtte presidenter har hatt i befolkningen (Approval.High). 
 
 ```{r}
-
 # Base R
-
 presidentlm <- lm(formula = Historians.rank ~ Approval.High, data = PresidentRanking)
-
 plot(Historians.rank ~ Approval.High, data = PresidentRanking)
 abline(presidentlm, lwd = 2, col = "red")
-
 S(presidentlm)
-
 ```
 
 Vi ser at R-squared er $0.0068$ - hvilket vi vil tolke som at det i praksis ikke er noen sammenheng mellom variablene. 
@@ -1522,17 +1225,12 @@ Vi ser at R-squared er $0.0068$ - hvilket vi vil tolke som at det i praksis ikke
 Vi kan så bruke en polynomisk likning (her har vi brukt  $x^3$ for å lage regresjonslinjen):
 
 ```{r}
-
 # Base R
-
 presidentlm2 <- lm(Historians.rank ~ poly(Approval.High, degree=3), data=PresidentRanking)
-
 # Bruker pakken: ggplot2
-
 ggplot(data=PresidentRanking, aes(Approval.High,Historians.rank)) +
     geom_point() + 
     geom_smooth(method="lm", formula=y~I(x^3)+I(x^2))
-
 S(presidentlm2)
 ```
 
@@ -1540,18 +1238,14 @@ Vi har nå en R-squared på $0.664$ for denne modellen mot $0.0068$ for den line
 Imidlertid gir en analyse av Predicted R-square oss et annet bilde av modellen:
 
 ```{r}
-
 # Bruker pakken: olsrr
-
 ols_pred_rsq(presidentlm2)
 ```
 
 I realiteten forteller både verdien på predicted r-square på 0, og forskjellen mellom R-square ($0.664$) og predicted R-square $0$, at vi har en seriøs overfitting. Vi har med andre ord funnet en modell som beskriver dataene våre veldig godt, men som ikke kan brukes på andre data enn de vi har (vel, den kan jo brukes, men vil ikke kunne gi oss noe av verdi). Vi kan altså ikke predikere noe ut fra modellen.
 
 ```{r}
-
 # Bruker pakken: olsrr
-
 PallantOLS_reg <- ols_regress(tpstress ~ tmast + tpcoiss, data = Pallant_survey2)
 PallantOLS_reg
 ```
@@ -1568,9 +1262,7 @@ Vi ser først på tallene for "Std.Beta" under "Parameter Estimated". Vi ser at 
 
 Vi kan se at F-verdien er 184.5. 
 ```{r}
-
 # Base R
-
 qf(p=.05, df1=2, df2=423, lower.tail=FALSE)
 ```
 
@@ -1585,7 +1277,6 @@ Vi viser resultater av tester og grafer, men diskuterer ikke disse nærmere. I s
 #### Kausalitet
 
 Vi antar at det foreligger godt teoretisk grunnlag for modellen. 
-
 #### Variablene er uten målefeil
 
 Vi må forutsette at vi ikke har systematiske målefeil i variablene. 
@@ -1597,9 +1288,7 @@ Også dette forutsetter vi er på plass.
 #### Forholdstall mellom caser/observasjoner og uavhengige variabler
 
 ```{r}
-
 # Base R
-
 nrow(Pallant_survey2)
 ```
 
@@ -1610,24 +1299,17 @@ Vi har altså 426 observasjoner. I forhold til tabellen vist under forutsetninge
 Vi kan mistenke at det kan være en interaksjon mellom variablene tmast og tpcoiss - jo større kontroll på eksterne hendelser, jo større er kontrollen over følelser, tanker og fysisker reaksjoner. Vi ser derfor etter en interaksjonseffekt. 
 
 ```{r}
-
 # Base R
-
 PallantOLS_reg2 <- lm(tpstress ~ tmast + tpcoiss, Pallant_survey2)
-
 PallantOLS_inter <- lm(tpstress ~.+tmast*tpcoiss, Pallant_survey2)
-
 # Bruker pakken: car
-
 compareCoefs(PallantOLS_reg2, PallantOLS_inter)
 ```
 
 Forskjellen mellom modellene ligger altså i den nederste koeffisienten (tmast:tpcoiss) som da er den kombinerte og samtidige effekten av de to variablene. Vi ser at effekten er veldig liten, men grafisk kan vi også se interaksjonseffekten:
 
 ```{r}
-
 # Bruker pakken: ggplot2
-
 ggplot(data=Pallant_survey2, aes(x=tmast, y=tpstress, group=1)) +geom_smooth(method=lm,se=F)+ 
     geom_smooth(aes(tmast,tpcoiss), method=lm, se=F,color="black")+xlab("tmast og tpcoiss")+labs(
         title="tmast i blått - tpcoiss i svart")
@@ -1636,19 +1318,14 @@ ggplot(data=Pallant_survey2, aes(x=tmast, y=tpstress, group=1)) +geom_smooth(met
 Det kan se ut som en interaksjonseffekt ved at linjene ikke er parallelle. Det kan imidlertid være noe vanskelig å tolke interaksjonseffekt. Man kan f.eks. ha en interaksjonseffekt som ikke er statistisk signifikant. I R kan vi bruke pakken *jtools* som hjelp:
 
 ```{r}
-
 # Bruker pakken: jtools
-
 summ(PallantOLS_inter)
-
 ```
 
 Vi ser at interaksjonen tmast:tpcoiss ikke er statistisk signifikant.
 
 ```{r}
-
 # Bruker pakken: interactions
-
 interact_plot(PallantOLS_inter, pred = tmast, modx = tpcoiss)
 ```
 
@@ -1659,9 +1336,7 @@ Tolkningen her er "som før": Parallelle linjer indikerer fravær av interaksjon
 Vi kan ikke se på samme type scatterplott for sjekk av linearitet som vi gjorde under enkel OLS (på et todimensjonalt plott). Vi kan imidlertid lage "added variable plots" [@mostellerDataAnalysisRegression1977]. 
 
 ```{r}
-
 # Bruker pakken: olsrr
-
 ols_plot_added_variable(PallantOLS_reg2, print_plot = TRUE)
 ```
 
@@ -1674,18 +1349,14 @@ I vårt tilfelle vil vi nok konkludere med at forutsetningen om linearitet er (n
 Side vi vet at residualene lagres i modellen og vi kan plotte ut disse:
 
 ```{r}
-
 # Base R
-
 hist(PallantOLS_reg2$residuals)
 ```
 
 Vi kan også se på et Q-Q plott og hente ut testverdier for ulike normalitetstester:
 
 ```{r}
-
 # Bruker pakken: olsrr
-
 ols_plot_resid_qq(PallantOLS_reg2)
 ols_test_normality(PallantOLS_reg2)
 ```
@@ -1695,9 +1366,7 @@ Q-Q plottet viser noe avvik.
 En hendig graf er også et plott av residualene på y-aksen og "fitted values" på x-aksen:
 
 ```{r}
-
 # Bruker pakken: olsrr
-
 ols_plot_resid_fit(PallantOLS_reg2)
 ```
 
@@ -1710,9 +1379,7 @@ Sett under ett kan det i dette tilfellet se ut som at residualene er tilnærmet 
 Vi kan derfor sjekke for multikolinearitet gjennom å se på en korrelasjonsmatrisen:
 
 ```{r}
-
 # Base R
-
 PallantKorr <- cor(Pallant_survey2, method = "pearson", use="pairwise.complete.obs")
 round(PallantKorr, 2)
 ```
@@ -1720,9 +1387,7 @@ round(PallantKorr, 2)
 Hvis vi følger @pallantSPSSSurvivalManual2010 ser vi først at alle de to uavhengige variablene korrelerer mellom $r=0.58$ og $r=-0.61$ med den avhengige. Den bivariate korrelasjonen mellom de uavhengige variablene er på $0.53$. Ut fra korrelasjonsmatrisen bør det ikke være grunn til å frykte multikolinearitet.
 
 ```{r}
-
 # Bruker pakken. olsrr
-
 ols_vif_tol(PallantOLS_reg2)
 ```
 
@@ -1733,10 +1398,7 @@ Det er ingenting som indikerer at vi har multikolinearitet i dataene i denne mod
 Den såkalte White's test vil også kunne være et godt hjelpemiddel:
 
 ```{r}
-
-# Bruker pakken: lmtest
-
-bptest(PallantOLS_reg2, ~ tmast*tpcoiss + I(tmast^2) + I(tpcoiss^2), data = Pallant_survey2)
+# Bruker pakken: lmtestbptest(PallantOLS_reg2, ~ tmast*tpcoiss + I(tmast^2) + I(tpcoiss^2), data = Pallant_survey2)
 ```
 
 Her ser vi at $p < 0.001$, dvs. vi kan ikke forkaste nullhypotesen = vi har ikke grunn til å konkludere med at vi har heteroskedasisitet i regresjonsmodellen.
@@ -1744,9 +1406,7 @@ Her ser vi at $p < 0.001$, dvs. vi kan ikke forkaste nullhypotesen = vi har ikke
 #### Fravær av autokorrelasjon
 
 ```{r}
-
 # Bruker pakken: car
-
 durbinWatsonTest(PallantOLS_reg2)
 ```
 
@@ -1757,9 +1417,7 @@ Her viser verdien $1.826$ noe som ikke gir grunn til bekymring.
 Vi så under punktet "Analyse av dataene" (se for eksempel Boxplottet av Adverts) at vi har noen observasjoner i modellen som kan defineres som uteliggere. Vi kan identifisere disse gjennom residualene:
 
 ```{r}
-
 # Bruker pakken: car
-
 car::qqPlot(PallantOLS_reg2, id = list(n=3))
 ```
 
@@ -1768,44 +1426,33 @@ Vi ser at residualene ligger innenfor 95% konfidenstintervall. Det er lite ved r
 Vi kan også kjøre analyser som identifiserer betydning/innvirkning ("influential cases"):
 
 ```{r}
-
 # Bruker pakken: car
-
 influenceIndexPlot(PallantOLS_reg2, vars = "hat", id = list(n=3))
 ```
 
 DfBetas:
 
 ```{r}
-
 # Bruker pakken: olsrr
-
 ols_plot_dfbetas(PallantOLS_reg2, print_plot = TRUE)
 ```
 
 dffit:
 
 ```{r}
-
 # Bruker pakken: olsrr
-
 ols_plot_dffits(PallantOLS_reg2, print_plot = TRUE)
 ```
-
 
 Cook's distance:
 
 ```{r}
-
 # Bruker pakken: car
-
 influenceIndexPlot(PallantOLS_reg2, vars = "Cook", id = list(n=3))
 ```
 
 ```{r}
-
 # Base R
-
 mineCDverdier2 <- cooks.distance(PallantOLS_reg2)
 mineCDverdier2 <- round(mineCDverdier2, 5)
 head(sort(mineCDverdier2, decreasing = TRUE))
@@ -1816,11 +1463,8 @@ Det er ingenting ved hat values, DfBetas eller Cook's disgance som er bekymrings
 #### Oppsummert om forutsetninger/diagnostikk
 
 ```{r}
-
 options(scipen=999)
-
 # Bruker pakken: rnorsk
-
 regression.diagnostics(PallantOLS_reg2)
 ```
 
@@ -1838,13 +1482,10 @@ Tabell 1: Deskriptiv statistikk
 
 <div align="left">
 ```{r}
-
 # Bruker pakken: table1
-
 table1::label(Pallant_survey$tmast) <- "tmast"
 table1::label(Pallant_survey$tpcoiss) <- "tpcoiss"
 table1::label(Pallant_survey$tpstress) <- "tpstress"
-
 table1::table1(~tmast + tpcoiss + tpstress, data = Pallant_survey)
 ```
 </div>
@@ -1855,11 +1496,8 @@ table1::table1(~tmast + tpcoiss + tpstress, data = Pallant_survey)
 Tabell 2: Korrelasjonsmatrise
 <div align="left">
 ```{r}
-
 # Bruker pakken: sjPlot
-
 Pallantkorr1 <- tab_corr(Pallant_survey2, triangle = "lower")
-
 Pallantkorr1
 ```
 p < .0001**** , p < .001*** , p < .01**, p < .05*
@@ -1873,9 +1511,7 @@ Tabell 3: Hierarkisk regresjonsanalyse av prediktorer for totalt selvoppfattet s
 
 Modell0. modell1 og modell2:
 ```{r}
-
 # Bruker pakken: sjPlot
-
 tab_model(PallantOLS_reg2)
 ```
 </div>
@@ -1909,32 +1545,23 @@ Eksempelet utvider eksempelet over for standard multippel regresjonsanalyse.
 Vi skal bruke samme datasett fra @pallantSPSSSurvivalManual2010 som du kan finne [her](https://www.mheducation.co.uk/data-files). 
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE}
-
-# Bruekr pakken: xfun
-
+# Bruker pakken: xfun
 xfun::embed_file('Pallant_survey.xlsx')
 ```
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE}
-
-# Bruekr pakken: xfun
-
+# Bruker pakken: xfun
 xfun::embed_file('Pallant_survey.sav')
 ```
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE}
-
-# Bruekr pakken: xfun
-
+# Bruker pakken: xfun
 xfun::embed_file('Pallant_survey.dta')
 ```
 
 ```{r}
-
 # Base R
-
 # Bruker pakken: readxl
-
 Pallant_survey <- as.data.frame(read_excel("Pallant_survey.xlsx"))
 brief(Pallant_survey)
 ```
@@ -1944,9 +1571,7 @@ I tillegg til de to uavhengige variabler - tmast (Control of external events) og
 Vi velger å lage et nytt datasett der vi trekker ut de relevante variablene, og fjerne observasjoner med NA (ingen verdi).
 
 ```{r}
-
 # Base R
-
 Pallant_survey3 <- select(Pallant_survey, age, tmarlow, tmast, tpcoiss, tpstress)
 Pallant_survey3 <- na.omit(Pallant_survey3)
 brief(Pallant_survey3)
@@ -1955,9 +1580,7 @@ brief(Pallant_survey3)
 I denne hierarkiske multipple regresjonsanalysen ønsker vi derfor å bruke alder og sosial ønskverdighet som kontrollvariabler. Vi legger i første blokk inn de variablene vi ønsker å kontrollere for, før vi i blokk to legger inn de samme uavhengige variablene som i forrige eksempel. Hensikten med dette er at vi ønsker å fjerne mulige effekter av de to "kontrollvariablene".
 
 ```{r}
-
 # Base R
-
 par(mfrow=(c(1,2)))
 histage <- with(Pallant_survey3, hist(age))
 histtmarlow <- with(Pallant_survey3, hist(tmarlow))
@@ -1974,21 +1597,16 @@ Vi gjør ingen analyse av dette da vi har valgt to kontrollvariabler og to uavhe
 Her lager vi tre modeller: Modell 0 inneholder kun Intercept (som en referansemodell). Modell 1 inneholder kun age og tmarlow, modell 2 inneholder i tillegg tmast og tpcoiss.
 
 ```{r}
-
 # Base R
-
 modell0 <- lm(tpstress ~ 1, data = Pallant_survey3)
 modell1 <- lm(tpstress ~ age + tmarlow, data = Pallant_survey3)
 modell2 <- lm(tpstress ~ age + tmarlow + tmast + tpcoiss, data = Pallant_survey3)
-
 ```
 
 ### Analyse av resultatene (diagnostikk)
 
 ```{r}
-
 # Base R
-
 summary(modell1)
 summary(modell2)
 ```
@@ -1996,9 +1614,7 @@ summary(modell2)
 Den første modellen er modellen med kun alder og social desirability som forklarer 5,9 % av variansen. Den andre modellen, som består av både kontrollvariablene og de to tidligere uavhengige variablene forklarer til sammen 47 %.
 
 ```{r}
-
 # Base R
-
 anova(modell0, modell1, modell2)
 ```
 
@@ -2011,16 +1627,11 @@ Vi kan oppsummere modellene:
 Det vi jo ønsket å finne ut av var hvor mye våre to uavhengige variabler forklarer etter at effektene fra de to kontrollvariablene er tatt bort. Dette finner vi i «R Square Change» - altså hvor mye $R^2$ endrer seg fra modell 1 til modell 2. Vi har i tillegg med hvor mye $R^2$ endrer seg fra modell 0 ti lmodell 1.
 
 ```{r}
-
 # Base R
-
 rsq_diff1 <- summary(modell1)$r.squared - summary(modell0)$r.squared
-
 rsq_diff2 <- summary(modell2)$r.squared - summary(modell1)$r.squared
-
 rsq_diff1
 rsq_diff2
-
 ```
 
 For modell 2 er verdien 0.411. Altså – de to uavhengige variablene forklarer 41.1 % av variansen i den avhengige variabelen **etter** at vi har kontrollert for alder og sosial ønskverdighet. Vi kan så se på de uavhengige variablenes unike bidrag (altså bidrag etter at interaksjonseffekter er tatt bort). 
@@ -2028,11 +1639,8 @@ For modell 2 er verdien 0.411. Altså – de to uavhengige variablene forklarer 
 #### Modellens koeffisienter
 
 ```{r}
-
 # Bruker pakken: olsrr
-
 modell2x <- ols_regress(tpstress ~ age + tmarlow + tmast + tpcoiss, data = Pallant_survey)
-
 modell2x
 ```
 
@@ -2043,9 +1651,7 @@ Vi ser på tallene for "Std.Beta" under "Parameter Estimates". Vi ser at alder o
 
 Vi kan se at F-verdien er 92.67. 
 ```{r}
-
 # Base R
-
 qf(p=.05, df1=4, df2=418, lower.tail=FALSE)
 ```
 
@@ -2060,7 +1666,6 @@ Vi viser resultater av tester og grafer, men diskuterer ikke disse nærmere. I s
 #### Kausalitet
 
 Vi antar at det foreligger godt teoretisk grunnlag for modellen. 
-
 #### Variablene er uten målefeil
 
 Vi må forutsette at vi ikke har systematiske målefeil i variablene. 
@@ -2072,9 +1677,7 @@ Også dette forutsetter vi er på plass.
 #### Forholdstall mellom caser/observasjoner og uavhengige variabler
 
 ```{r}
-
 # Base R
-
 nrow(Pallant_survey2)
 ```
 
@@ -2085,15 +1688,10 @@ Vi har altså 426 observasjoner. I forhold til tabellen vist under forutsetninge
 Vi kan mistenke at det kan være en interaksjon mellom variablene tmast og tpcoiss - jo større kontroll på eksterne hendelser, jo større er kontrollen over følelser, tanker og fysisker reaksjoner. Vi ser derfor etter en interaksjonseffekt. 
 
 ```{r}
-
 # Base R
-
 PallantOLS2 <- lm(tpstress ~ age + tmarlow + tmast + tpcoiss, Pallant_survey)
-
 PallantOLS_inter <- lm(tpstress ~ age + tmarlow + tmast + tpcoiss + tmast*tpcoiss, Pallant_survey)
-
 # Bruker pakken: car
-
 compareCoefs(PallantOLS2, PallantOLS_inter)
 ```
 
@@ -2108,18 +1706,14 @@ Se forrige regresjonsanalyse.
 Side vi vet at residualene lagres i modellen og vi kan plotte ut disse:
 
 ```{r}
-
 # Base R
-
 hist(PallantOLS2$residuals)
 ```
 
 Vi kan også se på et Q-Q plott og hente ut testverdier for ulike normalitetstester:
 
 ```{r}
-
 # Bruekr pakken: olsrr
-
 ols_plot_resid_qq(PallantOLS2)
 ols_test_normality(PallantOLS2)
 ```
@@ -2129,9 +1723,7 @@ Q-Q plottet viser noe avvik (jfr. )
 En hendig graf er også et plott av residualene på y-aksen og "fitted values" på x-aksen:
 
 ```{r}
-
 # Bruker pakken: olsrr
-
 ols_plot_resid_fit(PallantOLS2)
 ```
 
@@ -2144,9 +1736,7 @@ Sett under ett kan det i dette tilfellet se ut som at residualene er tilnærmet 
 Vi kan derfor sjekke for multikolinearitet gjennom å se på en korrelasjonsmatrisen:
 
 ```{r}
-
 # Base R
-
 PallantKorr <- cor(Pallant_survey2, method = "pearson")
 round(PallantKorr, 2)
 ```
@@ -2154,9 +1744,7 @@ round(PallantKorr, 2)
 Hvis vi følger @pallantSPSSSurvivalManual2010 ser vi først at alle de to uavhengige variablene korrelerer mellom $r=0.52$ og $r=-0.58$ med den avhengige. Den bivariate korrelasjonen mellom de uavhengige variablene er på $0.52$. Ut fra korrelasjonsmatrisen bør det ikke være grunn til å frykte multikolinearitet.
 
 ```{r}
-
 # Bruker pakken: olsrr
-
 ols_vif_tol(PallantOLS2)
 ```
 
@@ -2167,9 +1755,7 @@ Det er ingenting som indikerer at vi har multikolinearitet i dataene i denne mod
 Den såkalte White's test vil også kunne være et godt hjelpemiddel:
 
 ```{r}
-
 # Bruker pakken: lmtest
-
 bptest(PallantOLS2, ~ tmast*tpcoiss + I(tmast^2) + I(tpcoiss^2), data = Pallant_survey2)
 ```
 
@@ -2178,9 +1764,7 @@ Her ser vi at $p < 0.001$, dvs. vi kan ikke forkaste nullhypotesen = vi har ikke
 #### Fravær av autokorrelasjon
 
 ```{r}
-
 # Bruker pakke: car
-
 durbinWatsonTest(lm(tpstress ~ age + tmarlow + tmast + tpcoiss, Pallant_survey))
 ```
 
@@ -2191,9 +1775,7 @@ Her viser verdien $1.817$ med p < 0.05 noe som indikerer at vi har autokorrelasj
 Vi så under punktet "Analyse av dataene" (se for eksempel Boxplottet av Adverts) at vi har noen observasjoner i modellen som kan defineres som uteliggere. Vi kan identifisere disse gjennom residualene:
 
 ```{r}
-
 # Bruker pakke: car
-
 car::qqPlot(PallantOLS2, id = list(n=3))
 ```
 
@@ -2202,34 +1784,26 @@ Vi ser at residualene ligger innenfor 95% konfidenstintervall. Det er lite ved r
 Vi kan også kjøre analyser som identifiserer betydning/innvirkning ("influential cases"):
 
 ```{r}
-
 # Bruker pakke: car
-
 influenceIndexPlot(PallantOLS2, vars = "hat", id = list(n=3))
 ```
 
 DfBetas:
 
 ```{r}
-
 # Bruker pakken: olsrr
-
 ols_plot_dfbetas(PallantOLS2, print_plot = TRUE)
 ```
 
 Cook's distance:
 
 ```{r}
-
 # Bruker pakke: car
-
 influenceIndexPlot(PallantOLS2, vars = "Cook", id = list(n=3))
 ```
 
 ```{r}
-
 # Base R
-
 mineCDverdier2 <- cooks.distance(PallantOLS2)
 mineCDverdier2 <- round(mineCDverdier2, 5)
 head(sort(mineCDverdier2, decreasing = TRUE))
@@ -2240,11 +1814,8 @@ Det er ingenting ved hat values, DfBetas eller Cook's disgance som er bekymrings
 #### Oppsummert om forutsetninger/diagnostikk
 
 ```{r}
-
 options(scipen=999)
-
 # Bruekr pakken: rnorsk
-
 regression.diagnostics(PallantOLS2)
 ```
 
@@ -2262,15 +1833,12 @@ Tabell 1: Deskriptiv statistikk
 
 <div align="left">
 ```{r}
-
 # Bruker pakken: table1
-
 table1::label(Pallant_survey3$age) <- "age"
 table1::label(Pallant_survey3$tmarlow) <- "tmarlow"
 table1::label(Pallant_survey3$tmast) <- "tmast"
 table1::label(Pallant_survey3$tpcoiss) <- "tpcoiss"
 table1::label(Pallant_survey3$tpstress) <- "tpstress"
-
 table1::table1(~age + tmarlow + tmast + tpcoiss + tpstress, data = Pallant_survey3)
 ```
 </div>
@@ -2281,11 +1849,8 @@ table1::table1(~age + tmarlow + tmast + tpcoiss + tpstress, data = Pallant_surve
 Tabell 2: Korrelasjonsmatrise
 <div align="left">
 ```{r}
-
 # Bruker pakken: sjPlot
-
 Pallantkorr <- tab_corr(Pallant_survey3, triangle = "lower")
-
 Pallantkorr
 ```
 p < .0001**** , p < .001*** , p < .01**, p < .05*
@@ -2299,9 +1864,7 @@ Tabell 3: Hierarkisk regresjonsanalyse av prediktorer for totalt selvoppfattet s
 
 Modell0. modell1 og modell2:
 ```{r}
-
 # Bruker pakken: sjPlot
-
 tab_model(modell0, modell1, modell2)
 ```
 
@@ -2320,7 +1883,6 @@ Stegvis regresjon er en iterativ multippel regresjonsanalyse der prosessen gradv
 3. Gjenta steg 1 og 2 inntil alle signifikante uavhengige variabler er inkludert i modellen og alle ikke-signifikante verdier er ute av modellen.
 
 **"Backward selection"** (også omtalt som "Step-Down" eller "Backward Elimination") starter i motsatt ende av forward. Her puttes alle de uavhengige variablene inn først. Deretter tar man hver gang bort variabelen som har høyest p-verdi for F inntil man ikke har flere ikke-signifikante variabler igjen i modellen. 
-
 **"Bidirectional"** utvelgelse er en kombinasjon av de to foregående. Den starter som forward selection, men hver gang en variabel settes inn blir alle variablene i modellen kontrollert for å se om p-verdien for F har endret seg til over en definert terskelverdi som følge av den nye variabelen. Hvis en ikke-signifikant variabel da blir funnet fjernes den. Når ingen variabler tilfredsstiller terskelverdiene for enten inkludering eller ekskludering i modellen stopper prosessen. Dette krever to definerte signifikansnivåer: En for å inkludere og en for å ekskludere, der terskelverdien for å inkludere må være lavere enn for å ekskludere (med mindre man ønsker en uendelig loop der man aldri finner en løsning).
 
 Det skal bemerkes at dette er en rent matematisk/statistisk operasjon. Det ligger ingen teoretiske vurderinger til grunn. Man har selvsagt ingen garanti for at de uavhengige variablene man ender opp med er fornuftige eller har noen praktisk signifikans. Ethvert resultat fra en stegvis regresjon må derfor vurderes kritisk. Man står også i fare for såvel overfitting som underfitting (jfr. tidligere punkt om overfitting) [@fieldDiscoveringStatisticsUsing2009]. Det mangler ikke på advarsler om å bruke stegvis regresjon, f.eks. fra @milesApplyingRegressionCorrelation2001 som advarer om at stegvis regresjonsanalyse "should be used with extreme caution" (s.38). @singerAppliedLongitudinalData2003 hevder på sin side "Never let a computer select predictors mechanically. The computer does not know your research questions nor the literature upon which they rest. It cannot distinguish predictors of direct substantive interest from those whose effects you want to control".  Man skal i hvert fall se på resultatene med et veldig kritisk blikk siden "The data analyst knows more than the computer" [@hendersonBuildingMultipleRegression1981, s.391].
@@ -2333,21 +1895,17 @@ Vi skal se på et eksempel som er hentet fra [](https://www.spss-tutorials.com/s
 Du kan laste ned datasettet i ulike formater her:
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE}
-
 # Bruker pakken: xfun
-
 xfun::embed_file('magazine_reg.xlsx')
 ```
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE}
 # Bruker pakken: xfun
-
 xfun::embed_file('magazine_reg.sav')
 ```
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE}
 # Bruker pakken: xfun
-
 xfun::embed_file('magazine_reg.dta')
 ```
 
@@ -2364,18 +1922,13 @@ Vi skal i gå gjennom et eksempel på stegvis multippel regresjonsanalyse, ved �
 ### Analyse av dataene
 
 ```{r}
-
 # Base R
-
 magazine_data <- as.data.frame(read_excel("magazine_reg.xlsx"))
-
 brief(magazine_data)
 ```
 
 ```{r}
-
 # Base R
-
 par(mfrow=(c(2,3)))
 histtsat1 <- with(magazine_data, hist(sat1))
 histtsat2 <- with(magazine_data, hist(sat2))
@@ -2395,26 +1948,17 @@ Hvilke av de 9 uavhengige variablene (sat1...sat9), som er ulike mål på kunder
 ![](stepwise.png)
 
 ```{r}
-
 # Base R
-
 magazine_intercept <- lm(satov ~ 1, data = magazine_data)
-
 magazine_all <- lm(satov ~ sat1 + sat2 + sat3 + sat4 + sat5 + sat6 + sat7 + sat8 + sat9, data = magazine_data)
-
 magazine_forward <- step(magazine_intercept, direction = "forward", scope = formula(magazine_all), trace = 0)
-
 ```
-
 
 ### Analyse av resultatene (diagnostikk) - *forward*
 
 ```{r}
-
 # Base R
-
 magazine_forward$anova
-
 ```
 
 Første modell er kun intercept. Vi ser på AIC verdiene i tabellen over. AIC er forkortelse for *Akaike Information Criterion* som er en estimator for prediksjonsfeil og brukes som et mål på relativ kvalitet for statistiske modeller (hvor godt modellen passer til dataene modellen ble laget av - derfor er AIC egnet til å sammenlikne ulike mulige modeller fra det samme datasettet). 
@@ -2425,41 +1969,29 @@ Neste steg er at alle mulige modeller med en prediktor testes, og prediktoren so
 Modellen blir med denne prosedyren:
 
 ```{r}
-
 # Base R
-
 magazine_forward$coefficients
-
 ```
 
 For R-brukere kan vi kjøre hele analysen i en linje med pakken *olsrr*:
 
 ```{r}
-
 # Bruker pakken: olsrr
-
 ols_step_forward_aic(magazine_all, progress = TRUE, details = FALSE)
-
 ```
 
 ### Analyse av resultatene (diagnostikk) - *backward*
 
 ```{r}
-
 # Bruker pakken: olsrr
-
 ols_step_backward_aic(magazine_all, progress = TRUE, details = FALSE)
-
 ```
 
 ### Analyse av resultatene (diagnostikk) - *bidirectional*
 
 ```{r}
-
 # Bruker pakken: olsrr
-
 ols_step_both_aic(magazine_all, progress = TRUE, details = FALSE)
-
 ```
 
 Vi kan se at modellene gir likt resultat for alle tre måtene, men det trenger absolutt ikke hende. Vi kan få ulike modeller ved de tre metodene. Husk at inkludering/eksludering av variabler skjer rent matematisk. 
@@ -2468,9 +2000,7 @@ Vi kan se at modellene gir likt resultat for alle tre måtene, men det trenger a
 
 Vi kan se at F-verdien er 49.206. 
 ```{r}
-
 # Base R
-
 qf(p=.05, df1=8, df2=628, lower.tail=FALSE)
 ```
 
@@ -2484,9 +2014,7 @@ Tabell 1: Deskriptiv statistikk
 
 <div align="left">
 ```{r}
-
 # Bruker pakken: table1
-
 table1::label(magazine_data$sat1) <- "sat1"
 table1::label(magazine_data$sat2) <- "sat2"
 table1::label(magazine_data$sat3) <- "sat3"
@@ -2497,7 +2025,6 @@ table1::label(magazine_data$sat7) <- "sat7"
 table1::label(magazine_data$sat8) <- "sat8"
 table1::label(magazine_data$sat9) <- "sat9"
 table1::label(magazine_data$satov) <- "satov"
-
 table1::table1(~sat1 + sat2 + sat3 + sat4 + sat5 + sat6 + sat7 + sat8 + sat9 + satov, data = magazine_data)
 ```
 </div>
@@ -2508,13 +2035,9 @@ table1::table1(~sat1 + sat2 + sat3 + sat4 + sat5 + sat6 + sat7 + sat8 + sat9 + s
 Tabell 2: Korrelasjonsmatrise
 <div align="left">
 ```{r}
-
 # Bruker pakken: sjPlot
-
 magazine_data2 <- magazine_data[, c("sat1", "sat2", "sat3", "sat4", "sat5", "sat6", "sat7", "sat9", "satov")]
-
 magazinekorr <- tab_corr(magazine_data2, triangle = "lower")
-
 magazinekorr
 ```
 p < .0001**** , p < .001*** , p < .01**, p < .05*
@@ -2527,11 +2050,8 @@ Tabell 3: Hierarkisk regresjonsanalyse av prediktorer for satov
 <div align="left">
 
 ```{r}
-
 # Bruker pakken: sjPlot
-
 magazine_finalmod <- lm(satov ~ sat1 + sat2 + sat3 + sat4 + sat5 + sat6 + sat7 + sat9, data = magazine_data)
-
 tab_model(magazine_finalmod)
 ```
 </div>
