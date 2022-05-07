@@ -1,17 +1,11 @@
 ---
 bibliography: bibliografi.bib  
-code_folding: hide
 ---
 
-<style>
-div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
-</style>
-<div class = "blue">
 # Regresjonsanalyse
-</div>
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE}
-pacman::p_load(car, readxl, effects, ggplot2, writexl, ggpubr, tidyverse, gridExtra, nortest, knitr, kableExtra, tseries, normtest, flextable, magrittr, ISLR, olsrr, lmtest, rnorsk, qwraps2, sjPlot, sjmisc, sjlabelled, xtable, Hmisc, gt, gtsummary, sjPlot, modelsummary, table1, jtools, interactions, outliers, EnvStats, qqplotr)
+pacman::p_load(car, readxl, effects, ggplot2, writexl, ggpubr, tidyverse, gridExtra, nortest, knitr, kableExtra, tseries, normtest, flextable, magrittr, ISLR, olsrr, lmtest, rnorsk, qwraps2, sjPlot, sjmisc, sjlabelled, xtable, Hmisc, gt, gtsummary, sjPlot, modelsummary, table1, jtools, interactions, outliers, EnvStats, qqplotr, codefolder)
 ```
 
 ## Innledning

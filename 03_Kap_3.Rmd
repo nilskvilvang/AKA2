@@ -1,9 +1,13 @@
 ---
-bibliography: bibliografi.bib  
-code_folding: hide
+bibliography: bibliografi.bib
 ---
+
 ```{r}
-pacman::p_load(readxl, car, rgl, flextable, plotly, latex2exp, ggfortify, gridExtra, factoextra, corrplot, Directional, tidyverse, palmerpenguins, psych, paran, kableExtra, multiUS, xtable, GPArotation, EFAtools, nFactors, rstatix, calibrate, Matrix)
+pacman::p_load(readxl, car, rgl, flextable, plotly, latex2exp, ggfortify, gridExtra, factoextra, corrplot, Directional, tidyverse, palmerpenguins, psych, paran, kableExtra, multiUS, xtable, GPArotation, EFAtools, nFactors, rstatix, calibrate, Matrix, codefolder)
+```
+
+```{r codefolder, echo=FALSE, results='asis'}
+codefolder::bookdown(init = "hide")
 ```
 
 # Dimension reduction: Factor Analysis (FA) og Principal Component Analysis (PCA)
@@ -47,7 +51,6 @@ I figuren over representerer A'ene spesifikk varians, B'ene felles varians og C'
 
 Praktisk er det imidlertid ikke helt trivielt å avgjøre om man skal bruke PCA eller EFA. @guadagnoliRelationSampleSize1988 konkluderer også i en litteraturundersøkelse med at resultatene fra PCA i stor grad er like som resultatene fra faktoranalyse. Med minst 30 variabler vil løsningene være mer eller mindre like, men med under 20 variabler kan forskjeller inntreffe [@stevensAppliedMultivariateStatistics2002]. Som @fieldDiscoveringStatisticsUsing2009 oppsummerer: "However, to a non-statistician the difference between a principal component and a factor may be difficult to conceptualize (they are both linear models), and the difference arises largely from the calculation" (s.760).
 
-
 ## Principal Component Analysis (PCA)
 
 @tabachnikUsingMultivariateStatistics2007 foreslår at dersom du ønsker en «empirisk oppsummering» av datasettet og redusere et større antall variabler til et mindre antall komponenter er PCA riktig valg. I en PCA transformeres et antall korrelerte variabler til et mindre antall «principal components». 
@@ -68,7 +71,7 @@ kartabell1
 
 Vi kan plotte den ene variabelen - matte. 
 
-```{r echo = FALSE, eval = TRUE}
+```{r}
 # Base R
 plot(karakterer$matte, xlab = "studentnr", ylab = "matte")
 ```
@@ -89,7 +92,7 @@ kartabell2
 
 Som vi også kan plotte:
 
-```{r echo = FALSE, eval = TRUE}
+```{r}
 # Base R
 plot(karakterer$matte, karakterer$engelsk, xlab = "matte", ylab = "engelsk")
 ```
@@ -109,7 +112,7 @@ kartabell3
 
 Med tre dimensjoner må vi har tre akser i plottet: 
 
-```{r echo = FALSE, eval = TRUE}
+```{r}
 # Bruker pakken: plotly
 fig <- plot_ly(karakterer, x = matte, y = norsk, z = engelsk)
 fig <- fig %>% add_markers()
@@ -125,7 +128,7 @@ Hvis vi nå legger til fysikkarakterer i tillegg kan vi ikke lenger plotte dette
 
 Vi går tilbake til datasettet med to karakterer (dimensjoner).
 
-```{r echo = FALSE, eval = TRUE}
+```{r}
 # Base R
 kartabell2
 plot(karakterer$matte, karakterer$engelsk, xlab = "matte", ylab = "engelsk")
@@ -141,7 +144,7 @@ mean(karakterer$engelsk)
 
 Vi bruker disse gjennomsnittsverdiene til å kalkulere senterpunktet (x = 58.1, y = 63.1) som vi deretter - ved å beholde de innbyrdes avstandene i x- og y-planet mellom datapunktene - sentrerer alle observasjonene rundt. 
 
-```{r echo = FALSE, eval = TRUE}
+```{r}
 # Base R
 center_scale <- function(x) {
     scale(x, scale = FALSE)
@@ -225,7 +228,7 @@ PCA vil rotere modellen ("regresjonslinja") rundt et senterpunkt og hele tiden k
 
 Vi tar utgangspunkt i eksempelet der vi hadde to variabler som er sentrert:
 
-```{r echo = FALSE, eval = TRUE}
+```{r}
 # Base R
 kartabell2
 plot(sentrert$matte, sentrert$engelsk, xlab = "matte", ylab = "engelsk")
@@ -321,7 +324,7 @@ Disse verdiene - 0.91 og 0.42 - kalles **Eigenvector** for PC1, og de to verdien
 
 Det neste vi kan se på da er Principal Component 2 (PC2). PC2 er linja som går vinkelrett på PC1 og gjennom (0, 0). PC2 er altså linja som reflekterer den nest største kilden til variasjon i dataene, men som er ortogonal (vinkelrett) på PC1. Dette betyr at eigenvectoren er "snudd" og blir -0.42 og 0.91 (som altså er loading scores for PC2).
 
-```{r echo = FALSE, eval = TRUE}
+```{r}
 # Base R
 plot(sentrert$matte, sentrert$engelsk, xlab = "matte", ylab = "engelsk")
 abline(v = 0, lty=2)
@@ -335,54 +338,44 @@ text(-4, 8, "PC2", srt = 20)
 For å få fram det endelige PCA-plottet roteres løsningen slik at PC1 utgjør x-aksen og PC2 y-aksen.
 
 
-```{r include = FALSE}
+```{r}
 # Bruker pakken: calibrate
 karaktererX2 <- within(karakterer2, rm(studentnr))
 # Skalerer data
-
 standardize <- function(x) {(x - mean(x))}
 skalert_karaktererX2 <- apply(karaktererX2,2,function(x) (x-mean(x)))
 plot(skalert_karaktererX2, cex=0.9, xlim=c(-20,20))
-
 # Finner Eigenvalues fra kovariansematrisen
-
 my.cov <- cov(skalert_karaktererX2)
 my.eigen <- eigen(my.cov)
 rownames(my.eigen$vectors) <- c("matte","engelsk")
 colnames(my.eigen$vectors) <- c("PC1","PC")
 # Sum Eigenvalues = den totale variansen i dataene
-
 sum(my.eigen$values)
 var(skalert_karaktererX2[,1]) + var(skalert_karaktererX2[,2])
-
 # Eigenvektorene er principal components.
 loadings <- my.eigen$vectors
 
 pc1.slope <- my.eigen$vectors[1,1]/my.eigen$vectors[2,1]
 pc2.slope <- my.eigen$vectors[1,2]/my.eigen$vectors[2,2]
-
 abline(0,pc1.slope,col="red")
 abline(0,pc2.slope,col="blue")
-
 textxy(12,10,"(-0.710,-0.695)",cx=0.9,dcol="red")
 textxy(-12,10,"(0.695,-0.719)",cx=0.9,dcol="blue")
- 
 # Hvor mye varians foklarer hver eigenvector
 pc1.var <- 100*round(my.eigen$values[1]/sum(my.eigen$values),digits=2)
 pc2.var <- 100*round(my.eigen$values[2]/sum(my.eigen$values),digits=2)
 xlab=paste("PC1 - ",pc1.var," % of variation",sep="")
 ylab=paste("PC2 - ",pc2.var," % of variation",sep="")
-
 scores <- skalert_karaktererX2 %*% loadings
 sd <- sqrt(my.eigen$values)
 rownames(loadings) = colnames(karaktererX2)
-
 plot(scores,ylim=c(-10,10),xlab=xlab,ylab=ylab)
 abline(0,0,col="red")
 abline(0,90,col="blue")
 ```
 
-```{r echo = FALSE}
+```{r}
 # Base R
 scores <- skalert_karaktererX2 %*% loadings
 sd <- sqrt(my.eigen$values)
