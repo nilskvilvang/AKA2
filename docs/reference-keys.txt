@@ -45,6 +45,10 @@ fravær-av-multikolinearitet
 fravær-av-heteroskedasisitet
 fravær-av-autokorrelasjon
 fravær-av-innflytelsesrike-observasjonercaser
+hampel-filter
+grubbs-test
+rosners-test
+influential-cases
 steg-6-eventuell-revisjon-av-modell
 steg-7-eventuell-analyse-av-revidert-modell
 steg-8-konklusjon-oppsummering-rapportering-av-resultater
@@ -113,7 +117,7 @@ pca-gjennom-et-lite-eksempel
 sentrering
 forskjell-i-utregning-av-avvik---ols-og-pca
 pca-gjennom-et-lite-eksempel---del-2
-identifikajson-av-principal-component-1-pc1-eigenvectors-og-loading-scores
+identifikasjon-av-principal-component-1-pc1-eigenvectors-og-loading-scores
 litt-mer-i-detalj-om-rotasjon
 utvelgelse-av-antall-komponenter
 kaisers-kriterium
@@ -128,3 +132,17 @@ pca-låst-til-to-komponenter
 forutsetninger
 størrelse-på-datasettetutvalgsstørrelse
 anti-image-korrelasjonsmatrise
+faktoranalyse
+eksplorerende-faktoranalyse-efa
+hva-er-en-faktor
+eksempel
+korrelasjonsmatrise
+kmo-og-bartletts
+antall-faktorer
+kaisers-kriterium-1
+scree-plott-2
+parallell-analyse-2
+analyse
+model-fit
+sammenlikning-uten-rotasjon-med-ortogonal-varimax-og-oblikk-promax-rotasjon
+konfirmerende-faktoranalyse-cfa

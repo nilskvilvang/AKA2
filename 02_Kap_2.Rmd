@@ -10,43 +10,11 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
 </div>
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE}
-library(car)
-library(readxl)
-library(effects)
-library(ggplot2)
-library(writexl)
-library(ggpubr)
-library(tidyverse)
-library(gridExtra)
-library(nortest)
-library(knitr)
-library(kableExtra)
-library(tseries)
-library(normtest)
-library(flextable)
-library(magrittr)
-library(ISLR)
-library(olsrr)
-library(lmtest)
-library(rnorsk)
-library(qwraps2)
-library(sjPlot)
-library(sjmisc)
-library(sjlabelled)
-library(xtable)
-library(Hmisc)
-library(gt)
-library(gtsummary)
-library(sjPlot)
-library(modelsummary)
-library(table1)
-library(jtools)
-library(interactions)
+
+pacman::p_load(car, readxl, effects, ggplot2, writexl, ggpubr, tidyverse, gridExtra, nortest, knitr, kableExtra, tseries, normtest, flextable, magrittr, ISLR, olsrr, lmtest, rnorsk, qwraps2, sjPlot, sjmisc, sjlabelled, xtable, Hmisc, gt, gtsummary, sjPlot, modelsummary, table1, jtools, interactions, outliers, EnvStats, qqplotr)
 ```
 
-
 ## Innledning
-
 
 Regresjonsanalyse er et særtilfelle av variansanalyse, og er i følge @mehmetogluInnforingStatistiskeDataanalyser2020 muligens en mest brukte analysemetoden for dataanalyse, eller arbeidshesten i foskning på økonomiske og sosiale forhold [@thraneAppliedRegressionAnalysis2019]. Det er først og fremst metodens er fleksibilitet som en hovedgrunn til dette.
 
@@ -258,16 +226,12 @@ Det kan se ut som at salgstallene er rimelig normalfordelte, mens reklamevariabe
 Q-Q plottet (“quantile-quantile plot”) kan tolkes ved å se om dataverdiene ligger langs en rett linje med ca 45 graders vinkel. Q-Q plottet (se video for forklaring på utregning) innebærer å se to distribusjoner mot hverandre – empirisk fordeling (dataene) og teoretisk forventning ut fra en fordelingsmodell (som normalfordeling om vi snakker om “normal Q-Q plott - dvs vi ser om vår empiriske datafordeling og normalfordelingen er lik). Om de samsvarer perfekt ligger de på en helt rett linje (x = y). I eksempelet under vil da alle punktene ligge perfekt oppå den rette linjen. Siden vi vet den teoretiske distribusjonen til normalfordelingen, kan vi bruke denne teoretiske fordelingen til å plotte den mot datasettet vi sitter med.
 
 ```{r}
-
-# base R
-
 par(mfrow=(c(1,2)))
-
-# Bruker pakken: EnvStats
-
-qqSales <- qqPlot(~ Sales, data = Field_OLS_data)
-qqAdverts <- qqPlot(~ Adverts, data = Field_OLS_data)
+qqSales2 <- qqPlot(Field_OLS_data$Adverts)
+qqAdverts2 <- qqPlot(Field_OLS_data$Sales)
 ```
+
+
 
 Som vi fikk indikert gjennom historgrammene er salgsvariabelen rimelig normalfordelt, mens reklamevariabelen viser avvik fra normalfordelingen - i dette tilfellet (ut fra histogram og qq-plott vil vi si den er høyreskjev).
 
@@ -727,9 +691,6 @@ Et boxplott forteller oss mye om dataenes distribusjon.
 
 ```
 
-
-
-
 #### Scatterplott
 
 ```{r}
@@ -1159,13 +1120,55 @@ Her viser verdien $2.03$ noe som ikke gir grunn til bekymring.
 Vi så under punktet "Analyse av dataene" (se for eksempel Boxplottet av Adverts) at vi har noen observasjoner i modellen som kan defineres som uteliggere. Vi kan identifisere disse gjennom residualene:
 
 ```{r}
-
-# Bruker pakken: car
-
-qqPlot(FieldOLS_reg, id = list(n=3))
+# Bruker pakken: olsrr
+car::qqPlot(FieldOLS_reg, id.method="identify", main="Q-Q Plott")
 ```
 
-Vi ser at residualene, med unntak av observasjonene 42 (som ligger utenfor 95% konfidenstintervall - boostrapped) og 1 som ligger på grensen. 
+Vi ser at residualene for 1 og 169 identifiseres som statistisk signifikante uteliggere
+
+##### Hampel filter
+
+Hampel filter innebærer at man ser alle observasjoner som ligger utenfor intervallet $median +/- 3 median\ absolute\ deviation\ (MAS)$.
+
+```{r}
+#Base R
+
+nedregrense <- median(Field_OLS_data$Adverts) - 3*(mad(Field_OLS_data$Adverts, constant = 1))
+nedregrense
+
+ovregrense <- median(Field_OLS_data$Adverts) + 3*(mad(Field_OLS_data$Adverts, constant = 1))
+ovregrense
+
+uteligger_ind <- which(Field_OLS_data$Adverts < nedregrense |Field_OLS_data$Adverts > ovregrense)
+uteligger_ind
+```
+
+##### Grubbs' test
+
+Grubbs' test ser om den høyeste verdien i variabelen bør regnes som en uteligger (hvis den høyeste ikke er det vil ingen andre heller være det).
+
+```{r}
+# Bruker pakken: outliers
+
+grubbstest <- grubbs.test(Field_OLS_data$Adverts)
+grubbstest
+```
+
+##### Rosners test
+
+Her angir vi det antallet vi tror er uteliggere, f.eks. fra et box plott.
+
+```{r}
+# Bruker pakken: EnvStats
+
+rosnerstest <- rosnerTest(Field_OLS_data$Adverts,
+  k = 3
+)
+
+rosnerstest$all.stats
+```
+
+#### Influential cases
 
 Vi kan også kjøre analyser som identifiserer betydning/innvirkning ("influential cases"):
 
@@ -1451,9 +1454,9 @@ histtpstress <- with(Pallant_survey2, hist(tpstress))
 
 # Bruker pakken: car
 
-qqtmast <- qqPlot(~ tmast, data = Pallant_survey2)
-qqtpcoiss <- qqPlot(~ tpcoiss, data = Pallant_survey2)
-qqtpstress <- qqPlot(~ tpstress, data = Pallant_survey2)
+qqtmast <- car::qqPlot(~ tmast, data = Pallant_survey2)
+qqtpcoiss <- car::qqPlot(~ tpcoiss, data = Pallant_survey2)
+qqtpstress <- car::qqPlot(~ tpstress, data = Pallant_survey2)
 ```
 
 ```{r}
@@ -1757,7 +1760,7 @@ Vi så under punktet "Analyse av dataene" (se for eksempel Boxplottet av Adverts
 
 # Bruker pakken: car
 
-qqPlot(PallantOLS_reg2, id = list(n=3))
+car::qqPlot(PallantOLS_reg2, id = list(n=3))
 ```
 
 Vi ser at residualene ligger innenfor 95% konfidenstintervall. Det er lite ved residualplottet som vekker bekymring. 
@@ -2191,7 +2194,7 @@ Vi så under punktet "Analyse av dataene" (se for eksempel Boxplottet av Adverts
 
 # Bruker pakke: car
 
-qqPlot(PallantOLS2, id = list(n=3))
+car::qqPlot(PallantOLS2, id = list(n=3))
 ```
 
 Vi ser at residualene ligger innenfor 95% konfidenstintervall. Det er lite ved residualplottet som vekker bekymring. 
