@@ -7,7 +7,7 @@ pacman::p_load(readxl, car, rgl, flextable, plotly, latex2exp, ggfortify, gridEx
 ```
 
 ```{r codefolder, echo=FALSE, results='asis'}
-codefolder::bookdown(init = "hide")
+codefolder::bookdown(init = "show")
 ```
 
 # Dimension reduction: Factor Analysis (FA) og Principal Component Analysis (PCA)
