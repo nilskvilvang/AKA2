@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 IV regresjon | Anvendt kvantitativ analyse</title>
+  <meta name="description" content="2 IV regresjon | Anvendt kvantitativ analyse" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 IV regresjon | Anvendt kvantitativ analyse" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 IV regresjon | Anvendt kvantitativ analyse" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="regresjonsanalyse---ols.html"/>
+<link rel="next" href="logistisk-regresjon.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">AKA</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduksjon</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#versjoner"><i class="fa fa-check"></i>Versjoner</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="hvorfor-dette-notatet.html"><a href="hvorfor-dette-notatet.html"><i class="fa fa-check"></i>Hvorfor dette notatet?</a>
+<ul>
+<li class="chapter" data-level="" data-path="hvorfor-dette-notatet.html"><a href="hvorfor-dette-notatet.html#programvare"><i class="fa fa-check"></i>Programvare</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html"><i class="fa fa-check"></i><b>1</b> Regresjonsanalyse - OLS</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#innledning"><i class="fa fa-check"></i><b>1.1</b> Innledning</a></li>
+<li class="chapter" data-level="1.2" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#teori"><i class="fa fa-check"></i><b>1.2</b> Teori</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#minste-kvadratsum-ordinary-least-squares---ols"><i class="fa fa-check"></i><b>1.2.1</b> Minste kvadratsum (Ordinary Least Squares - OLS)</a></li>
+<li class="chapter" data-level="1.2.2" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#konfidensintervall"><i class="fa fa-check"></i><b>1.2.2</b> Konfidensintervall</a></li>
+<li class="chapter" data-level="1.2.3" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#steg-i-analyse"><i class="fa fa-check"></i><b>1.2.3</b> Steg i analyse</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#enkel-lineær-regresjonsanalyse"><i class="fa fa-check"></i><b>1.3</b> Enkel, lineær regresjonsanalyse</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#steg-1-analyse-av-dataene"><i class="fa fa-check"></i><b>1.3.1</b> Steg 1: Analyse av dataene</a></li>
+<li class="chapter" data-level="1.3.2" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#steg-2-evtentuelt-valg-av-prediktorer-ut-fra-analyse-av-dataene"><i class="fa fa-check"></i><b>1.3.2</b> Steg 2: Evtentuelt valg av prediktorer ut fra analyse av dataene</a></li>
+<li class="chapter" data-level="1.3.3" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#steg-3-lage-modell-og-kjøre-regresjonsanalysen"><i class="fa fa-check"></i><b>1.3.3</b> Steg 3: Lage modell (og kjøre regresjonsanalysen)</a></li>
+<li class="chapter" data-level="1.3.4" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#steg-4-analyse-av-resultatene-diagnostikk"><i class="fa fa-check"></i><b>1.3.4</b> Steg 4: Analyse av resultatene (diagnostikk)</a></li>
+<li class="chapter" data-level="1.3.5" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#steg-5-sjekk-av-forutsetningene"><i class="fa fa-check"></i><b>1.3.5</b> Steg 5: Sjekk av forutsetningene</a></li>
+<li class="chapter" data-level="1.3.6" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#steg-6-eventuell-revisjon-av-modell"><i class="fa fa-check"></i><b>1.3.6</b> Steg 6: Eventuell revisjon av modell</a></li>
+<li class="chapter" data-level="1.3.7" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#steg-7-eventuell-analyse-av-revidert-modell"><i class="fa fa-check"></i><b>1.3.7</b> Steg 7: Eventuell analyse av revidert modell</a></li>
+<li class="chapter" data-level="1.3.8" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#steg-8-konklusjon-oppsummering-rapportering-av-resultater"><i class="fa fa-check"></i><b>1.3.8</b> Steg 8: Konklusjon / oppsummering / rapportering av resultater</a></li>
+<li class="chapter" data-level="1.3.9" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#til-slutt-for-r-brukere"><i class="fa fa-check"></i><b>1.3.9</b> Til slutt for R-brukere…</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#standard-multippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.4</b> Standard multippel regresjonsanalyse</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#eksempel-standard-multippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.4.1</b> Eksempel standard multippel regresjonsanalyse</a></li>
+<li class="chapter" data-level="1.4.2" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#analyse-av-dataene"><i class="fa fa-check"></i><b>1.4.2</b> Analyse av dataene</a></li>
+<li class="chapter" data-level="1.4.3" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#evtentuelt-valg-av-prediktorer-ut-fra-analyse-av-dataene"><i class="fa fa-check"></i><b>1.4.3</b> Evtentuelt valg av prediktorer ut fra analyse av dataene</a></li>
+<li class="chapter" data-level="1.4.4" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#lage-modell-kjøre-regresjonsanalysen"><i class="fa fa-check"></i><b>1.4.4</b> Lage modell (kjøre regresjonsanalysen)</a></li>
+<li class="chapter" data-level="1.4.5" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#analyse-av-resultatene-diagnostikk"><i class="fa fa-check"></i><b>1.4.5</b> Analyse av resultatene (diagnostikk)</a></li>
+<li class="chapter" data-level="1.4.6" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#sjekk-av-forutsetningene"><i class="fa fa-check"></i><b>1.4.6</b> Sjekk av forutsetningene</a></li>
+<li class="chapter" data-level="1.4.7" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#eventuell-revisjon-av-modellen"><i class="fa fa-check"></i><b>1.4.7</b> Eventuell revisjon av modellen</a></li>
+<li class="chapter" data-level="1.4.8" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#eventuell-analyse-av-revidert-modell"><i class="fa fa-check"></i><b>1.4.8</b> Eventuell analyse av revidert modell</a></li>
+<li class="chapter" data-level="1.4.9" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#konklusjon-oppsummering-rapportering-av-resultater"><i class="fa fa-check"></i><b>1.4.9</b> Konklusjon / oppsummering / rapportering av resultater</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#hierarkisk-multippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.5</b> Hierarkisk multippel regresjonsanalyse</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#analyse-av-dataene-1"><i class="fa fa-check"></i><b>1.5.1</b> Analyse av dataene</a></li>
+<li class="chapter" data-level="1.5.2" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#evtentuelt-valg-av-prediktorer-ut-fra-analyse-av-dataene-1"><i class="fa fa-check"></i><b>1.5.2</b> Evtentuelt valg av prediktorer ut fra analyse av dataene</a></li>
+<li class="chapter" data-level="1.5.3" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#lage-modell-kjøre-regresjonsanalysen-1"><i class="fa fa-check"></i><b>1.5.3</b> Lage modell (kjøre regresjonsanalysen)</a></li>
+<li class="chapter" data-level="1.5.4" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#analyse-av-resultatene-diagnostikk-1"><i class="fa fa-check"></i><b>1.5.4</b> Analyse av resultatene (diagnostikk)</a></li>
+<li class="chapter" data-level="1.5.5" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#sjekk-av-forutsetningene-1"><i class="fa fa-check"></i><b>1.5.5</b> Sjekk av forutsetningene</a></li>
+<li class="chapter" data-level="1.5.6" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#eventuell-revisjon-av-modellen-1"><i class="fa fa-check"></i><b>1.5.6</b> Eventuell revisjon av modellen</a></li>
+<li class="chapter" data-level="1.5.7" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#eventuell-analyse-av-revidert-modell-1"><i class="fa fa-check"></i><b>1.5.7</b> Eventuell analyse av revidert modell</a></li>
+<li class="chapter" data-level="1.5.8" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#konklusjon-oppsummering-rapportering-av-resultater-1"><i class="fa fa-check"></i><b>1.5.8</b> Konklusjon / oppsummering / rapportering av resultater</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#stegvis-mutlippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.6</b> Stegvis mutlippel regresjonsanalyse</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#eksempel-stegvis-multippel-regresjonsanalyse"><i class="fa fa-check"></i><b>1.6.1</b> Eksempel stegvis multippel regresjonsanalyse</a></li>
+<li class="chapter" data-level="1.6.2" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#analyse-av-dataene-2"><i class="fa fa-check"></i><b>1.6.2</b> Analyse av dataene</a></li>
+<li class="chapter" data-level="1.6.3" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#lage-modell-kjøre-regresjonsanalysen-2"><i class="fa fa-check"></i><b>1.6.3</b> Lage modell (kjøre regresjonsanalysen)</a></li>
+<li class="chapter" data-level="1.6.4" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#analyse-av-resultatene-diagnostikk---forward"><i class="fa fa-check"></i><b>1.6.4</b> Analyse av resultatene (diagnostikk) - <em>forward</em></a></li>
+<li class="chapter" data-level="1.6.5" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#analyse-av-resultatene-diagnostikk---backward"><i class="fa fa-check"></i><b>1.6.5</b> Analyse av resultatene (diagnostikk) - <em>backward</em></a></li>
+<li class="chapter" data-level="1.6.6" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#analyse-av-resultatene-diagnostikk---bidirectional"><i class="fa fa-check"></i><b>1.6.6</b> Analyse av resultatene (diagnostikk) - <em>bidirectional</em></a></li>
+<li class="chapter" data-level="1.6.7" data-path="regresjonsanalyse---ols.html"><a href="regresjonsanalyse---ols.html#konklusjon-oppsummering-rapportering-av-resultater-2"><i class="fa fa-check"></i><b>1.6.7</b> Konklusjon / oppsummering / rapportering av resultater</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="iv-regresjon.html"><a href="iv-regresjon.html"><i class="fa fa-check"></i><b>2</b> IV regresjon</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="iv-regresjon.html"><a href="iv-regresjon.html#innledning-1"><i class="fa fa-check"></i><b>2.1</b> Innledning</a></li>
+<li class="chapter" data-level="2.2" data-path="iv-regresjon.html"><a href="iv-regresjon.html#et-konstruert-eksempel-for-visualisering-av-iv-regresjon"><i class="fa fa-check"></i><b>2.2</b> Et konstruert eksempel for visualisering av IV-regresjon</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="logistisk-regresjon.html"><a href="logistisk-regresjon.html"><i class="fa fa-check"></i><b>3</b> Logistisk regresjon</a></li>
+<li class="chapter" data-level="4" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><i class="fa fa-check"></i><b>4</b> Dimension reduction: Factor Analysis (FA) og Principal Component Analysis (PCA)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html#innledning-2"><i class="fa fa-check"></i><b>4.1</b> Innledning</a></li>
+<li class="chapter" data-level="4.2" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>4.2</b> Principal Component Analysis (PCA)</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html#pca-gjennom-et-lite-eksempel"><i class="fa fa-check"></i><b>4.2.1</b> PCA gjennom et lite eksempel</a></li>
+<li class="chapter" data-level="4.2.2" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html#pca-gjennom-et-lite-eksempel---del-2"><i class="fa fa-check"></i><b>4.2.2</b> PCA gjennom et lite eksempel - del 2</a></li>
+<li class="chapter" data-level="4.2.3" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html#eksempel-pca"><i class="fa fa-check"></i><b>4.2.3</b> Eksempel PCA</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html#faktoranalyse"><i class="fa fa-check"></i><b>4.3</b> Faktoranalyse</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html#eksplorerende-faktoranalyse-efa"><i class="fa fa-check"></i><b>4.3.1</b> Eksplorerende faktoranalyse (EFA)</a></li>
+<li class="chapter" data-level="4.3.2" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html#antall-faktorer"><i class="fa fa-check"></i><b>4.3.2</b> Antall faktorer</a></li>
+<li class="chapter" data-level="4.3.3" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html#analyse"><i class="fa fa-check"></i><b>4.3.3</b> Analyse</a></li>
+<li class="chapter" data-level="4.3.4" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html#konfirmerende-faktoranalyse-cfa"><i class="fa fa-check"></i><b>4.3.4</b> Konfirmerende faktoranalyse (CFA)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referanser.html"><a href="referanser.html"><i class="fa fa-check"></i>Referanser</a></li>
+<li class="chapter" data-level="" data-path="vedlegg-x---session-info.html"><a href="vedlegg-x---session-info.html"><i class="fa fa-check"></i>Vedlegg X - Session Info</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Anvendt kvantitativ analyse</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="iv-regresjon" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> IV regresjon<a href="iv-regresjon.html#iv-regresjon" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="innledning-1" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Innledning<a href="iv-regresjon.html#innledning-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Multippel OLS-regresjon av tverrsnittsdata kan kalles en tradisjonell empirisk metode for å se på sammenhengen mellom en uavhengig variabel og en eller flere avhengige variabler. I regresjonen finner vi den gjennomsnittlige endringen i en uavhengig variabel - Y - når en avhengig variabel X endres med en enhet, og vi samtidig holder alle andre variabler konstante. Dette (koeffisienten for X) er en betinget korrelasjon mellom X og Y, men det er alltid en usikkerhet rundt i hvilken grad dette er et godt estimat for den kausale sammenhengen. Vi vil sannsynligvis kunne si at vi ikke vet om vi har utelatt variabler som påvirker både X og Y. Det kan også være sånn at ikke bare påvirker X -&gt; Y, en kanskje også Y -&gt; X. En mulighet for “forkludring” av estimatet for kausalitet kan også være at vi ikke helt forstår kontrollvariablers påvirkning på X, slik at deler av X’s effekt på Y forsvinner. Selv om kontrollvariabler kan klargjøre X’s effekt på Y og dermed variasjonen i Y kan det tåkelegge den kausale effekten mellom variablene. Vi kjenner til fra kapittelet om OLS-regresjon at det alltid er et feilledd i regresjonslikningen. Feil, som beskrevet ovenfor, kan føre til at en uavhenigig variabel korrelerer med feilleddet og dermed påvirker kausaleffekten. IV-regresjon (Instrumentell Variabel regresjon) kan ses på som et kvasi-eksperiment (se f.eks. <span class="citation">Galiani et al. (2017)</span>, <span class="citation">Andriano &amp; Monden (2019)</span> og <span class="citation">DiPrete et al. (2018)</span>).</p>
+<p><span class="citation">(<strong>stockWhoInventedInstrumental2003?</strong>)</span> beskriver at “One definition of instrumental variable estimation is the use of additional ‘instrumental’ variables, not contained in the equation of interest, to estimate the unknown parameters of that equation” (s.179). La oss tenke oss at vi har en avhengig variabel Y - inntekt - som påvirkes av sosioøkonomisk status - X. Sosioøkonomisk status påvirker altså inntekten (X -&gt; Y), men samtidig kan inntekt påvirke sosioøkonomisk status (Y -&gt; X). En såkalt instrumentvariabel - Z - som må korrelere sterkt med X, men ikke med Y på andre måter enn gjennom X kan gi oss en omveg rundt problemet med retning på kausaliteten. Å finne en god instrumentvariabel er derimot krevende og vil trolig forutsette svært god kunnskap om tematikken som undersøkes.</p>
+<p>Oppsummert blir da en IV-regresjon at man først gjennomfører en regresjon der X-verdiene predikeres av Z. Deretter gjennomfører man en regresjon med de predikerte X-verdiene mot Y. Det hviler to forutsetninger for dette: Z må være korrelert med X (det såkalte relevanskriteriet) og at Z kun påvirker Y gjennom X - altså ingen direkte påvirkning fra Z til Y (det såkalte eksluderingskriteriet).</p>
+</div>
+<div id="et-konstruert-eksempel-for-visualisering-av-iv-regresjon" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Et konstruert eksempel for visualisering av IV-regresjon<a href="iv-regresjon.html#et-konstruert-eksempel-for-visualisering-av-iv-regresjon" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La oss tenke oss at vi ønsker å undersøke sammenhengen mellom lengde på utdanning og inntekt. Er det slik at et år ekstra utdanning gir deg x mer i inntekt, eller x+…? mer i inntekt?</p>
+<p>La oss videre tenke oss at vi har data:</p>
+<p><img src="AKA-book_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Vi ser at det er en klar trend i disse dataene at folk med lengre utdanning har høyere inntekt enn folk med kortere utdanning. Betyr det at lengde på utdanning har en kausal effekt på inntekt? Svaret er nei. Fordi lengde på utdanning er ikke tilfeldig (“randomly assigned”) - folk velger hvor lang utdannelse de vil ta. Likevel ser vi jo en klar trend/sammenheng i dataene. Så hvorfor gjør vi det?</p>
+<p>En forklaring kan være at denne sammenhengen skyldes en uobservert variabel som “forstyrrer” bildet. La oss videre i eksempelet si at dette er IQ, og at vi har data på dette.</p>
+<p><img src="AKA-book_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Lengde på utdanning ser ut til å henge sammen med IQ.</p>
+<p><img src="AKA-book_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regresjonsanalyse---ols.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="logistisk-regresjon.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/nilskvilvang/AKA/edit/master/03_Kap_3.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/nilskvilvang/AKA/blob/master/03_Kap_3.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

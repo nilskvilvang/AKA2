@@ -2,7 +2,7 @@
 bibliography: bibliografi.bib  
 ---
 
-# Regresjonsanalyse
+# Regresjonsanalyse - OLS
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE}
 pacman::p_load(car, readxl, effects, ggplot2, writexl, ggpubr, tidyverse, gridExtra, nortest, knitr, kableExtra, tseries, normtest, flextable, magrittr, ISLR, olsrr, lmtest, rnorsk, qwraps2, sjPlot, sjmisc, sjlabelled, xtable, Hmisc, gt, gtsummary, sjPlot, modelsummary, table1, jtools, interactions, outliers, EnvStats, qqplotr, codefolder)

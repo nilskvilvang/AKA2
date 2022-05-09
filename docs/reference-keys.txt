@@ -6,7 +6,7 @@ fig:unnamed-chunk-24
 fig:unnamed-chunk-27
 fig:unnamed-chunk-30
 tab:unnamed-chunk-45
-regresjonsanalyse
+regresjonsanalyse---ols
 innledning
 teori
 minste-kvadratsum-ordinary-least-squares---ols
@@ -64,6 +64,7 @@ modellens-koeffisienter
 hvor-god-er-modellen-vår-goodness-of-fit-1
 sjekk-av-forutsetningene
 kausalitet-1
+variablene-er-uten-målefeil-1
 relevante-og-irrelevante-variabler-1
 forholdstall-mellom-caserobservasjoner-og-uavhengige-variabler-1
 de-uavhengige-variablene-er-additiv-for-den-avhengige-variabelen-1
@@ -108,6 +109,8 @@ analyse-av-resultatene-diagnostikk---backward
 analyse-av-resultatene-diagnostikk---bidirectional
 hvor-god-er-modellen-vår-goodness-of-fit-3
 konklusjon-oppsummering-rapportering-av-resultater-2
+iv-regresjon
+logistisk-regresjon
 dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca
 innledning-1
 principal-component-analysis-pca
@@ -144,3 +147,7 @@ analyse
 model-fit
 sammenlikning-uten-rotasjon-med-ortogonal-varimax-og-oblikk-promax-rotasjon
 konfirmerende-faktoranalyse-cfa
+variablene-er-uten-målefeil-2
+sphericity---er-datasettet-faktoriserbart
+et-konstruert-eksempel-for-visualisering-av-iv-regresjon
+innledning-2
