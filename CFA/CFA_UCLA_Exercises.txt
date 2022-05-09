@@ -1,0 +1,70 @@
+#Exercises based on PowerPoint
+#5/17/2021
+#load libraries
+library(foreign) 
+library(lavaan)
+
+#import data
+dat <- read.spss("https://stats.idre.ucla.edu/wp-content/uploads/2018/05/SAQ.sav",to.data.frame=TRUE, use.value.labels = FALSE)
+
+#exercise 1
+#one factor eight items, variance std 
+m1 <- 'f =~ q01 + q02 + q03 + q04 + q05 + q06 + q07 + q08' 
+onefac8items_a <- cfa(m1, data=dat) 
+summary(onefac8items_a,fit.measures=TRUE,standardized=TRUE)
+
+#exercise 2
+#correlated two factor solution, marker method
+m2 <- 'f1 =~ q01+ q02 + q03 + q04 
+        f2 =~ q05 + q06 + q07 + q08' 
+twofac8items_a <- cfa(m2, data=dat) 
+summary(twofac8items_a,fit.measures=TRUE,standardized=TRUE)
+
+#remove lowest loadings
+m3 <- 'f1 =~ q01+ q03 + q04 
+        f2 =~ q05 + q06 + q07' 
+twofac8items_b <- cfa(m3, data=dat) 
+summary(twofac8items_b,fit.measures=TRUE,standardized=TRUE)
+
+#uncorrelated two factor solution, var std method
+m4 <- 'f1 =~ q01+ q03 + q04 
+        f2 =~ q05 + q06 + q07
+        f1 ~~ 0*f2' 
+twofac8items_c <- cfa(m4, data=dat) 
+summary(twofac8items_c,fit.measures=TRUE,standardized=TRUE)
+
+#exercise 3
+#baseline model
+b1 <- ' q01 ~~ q01 
+        q02 ~~ q02 
+        q03 ~~ q03 
+        q04 ~~ q04 
+        q05 ~~ q05 
+        q06 ~~ q06 
+        q07 ~~ q07 
+        q08 ~~ q08' 
+
+basemodel <- cfa(b1, data=dat)
+summary(basemodel)
+
+#saturated model
+s1 <- ' q01 ~~ q01 
+        q02 ~~ q02 
+        q03 ~~ q03 
+        q04 ~~ q04 
+        q05 ~~ q05 
+        q06 ~~ q06 
+        q07 ~~ q07 
+        q08 ~~ q08
+#covariances
+        q01 ~~ q02 + q03 + q04 + q05 + q06 + q07 + q08
+        q02 ~~       q03 + q04 + q05 + q06 + q07 + q08
+        q03 ~~             q04 + q05 + q06 + q07 + q08
+        q04 ~~                   q05 + q06 + q07 + q08
+        q05 ~~                         q06 + q07 + q08
+        q06 ~~                               q07 + q08
+        q07 ~~                                     q08
+' 
+
+satmodel <- cfa(s1, data=dat)
+summary(satmodel)

@@ -10,11 +10,11 @@ pacman::p_load(car, readxl, effects, ggplot2, writexl, ggpubr, tidyverse, gridEx
 
 ## Innledning
 
-Regresjonsanalyse er et særtilfelle av variansanalyse, og er i følge @mehmetogluInnforingStatistiskeDataanalyser2020 muligens en mest brukte analysemetoden for dataanalyse, eller arbeidshesten i foskning på økonomiske og sosiale forhold [@thraneAppliedRegressionAnalysis2019]. Det er først og fremst metodens er fleksibilitet som en hovedgrunn til dette.
+Regresjonsanalyse er et særtilfelle av variansanalyse, og er i følge @mehmetogluInnforingStatistiskeDataanalyser2020 muligens den mest brukte analysemetoden for dataanalyse, eller arbeidshesten i forskning på økonomiske og sosiale forhold [@thraneAppliedRegressionAnalysis2019]. Det er først og fremst metodens er fleksibilitet som en hovedgrunn til dette.
 
 En regresjonsanalyse er en statistisk analyse som undersøker sammenhengen mellom en kontinuerlig avhengig variabel og en eller flere kontinuerlige og/eller kategoriske uavhengige variabler. Selv om korrelasjon kan være veldig hjelpsomt å forstå vil en regresjonsanalyse søke å ta vår forståelse av sammenhengen litt videre, til for eksempel å forsøke å predikere nivået i en avhengig variabel ut fra nivået på den/de uavhengige variabler. Hvis vi lykkes med dette vil vi kunne klare å si noe om forventet verdi på et fenomen vi er interessert i ut fra kjente verdier på andre variabler. La oss anta at vi har variabler som beliggenhet (avstand fra sentrum), areal, etasje, solforhold, antall rom, antall bad, standard på bad og liknende for en leilighet kan vi bruke disse uavhengige variablene til å predikere en salgssum for denne boligen (som en avhengig variabel). Vi lager da en modell for dette forholdet - i dette tilfellet en regresjonsmodell. Vi går dermed fra å spørre **om** det er en sammenheng til å spørre **hvilken** sammenheng det er.
 
-La oss forsøke å illustrere prinsippet med regresjonsanalyse gjennom er såkalt Venndiagram.
+La oss forsøke å illustrere prinsippet med regresjonsanalyse gjennom et såkalt Venndiagram.
 
 ![](Venn1.png){width=50%}
 
@@ -42,7 +42,7 @@ For å vise sammenhengen kan vi sette opp ligningen $Y_i=\alpha\:+\beta x_i+e_i$
 
 $Y=drivstofforbruket$
 
-$\alpha=konstantleddet$ (krysningspunktet på y-aksen, altså Y-ver dien om x er 0)
+$\alpha=konstantleddet$ (krysningspunktet på y-aksen, altså Y-verdien om x er 0)
 
 $\beta=linjens\:stigningstall$ (dersom x øker med 1, øker y med $\beta$
 
@@ -66,12 +66,12 @@ Begge linjene er forsøk på å lage en rett linje som har kortest mulig avvik. 
 
 ### Minste kvadratsum (Ordinary Least Squares - OLS)
 
-Imidlertid er absoluttverdier matematisk problematiske [@lovasStatistikkUniversiteterOg2013]. Pre-datamaskiner ble det derfor utviklet en alternativ måte som kalles «minste kvadraters metode» - derav begrepet OLS («Ordinary Least Squares»). Det finnes andre måter å tilnærme seg dette, men i dette kurset går vi kun inn på OLS-regresjon.Hvis vi fortsetter eksempelet over kan vi tenke oss en mengde forslag på ulike linjer som forsøker å beskrive sammenhengen mellom de to variablene:
+Imidlertid er absoluttverdier matematisk problematiske [@lovasStatistikkUniversiteterOg2013]. Pre-datamaskiner ble det derfor utviklet en alternativ måte som kalles «minste kvadraters metode» - derav begrepet OLS («Ordinary Least Squares»). Det finnes andre måter å tilnærme seg dette, men i dette kurset går vi kun inn på OLS-regresjon. Hvis vi fortsetter eksempelet over kan vi tenke oss en mengde forslag på ulike linjer som forsøker å beskrive sammenhengen mellom de to variablene:
 
 ![](Teori_fig4.png)
 
 Man regner deretter ut kvadratene som dannes av hvert punkt og avstanden til den rette linja. Den linja som har den laveste kvadratsummen («least squares») er den linja som best representerer datapunktene og som derfor er den beste lineære modellen av forholdet mellom variablene. Regresjonslinja er således en modell. Som @thraneAppliedRegressionAnalysis2019 beskriver: den diagonale linja oppsummerer den typiske trenden i det statistiske forholdet mellom de to variablene - en linje vi kjenner som regresjonslinja. 
-Hvis vi har et stort antall datapunkter er dette selvsagt en omfattende prosess å gjøre manuelt. Det program som jamovi gjør for oss er å regne ut kvadratsummen for et stort antall mulige linjer og deretter fortelle oss hvilken som har lavest kvadratsum.
+Hvis vi har et stort antall datapunkter er dette selvsagt en omfattende prosess å gjøre manuelt. Det statistikkprogrammer gjør for oss er å regne ut kvadratsummen for et stort antall mulige linjer og deretter fortelle oss hvilken som har lavest kvadratsum.
 
 Hvis vi tenker tilbake til formelen for modellen vår: $Y_i=\alpha\:+\beta x_i+e_i$ kan vi nå fylle ut med verdier fra eksempelet.
 
@@ -85,7 +85,7 @@ Vi kan naturligvis umiddelbart tenke at drivstofforbruket er avhengig av mange a
 
 ### Konfidensintervall
 
-Avslutningsvis i denne introduksjonen til regresjonsanalyse kan vi se kort på begrepet konfidensintervall (se for eksempel @lovasStatistikkUniversiteterOg2013 eller @hinkleAppliedStatisticsBehavioral2003).For de som ønsker å fordype seg i effektstørrelser og konfidensintervaller anbefales @cummingIntroductionNewStatistics2017 "Introduction to the new statistics: Estimation, open science, & beyond".
+Avslutningsvis i denne introduksjonen til regresjonsanalyse kan vi se kort på begrepet konfidensintervall (se for eksempel @lovasStatistikkUniversiteterOg2013 eller @hinkleAppliedStatisticsBehavioral2003). For de som ønsker å fordype seg i effektstørrelser og konfidensintervaller anbefales @cummingIntroductionNewStatistics2017 "Introduction to the new statistics: Estimation, open science, & beyond".
 
 Man kan si at estimatet på stigningstallet $\beta$ er det viktigste resultatet i en regresjonsanalyse fordi dette sier noe om hvor sterk sammenhengen mellom de to variablene er. @lovasStatistikkUniversiteterOg2013 illustrerer dette slik:
 
@@ -181,7 +181,7 @@ Vi kan se at datasettet består av 200 obervasjoner av 4 variabler. Hver av obse
 * Airplay: Antall ganger et spor fra CDen ble spilt på radio i uka før lanseringsdato
 * Image: En rating på hvor attraktiv (positivt image) gruppen/artisten har
 
-Hvis vi ønsker å se på i hvilken grad vi kan predikere salgstall gjennom hvor mye vi bruker på reklame før lansering kan vi gjøre en lineær regresjonsanalyse med salg som avhengig variable og reklame (adverts) som uavhengig variabel. 
+Hvis vi ønsker å se på i hvilken grad vi kan predikere salgstall gjennom hvor mye vi bruker på reklame før lansering kan vi gjøre en lineær regresjonsanalyse med salg som avhengig variabel og reklame (adverts) som uavhengig variabel. 
 
 I en analyse av dataene kan vi for eksempel være interessert i noen nøkkeltall:
 
@@ -190,7 +190,7 @@ I en analyse av dataene kan vi for eksempel være interessert i noen nøkkeltall
 summary(Field_OLS_data)
 ```
 
-Ofte er det imidlertd mer hensiktsmessig å se på dataene grafisk i en utforskende hensikt [@tukeyExploratoryDataAnalysis1977]. 
+Ofte er det imidlertid mer hensiktsmessig å se på dataene grafisk i en utforskende hensikt [@tukeyExploratoryDataAnalysis1977]. 
 
 #### Histogram
 
@@ -205,7 +205,7 @@ Det kan se ut som at salgstallene er rimelig normalfordelte, mens reklamevariabe
 
 #### Quantile-Quantile plott (qq)
 
-Q-Q plottet (“quantile-quantile plot”) kan tolkes ved å se om dataverdiene ligger langs en rett linje med ca 45 graders vinkel. Q-Q plottet (se video for forklaring på utregning) innebærer å se to distribusjoner mot hverandre – empirisk fordeling (dataene) og teoretisk forventning ut fra en fordelingsmodell (som normalfordeling om vi snakker om “normal Q-Q plott - dvs vi ser om vår empiriske datafordeling og normalfordelingen er lik). Om de samsvarer perfekt ligger de på en helt rett linje (x = y). I eksempelet under vil da alle punktene ligge perfekt oppå den rette linjen. Siden vi vet den teoretiske distribusjonen til normalfordelingen, kan vi bruke denne teoretiske fordelingen til å plotte den mot datasettet vi sitter med.
+Q-Q plottet (“quantile-quantile plot”) kan tolkes ved å se om dataverdiene ligger langs en rett linje med ca 45 graders vinkel. Q-Q plottet innebærer å se to distribusjoner mot hverandre – empirisk fordeling (dataene) og teoretisk forventning ut fra en fordelingsmodell (som normalfordeling om vi snakker om “normal Q-Q plott" - dvs vi ser om vår empiriske datafordeling og normalfordelingen er lik). Om de samsvarer perfekt ligger de på en helt rett linje (x = y). I eksempelet under vil da alle punktene ligge perfekt oppå den rette linjen. Siden vi vet den teoretiske distribusjonen til normalfordelingen, kan vi bruke denne teoretiske fordelingen til å plotte den mot datasettet vi sitter med.
 
 ```{r}
 # Bruker pakken: car
@@ -260,7 +260,7 @@ write_xlsx(qqrightskew,"QQ_norm_rs.xlsx")
 xfun::embed_file('QQ_norm_rs.xlsx')
 ```
 
-```{r fig.cap = "Q-Q plott - fordeling skjevhet høyre"}
+```{r fig.cap = "Q-Q plott - fordeling skjevhet høyre", message = FALSE}
 # Plotte histogram og Q-Q plott"
 # Bruker pakken: ggplot2
 qqrighthist <- ggplot(qqrightskew, aes(x=value)) + geom_histogram(color="black", fill="lightblue")
@@ -270,7 +270,7 @@ qqrightskew_plott <- ggqqplot(qqrightskew$value) + ggtitle("Normal Q-Q plott - s
 grid.arrange(qqrighthist, qqrightskew_plott, ncol=2)
 ```
 
-I et datasett med høyreskjevhet vil ofte Q-Q plottet vise en bananform med "bunnen"/midten av bananen ned mot høyre hjørne og endene pekende oppover/utover fra den rette linjen.
+I et datasett med høyreskjevhet vil ofte Q-Q plottet vise en bananform med bunnen/midten av bananen ned mot høyre hjørne og endene pekende oppover/utover fra den rette linjen.
 
 ##### Skjevhet venstre
 
@@ -292,7 +292,7 @@ xfun::embed_file('QQ_norm_ls.xlsx')
 ```
 
 
-```{r fig.cap = "Q-Q plott - fordeling skjevhet venstre"}
+```{r fig.cap = "Q-Q plott - fordeling skjevhet venstre", message = FALSE}
 # Plotte histogram og Q-Q plott
 # Bruker pakken: ggplot2
 qqlefthist <- ggplot(qqleftskew, aes(x=value)) + geom_histogram(color="black", fill="lightblue")
@@ -322,7 +322,7 @@ write_xlsx(qqcauchy,"QQ_ht.xlsx")
 xfun::embed_file('QQ_ht.xlsx')
 ```
 
-```{r fig.cap = "Q-Q plott - 'heavy-tail'"}
+```{r fig.cap = "Q-Q plott - 'heavy-tail'", message = FALSE}
 # Bruker pakken: ggplot2
 qqcauchyhist <- ggplot(qqcauchy, aes(x=value)) + geom_histogram(color="black", fill="lightblue")
 # Bruker pakken: ggpubr
@@ -350,7 +350,7 @@ write_xlsx(qqlt,"QQ_lt.xlsx")
 xfun::embed_file('QQ_lt.xlsx')
 ```
 
-```{r fig.cap = "Q-Q plott - 'light-tail'"}
+```{r fig.cap = "Q-Q plott - 'light-tail'", message = FALSE}
 # Bruker pakken: ggplot2
 qqlthist <- ggplot(qqlt, aes(x=value)) + geom_histogram(color="black", fill="lightblue")
 # Bruker pakken ggpubr
@@ -383,7 +383,7 @@ write_xlsx(qqbimod,"QQ_bimod.xlsx")
 xfun::embed_file('QQ_bimod.xlsx')
 ```
 
-```{r fig.cap = "Q-Q plott - bimodal"}
+```{r fig.cap = "Q-Q plott - bimodal", message = FALSE}
 # Plotte histogram og Q-Q plott
 # Bruker pakken ggplot2
 qqbimodhist <- ggplot(qqbimod, aes(x=value)) + geom_histogram(color="black", fill="lightblue")
@@ -411,7 +411,7 @@ write_xlsx(qqmultimod,"QQ_multimod.xlsx")
 xfun::embed_file('QQ_multimod.xlsx')
 ```
 
-```{r fig.cap = "Q-Q plott - multimodal"}
+```{r fig.cap = "Q-Q plott - multimodal", message = FALSE}
 # Plotte histogram og Q-Q plott
 # Bruker pakken ggplot2
 qqmultimodhist <- ggplot(qqmultimod, aes(x=Verdi)) + geom_histogram(color="black", fill="lightblue")
@@ -468,7 +468,7 @@ kable(adbet,
   kable_styling(latex_options = "hold_position", full_width = F)
 ```
 
-Det finnes flere andre statistiske tester som kan kjøres for å teste for normalitet, f.eks. Kologorov-Smirnov, Shapiro-Wilks og Cramer Von-Mises test. Anderson-Darling er en modifisering/videreutvikling av Kolmogorov-Smirnov og anses ofte som en bedre test av de to. Andre kilder (se f.eks. @razaliPowerComparisonsShapiroWilk2011) finner at Shapiro-Wilks presterer best i 10 000 simuleringer på ulike distribusjoner. 
+Det finnes flere andre statistiske tester som kan kjøres for å teste for normalitet, f.eks. Kolmogorov-Smirnov, Shapiro-Wilks og Cramer Von-Mises test. Anderson-Darling er en modifisering/videreutvikling av Kolmogorov-Smirnov og anses ofte som en bedre test av de to. Andre kilder (se f.eks. @razaliPowerComparisonsShapiroWilk2011) finner at Shapiro-Wilks presterer best i 10 000 simuleringer på ulike distribusjoner. 
 
 ```{r}
 options(scipen=999)
@@ -511,7 +511,6 @@ par(mfrow=(c(1,2)))
 Boxplot(Field_OLS_data$Adverts, id = list(n=Inf), ylab = "", main = "Adverts", col = "Blue")
 Boxplot(Field_OLS_data$Sales, id = list(n=Inf), ylab = "", main = "Sales", col = "Green")
 ```
-
 Vi ser at vi får først ut en liste over uteliggerne identifisert ved id/case/observasjonsnummer (43, 87 og 184) for variabelen Adverts. Dette vises også som tre små sirkler i boxplottet. 
 
 Et boxplott forteller oss mye om dataenes distribusjon.
@@ -594,10 +593,10 @@ Koeffisientene vil fortelle oss mer i multippel regresjonsanalyse, men gir oss n
 
 Vi ønsker å ha en formening om hvor god modellen er («goodness of fit»). Altså, er regresjonsmodellen vår bedre enn en modell der vi ikke vet noe om forholdet mellom reklame og platesalg? Vi kan bruke gjennomsnitt av salgstallene som en modell for ingen sammenheng mellom reklame og platesalg, og deretter sammenlikne regresjonsmodellen med gjennomsnittsmodellen. Sammenlikningen mellom modellene skjer gjennom å se på forskjellene mellom de observerte målingene (salgstall) og verdier predikert at de to ulike modellene. Dersom regresjonsmodellen signifikant predikerer bedre er det en bedre modell enn alternativet.
 
-Analysen vår gitt oss F verdien 99.59 med p < .001. Vi ser at verdien er statistisk signifikant. F verdien er et mål på forbedring i prediksjonen sett opp mot unøyaktigheter i modellen (alle modeller er unøyaktige (eller "feil")).
+Analysen vår har gitt oss F verdien 99.59 med p < .001. Vi ser at verdien er statistisk signifikant. F verdien er et mål på forbedring i prediksjonen sett opp mot unøyaktigheter i modellen (alle modeller er unøyaktige (eller "feil")).
 Vi kan sjekke F-verdien opp mot antall frihetsgrader (df) gjennom tabeller som ofte finnes i statistikkbøker, eller bruke onlineressurser som [her](http://www.stat.purdue.edu/~jtroisi/STAT350Spring2015/tables/FTable.pdf)
 
-Vi ser av resultatene fra analysen at antall df i teller er 1 og antall df i nevner er 198. Hvis vi leser av tabellen er vi at for df 1/df 200 er kritisk verdi 3,89 for α = 0,05 og 11,15 for α = 0,001. Vår F er med andre ord langt over kritisk verdi. Vi kan derfor si at vår regresjonsmodell gir en signifikant bedre prediksjon av platesalg enn alternativet. Reklame er med andre ord en god prediktor for platesalg.
+Vi ser av resultatene fra analysen at antall df i teller er 1 og antall df i nevner er 198. Hvis vi leser av tabellen ser vi at for df 1/df 200 er kritisk verdi 3,89 for α = 0,05 og 11,15 for α = 0,001. Vår F er med andre ord langt over kritisk verdi. Vi kan derfor si at vår regresjonsmodell gir en signifikant bedre prediksjon av platesalg enn alternativet. Reklame er med andre ord en god prediktor for platesalg.
 
 Helt nøyaktig kan vi regne ut kritisk verdi (som vi har gjort i R) for df 1 og df 198:
 
@@ -641,7 +640,7 @@ Vi skal også være oppmerksom på utfordringer dersom feil i den ene variabelen
 
 #### Relevante og irrelevante variabler
 
-Alle relevante uavhengige variabler må være inkludert i modellen, og alle irrelevante uvhengige variabler er fjernet/er ikke med i modellen. Man kan si at en hovedgrunn til at vi veldig ofte kjører mulitippel regresjonsanalyse i stedet for bivariat regresjonsanalyse er for å unngå at vi ikke inkluderer relevante variabler (såkalt "omitted variable bias") [@thraneAppliedRegressionAnalysis2019]. Imidlertid, som @thraneAppliedRegressionAnalysis2019 påpeker, er dette i praksis umulig, så det vi tilstrebe er å inkludere de mest relevante variablene. Dette faller igjen tilbake på teoretiske betraktninger og faglig kjennskap til området man holder på med. Du skal i hvert fall kunne begrunne valget av hvilke uavhengige variabler som er inkludert og hvilke som kanskje kunne tenkes å være inkludert, men som du har valgt å ikke inkludere. 
+Alle relevante uavhengige variabler må være inkludert i modellen, og alle irrelevante uvhengige variabler er fjernet/er ikke med i modellen. Man kan si at en hovedgrunn til at vi veldig ofte kjører mulitippel regresjonsanalyse i stedet for bivariat regresjonsanalyse er for å unngå at vi ikke inkluderer relevante variabler (såkalt "omitted variable bias") [@thraneAppliedRegressionAnalysis2019]. Imidlertid, som @thraneAppliedRegressionAnalysis2019 påpeker, er dette i praksis umulig, så det vi tilstreber er å inkludere de mest relevante variablene. Dette faller igjen tilbake på teoretiske betraktninger og faglig kjennskap til området man holder på med. Du skal i hvert fall kunne begrunne valget av hvilke uavhengige variabler som er inkludert og hvilke som kanskje kunne tenkes å være inkludert, men som du har valgt å ikke inkludere. 
 
 Teoretisk sett skal vi også forsikre oss om at ikke-relevante variabler ikke er inkludert i modellen. Igjen er dette delvis umulig og delvis forvirrende/unøyaktig. Det er delvis umulig fordi vi vanskelig kan vite eksakt hvilke potensielle variabler som er relevante og ikke. Det er delvis forvirrende/unøyaktig fordi det kan være viktig å identifisere variabler som ikke har noen effekt - dette kan være viktig i policyrevisjon/-utforming (jfr @thraneAppliedRegressionAnalysis2019).
 
@@ -790,7 +789,7 @@ ols_plot_resid_qq(FieldOLS_reg)
 ols_test_normality(FieldOLS_reg)
 ```
 
-Q-Q plottet viser noe avvik (jfr. )
+Q-Q plottet viser noe avvik.
 
 En hendig graf er også et plott av residualene på y-aksen og "fitted values" på x-aksen:
 
@@ -871,7 +870,7 @@ Her ser vi at p-verdien er $0.4027$, dvs. vi kan ikke forkaste nullhypotesen = v
 
 #### Fravær av autokorrelasjon
 
-Dette er typisk et problem i tidsserieanalyser eller geografiske analyser [@eikemoKvantitativAnalyseMed2007, a.124], der "verdien på variabel X for enhet N i stor grad er bestemt av verdien på variabel X for enhet N-1". Et annet kjent eksempel er fra aksjemarkedet: Hvis en aksje stiger i dag er det mer sannsynlig at den stiger i morgen. Verdien av aksjen i morgen avhenger (delvis) av veriden i dag. Verdiene i dataene autokorrelerer. Grad av autokorrelasjon er således et mål på forholdet mellom en variabels verdi på tidspunkt X og verdien på tidspunkt før X.
+Dette er typisk et problem i tidsserieanalyser eller geografiske analyser [@eikemoKvantitativAnalyseMed2007, a.124], der "verdien på variabel X for enhet N i stor grad er bestemt av verdien på variabel X for enhet N-1". Et annet kjent eksempel er fra aksjemarkedet: Hvis en aksje stiger i dag er det mer sannsynlig at den stiger i morgen. Verdien av aksjen i morgen avhenger (delvis) av verdien i dag. Verdiene i dataene autokorrelerer. Grad av autokorrelasjon er således et mål på forholdet mellom en variabels verdi på tidspunkt X og verdien på tidspunkt før X.
 
 To tilfeldige observasjoner bør ikke ha korrelasjon i residualen. Dette kan testes gjennom en Durbin-Watson test [@durbinTestingSerialCorrelation1951].
 Durbin-Watson testen er en test på autokorrelasjon i residualene, og vil ha en verdi på mellom 0 og 4. Verdien 2 indikerer ingen autokorrelasjon. Verdier mellom 0 og 2 indikerer en positiv autokorrelasjon, mens verdier mellom 2 og 4 indikerer en negativ autokorrelasjon. En konservativ tommelfingerregel sier at verdier under 1 og over 3 er bekymringsfullt [@fieldDiscoveringStatisticsUsing2012].
@@ -959,7 +958,7 @@ Vi kan også se på *dffit* [@welschLinearRegressionDiagnostics1977].
 ols_plot_dffits(FieldOLS_reg)
 ```
 
-Cutoff-verdi i dette tilfellet er 0.2. Formel for utregning er $2*\frac{\sqrt{(k+1)}}{(n-k-1)}}$, der k = antall prediktorer og n = antall observasjoner.
+Cutoff-verdi i dette tilfellet er 0.2. Formel for utregning er $2*\frac{\sqrt{(k+1)}}{(n-k-1)}$, der k = antall prediktorer og n = antall observasjoner.
 
 Det siste målet vi ønsker å se på (og trolig den mest brukte) er "Cook's distance", som gir et mål på observasjonens totale innflytelse på regresjonsmodellen. 
 
@@ -994,7 +993,7 @@ Her sier @foxCompanionAppliedRegression2019, s.44 at "Points at the extreme left
 
 ### Steg 6: Eventuell revisjon av modell
 
-Her kan vi for eksempel se hvordan modellens presterer ved bortfall av visse ektreme verdier (spesielt innflytelsesrike observasjoner/caser, jfr. diskusjon under regresjonsforutsetnigner) eller ved inkludering/eksklusjon av gitte variabler i modellen (først og fremst ved multippel regresjonsanalyse).
+Her kan vi for eksempel se hvordan modellens presterer ved bortfall av visse ekstreme verdier (spesielt innflytelsesrike observasjoner/caser, jfr. diskusjon under regresjonsforutsetnigner) eller ved inkludering/eksklusjon av gitte variabler i modellen (først og fremst ved multippel regresjonsanalyse).
 
 Vi bør vurdere punktene over og vurdere om vi ønsker å lage en revidert modell der vi tar ut veldig innflytelsesrike caser/observasjoner. Som tidligere nevnt har vi ikke svært store verdier her, men la oss som et eksempel si at vi ønsker å se om en modell uten observasjon 169. Vi anbefaler å ta bort en og en observasjon siden (som nevnt) observasjonene/casene har både en individuell og felles påvirkning.
 
@@ -1177,13 +1176,13 @@ Vi gjør ingen analyse av dette da vi har valgt to uavhengige variabler ut fra e
 
 ### Lage modell (kjøre regresjonsanalysen)
 
-![](PallantOLS.png)
+![](PallantOLS.png){width=50%}
 
 ### Analyse av resultatene (diagnostikk)
 
 #### Antall prediktorer/uavhengige variabler, overfitting og predicted R-square
 
-I multippel regresjonsanalyse har vi mer enn en prediktor/uavhengig variabel. Som regel kan vi ønske å inkludere mer enn en prediktor fordi vi sjeldent klarer å fange nok av variansen i en avhengig variabel gjennom en prediktor. Samtidig ønsker vi ikke flere uavhengige variabler enn nødvendig for å lage en så enkel modell som mulig som gir oss prediksjoner vi kan bruke. Matematisk er det også slik at enhver uavhengig variabel som har en grad av korrelasjon med den avhengige variabelen vil bidra til å øke $R^2$ uten at det nødvendigvis gjør modellen "riktigere" (men kan gjøre den vanskeligere å tolke). Dersom vi legger til unødvendige uavhengige variabler risikerer vi det som kalles overfitting - altså at modellen blir god på å beskrive tilfeldige feil i dataene heller enn å beskrive forholdet mellom variablene. Resultatet er at modellen ikke kan generaliseres. Vi kan også se tilbake til regresjonsforutsetningene og vil se at et stort antall uavhengige variabler er en invitasjon til multikolinearitet. 
+I multippel regresjonsanalyse har vi mer enn en prediktor/uavhengig variabel. Som regel kan vi ønske å inkludere mer enn en prediktor fordi vi sjeldent klarer å fange nok av variansen i en avhengig variabel gjennom en prediktor. Samtidig ønsker vi ikke flere uavhengige variabler enn nødvendig for å lage en så enkel modell som mulig som gir oss prediksjoner vi kan bruke. Matematisk er det også slik at enhver uavhengig variabel som har en grad av korrelasjon med den avhengige variabelen vil bidra til å øke $R^2$ uten at det nødvendigvis gjør modellen "riktigere" (men kan gjøre den vanskeligere å tolke). Dersom vi legger til unødvendige uavhengige variabler risikerer vi det som kalles overfitting - altså at modellen blir god på å beskrive tilfeldige feil i dataene heller enn å beskrive forholdet mellom variablene. Resultatet er at modellen ikke kan generaliseres. Vi kan også se tilbake på regresjonsforutsetningene og vil se at et stort antall uavhengige variabler er en invitasjon til multikolinearitet. 
 
 En måte å sjekke dette er å dele datasettet slik at man gjør regresjonsanalysen på en del av datasettet og deretter tester modellen på den andre delen av datasettet. Dette kalles kryssvalidering. En annen måte er å se på "predicted R-square" som innebærer følgende prosedyre (som statistikkprogrammer gjør for oss naturligvis):
 
@@ -1254,7 +1253,7 @@ Vi ser først på tallene for "Std.Beta" under "Parameter Estimated". Vi ser at 
 
 #### Hvor god er modellen vår (goodness of fit)?
 
-Vi kan se at F-verdien er 184.5. 
+Vi kan se at F-verdien er 184.5. Vi kan regne ut (bruke R) til å finne kritiske verdi.
 ```{r}
 # Base R
 qf(p=.05, df1=2, df2=423, lower.tail=FALSE)
@@ -1270,7 +1269,8 @@ Vi viser resultater av tester og grafer, men diskuterer ikke disse nærmere. I s
 
 #### Kausalitet
 
-Vi antar at det foreligger godt teoretisk grunnlag for modellen. 
+Vi antar at det foreligger godt teoretisk grunnlag for modellen.
+
 #### Variablene er uten målefeil
 
 Vi må forutsette at vi ikke har systematiske målefeil i variablene. 
@@ -1349,7 +1349,7 @@ hist(PallantOLS_reg2$residuals)
 
 Vi kan også se på et Q-Q plott og hente ut testverdier for ulike normalitetstester:
 
-```{r}
+```{r warning=FALSE}
 # Bruker pakken: olsrr
 ols_plot_resid_qq(PallantOLS_reg2)
 ols_test_normality(PallantOLS_reg2)

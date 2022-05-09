@@ -157,7 +157,7 @@ abline(h = 0, lty=2)
 
 Vi ser at datapunktene ligger nøyaktig likt i forhold til hverandre, men senterpunktet er nå (0, 0). Neste steg er å lage en regresjonslinje som passer best mulig til dataene. Vi begynner med å legge på en hvilken som helst linje som går gjennom (0, 0) og deretter roterer vi linja med (0, 0) som pivoteringspunkt til man finner linja som passer best (i dette tilfellet den røde stiplede linja):
 
-```{r echo = FALSE, eval = TRUE}
+```{r}
 # Base R
 plot(sentrert$matte, sentrert$engelsk, xlab = "matte", ylab = "engelsk")
 abline(v = 0, lty=2)
@@ -178,7 +178,7 @@ Med utgangspunkt i @longPrincipalComponentAnalysis2010 kan vi illustrere den pri
 
 I en OLS (jfr. teori i kapittel om regresjonsanalyse) vil man søke å finne beste tilpasning:
 
-```{r eval = TRUE, echo = FALSE}
+```{r}
 # Base R
 set.seed(2)
 x <- 1:100
@@ -198,7 +198,7 @@ OLS forsøker å minimere feilleddet mellom den avhengige variabelen og modellen
 
 Hvis vi bytter om på den avhengige og uavhengige variabelen ser det i OLS slik ut for to av datapunktene:
 
-```{r eval = TRUE, echo = FALSE}
+```{r}
 # Base R
 # OLS-regresjon x ~ y
 plot(x,y)
@@ -210,7 +210,7 @@ arrows(x0 = 32, x1= 44, y0 = 137, y1 = 137, lwd = 2, col = "orange")
 
 OLS forsøker alltid minimere y-avstanden (feilleddet = $y-\hat{y}$). PCA vil minimere feilleddet ortogonalt (90$^\circ$ på modellen):
 
-```{r eval = TRUE, echo = FALSE}
+```{r}
 # Base R
 # PCA x ~ y
 plot(x,y)
@@ -236,7 +236,7 @@ plot(sentrert$matte, sentrert$engelsk, xlab = "matte", ylab = "engelsk")
 
 Vi legger på en tilfeldig linje som går gjennom (0, 0).
 
-```{r echo = FALSE, eval = TRUE}
+```{r}
 # Base R}
 plot(sentrert$matte, sentrert$engelsk, xlab = "matte", ylab = "engelsk")
 abline(v = 0, lty=2)
@@ -253,7 +253,7 @@ Ettersom vi roterer linja vil avstanden $a$ ikke forandre seg. Lengden på både
 
 PCA summerer da $c^2$ for alle de 10 punktene i dette eksempelet. Siden verdiene er kvadrerte slipper vi også problemet med at positive og negative verdier nuller hverandre ut (som for OLS - Ordinary Least *Squares* selv om vi her ikke regner squares men avstand). Summen = sum of squared distances  **SS(distances)**. 
 
-```{r echo = FALSE, eval = TRUE}
+```{r}
 # Base R}
 plot(sentrert$matte, sentrert$engelsk, xlab = "matte", ylab = "engelsk")
 abline(v = 0, lty=2)
@@ -282,7 +282,7 @@ stigningstall <- model_summary$coefficients[2,1]
 
 PC1 har et stigningstall på `r stigningstall`. Det betyr at en økning på 1 i x (matte) gir en økning på 0.46 i y (engelsk). Det betyr at matte har større innvirkning på grupepringen av studentene enn engelsk. 
 
-```{r echo = FALSE, eval = TRUE}
+```{r}
 # Base R
 plot(sentrert$matte, sentrert$engelsk, xlab = "matte", ylab = "engelsk")
 abline(v = 0, lty=2)
@@ -301,7 +301,7 @@ text(11, -1.5, TeX('Pythagoras gir: a = 1, b = 0.46, c = 1.1'))
   
 I PCA skaleres $c$ alltid til 1. Matematisk gjør vi det ved å dele hver side av Pythagoras med $c$ (her 1.1). 
 
-```{r echo = FALSE, eval = TRUE}
+```{r}
 # Base R
 plot(sentrert$matte, sentrert$engelsk, xlab = "matte", ylab = "engelsk")
 abline(v = 0, lty=2)
@@ -337,8 +337,7 @@ text(-4, 8, "PC2", srt = 20)
 
 For å få fram det endelige PCA-plottet roteres løsningen slik at PC1 utgjør x-aksen og PC2 y-aksen.
 
-
-```{r}
+```{r warning = FALSE}
 # Bruker pakken: calibrate
 karaktererX2 <- within(karakterer2, rm(studentnr))
 # Skalerer data
@@ -355,7 +354,6 @@ sum(my.eigen$values)
 var(skalert_karaktererX2[,1]) + var(skalert_karaktererX2[,2])
 # Eigenvektorene er principal components.
 loadings <- my.eigen$vectors
-
 pc1.slope <- my.eigen$vectors[1,1]/my.eigen$vectors[2,1]
 pc2.slope <- my.eigen$vectors[1,2]/my.eigen$vectors[2,2]
 abline(0,pc1.slope,col="red")
