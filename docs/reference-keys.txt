@@ -110,9 +110,11 @@ analyse-av-resultatene-diagnostikk---bidirectional
 hvor-god-er-modellen-vår-goodness-of-fit-3
 konklusjon-oppsummering-rapportering-av-resultater-2
 iv-regresjon
+innledning-1
+et-konstruert-eksempel-for-konseptualisering-av-iv-regresjon
 logistisk-regresjon
 dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca
-innledning-1
+innledning-2
 principal-component-analysis-pca
 pca-gjennom-et-lite-eksempel
 sentrering
@@ -147,7 +149,3 @@ analyse
 model-fit
 sammenlikning-uten-rotasjon-med-ortogonal-varimax-og-oblikk-promax-rotasjon
 konfirmerende-faktoranalyse-cfa
-variablene-er-uten-målefeil-2
-sphericity---er-datasettet-faktoriserbart
-et-konstruert-eksempel-for-visualisering-av-iv-regresjon
-innledning-2

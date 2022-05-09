@@ -50,8 +50,83 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
+<link href="libs/table1-1.0/table1_defaults.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
@@ -158,7 +233,7 @@ div.csl-indent {
 <li class="chapter" data-level="2" data-path="iv-regresjon.html"><a href="iv-regresjon.html"><i class="fa fa-check"></i><b>2</b> IV regresjon</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="iv-regresjon.html"><a href="iv-regresjon.html#innledning-1"><i class="fa fa-check"></i><b>2.1</b> Innledning</a></li>
-<li class="chapter" data-level="2.2" data-path="iv-regresjon.html"><a href="iv-regresjon.html#et-konstruert-eksempel-for-visualisering-av-iv-regresjon"><i class="fa fa-check"></i><b>2.2</b> Et konstruert eksempel for visualisering av IV-regresjon</a></li>
+<li class="chapter" data-level="2.2" data-path="iv-regresjon.html"><a href="iv-regresjon.html#et-konstruert-eksempel-for-konseptualisering-av-iv-regresjon"><i class="fa fa-check"></i><b>2.2</b> Et konstruert eksempel for konseptualisering av IV-regresjon</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="logistisk-regresjon.html"><a href="logistisk-regresjon.html"><i class="fa fa-check"></i><b>3</b> Logistisk regresjon</a></li>
 <li class="chapter" data-level="4" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><i class="fa fa-check"></i><b>4</b> Dimension reduction: Factor Analysis (FA) og Principal Component Analysis (PCA)</a>
@@ -204,19 +279,32 @@ div.csl-indent {
 <div id="innledning-1" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Innledning<a href="iv-regresjon.html#innledning-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Multippel OLS-regresjon av tverrsnittsdata kan kalles en tradisjonell empirisk metode for å se på sammenhengen mellom en uavhengig variabel og en eller flere avhengige variabler. I regresjonen finner vi den gjennomsnittlige endringen i en uavhengig variabel - Y - når en avhengig variabel X endres med en enhet, og vi samtidig holder alle andre variabler konstante. Dette (koeffisienten for X) er en betinget korrelasjon mellom X og Y, men det er alltid en usikkerhet rundt i hvilken grad dette er et godt estimat for den kausale sammenhengen. Vi vil sannsynligvis kunne si at vi ikke vet om vi har utelatt variabler som påvirker både X og Y. Det kan også være sånn at ikke bare påvirker X -&gt; Y, en kanskje også Y -&gt; X. En mulighet for “forkludring” av estimatet for kausalitet kan også være at vi ikke helt forstår kontrollvariablers påvirkning på X, slik at deler av X’s effekt på Y forsvinner. Selv om kontrollvariabler kan klargjøre X’s effekt på Y og dermed variasjonen i Y kan det tåkelegge den kausale effekten mellom variablene. Vi kjenner til fra kapittelet om OLS-regresjon at det alltid er et feilledd i regresjonslikningen. Feil, som beskrevet ovenfor, kan føre til at en uavhenigig variabel korrelerer med feilleddet og dermed påvirker kausaleffekten. IV-regresjon (Instrumentell Variabel regresjon) kan ses på som et kvasi-eksperiment (se f.eks. <span class="citation">Galiani et al. (2017)</span>, <span class="citation">Andriano &amp; Monden (2019)</span> og <span class="citation">DiPrete et al. (2018)</span>).</p>
-<p><span class="citation">(<strong>stockWhoInventedInstrumental2003?</strong>)</span> beskriver at “One definition of instrumental variable estimation is the use of additional ‘instrumental’ variables, not contained in the equation of interest, to estimate the unknown parameters of that equation” (s.179). La oss tenke oss at vi har en avhengig variabel Y - inntekt - som påvirkes av sosioøkonomisk status - X. Sosioøkonomisk status påvirker altså inntekten (X -&gt; Y), men samtidig kan inntekt påvirke sosioøkonomisk status (Y -&gt; X). En såkalt instrumentvariabel - Z - som må korrelere sterkt med X, men ikke med Y på andre måter enn gjennom X kan gi oss en omveg rundt problemet med retning på kausaliteten. Å finne en god instrumentvariabel er derimot krevende og vil trolig forutsette svært god kunnskap om tematikken som undersøkes.</p>
-<p>Oppsummert blir da en IV-regresjon at man først gjennomfører en regresjon der X-verdiene predikeres av Z. Deretter gjennomfører man en regresjon med de predikerte X-verdiene mot Y. Det hviler to forutsetninger for dette: Z må være korrelert med X (det såkalte relevanskriteriet) og at Z kun påvirker Y gjennom X - altså ingen direkte påvirkning fra Z til Y (det såkalte eksluderingskriteriet).</p>
+<p>En definisjon av IV er “the use of additional ‘instrumental’ variables, not contained in the equation of interest, to estimate the unknown parameters of that equation” <span class="citation">(Stock &amp; Trebbi, 2003, p. s.179)</span>. La oss tenke oss at vi har en avhengig variabel Y - inntekt - som påvirkes av sosioøkonomisk status - X. Sosioøkonomisk status påvirker altså inntekten (X -&gt; Y), men samtidig kan inntekt påvirke sosioøkonomisk status (Y -&gt; X). En såkalt instrumentvariabel - Z - som må korrelere sterkt med X, men ikke med Y på andre måter enn gjennom X kan gi oss en omveg rundt problemet med retning på kausaliteten. Å finne en god instrumentvariabel er derimot krevende og vil trolig forutsette svært god kunnskap om tematikken som undersøkes.</p>
+<p>Oppsummert blir da en IV-regresjon at man først gjennomfører en regresjon der X-verdiene predikeres av Z. Deretter gjennomfører man en regresjon med de predikerte X-verdiene mot Y. IV regresjon kalles derfor også ofte <em>“two-stage least squares”</em>.</p>
+<p>Det hviler to forutsetninger for dette: Z må være korrelert med X (det såkalte relevanskriteriet) og at Z kun påvirker Y gjennom X - altså ingen direkte påvirkning fra Z til Y (det såkalte eksluderingskriteriet).</p>
 </div>
-<div id="et-konstruert-eksempel-for-visualisering-av-iv-regresjon" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Et konstruert eksempel for visualisering av IV-regresjon<a href="iv-regresjon.html#et-konstruert-eksempel-for-visualisering-av-iv-regresjon" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>La oss tenke oss at vi ønsker å undersøke sammenhengen mellom lengde på utdanning og inntekt. Er det slik at et år ekstra utdanning gir deg x mer i inntekt, eller x+…? mer i inntekt?</p>
+<div id="et-konstruert-eksempel-for-konseptualisering-av-iv-regresjon" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Et konstruert eksempel for konseptualisering av IV-regresjon<a href="iv-regresjon.html#et-konstruert-eksempel-for-konseptualisering-av-iv-regresjon" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La oss tenke oss at vi ønsker å undersøke sammenhengen mellom lengde på utdanning og inntekt. Er det slik at et år ekstra utdanning gir deg x mer i inntekt, eller x+…? mer i inntekt? Dette eksempelet er basert på <span class="citation">Masten (2015)</span>.</p>
 <p>La oss videre tenke oss at vi har data:</p>
-<p><img src="AKA-book_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="AKA-book_files/figure-html/unnamed-chunk-164-1.png" width="672" /></p>
 <p>Vi ser at det er en klar trend i disse dataene at folk med lengre utdanning har høyere inntekt enn folk med kortere utdanning. Betyr det at lengde på utdanning har en kausal effekt på inntekt? Svaret er nei. Fordi lengde på utdanning er ikke tilfeldig (“randomly assigned”) - folk velger hvor lang utdannelse de vil ta. Likevel ser vi jo en klar trend/sammenheng i dataene. Så hvorfor gjør vi det?</p>
 <p>En forklaring kan være at denne sammenhengen skyldes en uobservert variabel som “forstyrrer” bildet. La oss videre i eksempelet si at dette er IQ, og at vi har data på dette.</p>
-<p><img src="AKA-book_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="AKA-book_files/figure-html/unnamed-chunk-165-1.png" width="672" /></p>
 <p>Lengde på utdanning ser ut til å henge sammen med IQ.</p>
-<p><img src="AKA-book_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="AKA-book_files/figure-html/unnamed-chunk-166-1.png" width="672" /></p>
+<p>Men også inntekt ser ut til å henge sammen med IQ, uavhengig av hvor mye utdannelse de har. I virkeligheten vil vi kanskje ikke se dette - vi har data på lengde på utdannelse og inntekt (vi har generert dataene her nettopp for å illustrere). Men i virkeligheten kan korrelasjonen vi kanskje faktisk ser og som vi viste i første diagrammet - korrelasjonen mellom lengde på utdanning og inntekt - altså være drevet av en underliggende, uobservert variabel og IKKE av en kausal sammenheng mellom lengde på utdanning og inntekt.</p>
+<p>For å mitigere dette problemet kommer instrumentet inn i bildet. I eksempelet fra <span class="citation">Masten (2015)</span> vises det til at avstand fra hjemadressen til nærmeste studiested (heretter: avstand) kan være et slikt instrument. Vi bygger videre på samme måte.</p>
+<p>Et instrument må altså kunne påvirke Y gjennom X (og ikke direkte), og være korrelert med X. I vårt eksempel betyr det at avstand må påvirke inntekt gjennom lengde på utdannelse, og avstand må være korrelert med lengde på utdannelse.</p>
+<p>Vi må derfor kunne se på X, Y og Z slik:</p>
+<p><img src="AKA-book_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
+<p>Lav avstand har sammenheng med lengre utdannelse. Forhold som trekkes fram for denne sammenhengen kan være større kjennskap til universitetet, lavere kostnad for bolig og reise, større påvirkning av eldre studenter i nærmiljøet gjennom oppveksten (og sikkert flere) - som i sum antyder at det kan være en kausal sammenheng mellom avstand og om folk studerer og hvor lenge. Altså en korrelasjon mellom Z og X (som vi sa var en forutsetning).</p>
+<p><img src="AKA-book_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
+<p>Sammenhengen mellom IQ og avstand er imidlertid tilfeldig. Vi antar det ikke er noen grunn til at IQ har sammenheng med avstand. Folk er født “her og der” med ulik IQ. Vi ser bort fra at det kanskje faktisk kan være en sammenheng… ved at universitets ansatte bor i nærheten av iuniversitete, og om IQ er arvelig kan man kanskje tenke seg at det bor flere unge med høyere IQ i nærheten av nuviersitetet enn lenger unna - vi går ikke inn i denne “problemstillingen” her, men legger til grunn at dataene våre viser at det ikke er slik. Om det faktisk er sånn at det er en sammenheng vil det gjøre det vanskelig å bruke avstand som et instrument.</p>
+<p>Den siste forutsetningen er at avstand ikke kan ha en <em>direkte kausal effekt</em> på inntekt. Dette virker rimelig, da det er vanskelig å se at arbeidsgivere har noe forhold til hvor langt unna et unviersitet folk har vokst opp, og at avstand dermed skulle kunne ha en kausal effekt på inntekt.</p>
+<p>Vi kan si at instrumentet “avstand” tilfredsstiller forutsetningene, og vi kan se på korrelasjonen mellom avstand og inntekt.</p>
+<p><img src="AKA-book_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
+<p>Vi ser at avstand og inntekt korrelerer. Vi kan dermed si at korrelasjonen mellom avstand og inntekt representerer en kausal effekt av lengde på utdanning og inntekt. Vi ser en kausal effekt mellom X og Y gjennom korrelasjonen mellom Z og Y.</p>
 
 </div>
 </div>
@@ -280,6 +368,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
