@@ -112,6 +112,15 @@ konklusjon-oppsummering-rapportering-av-resultater-2
 iv-regresjon
 innledning-1
 et-konstruert-eksempel-for-konseptualisering-av-iv-regresjon
+eksempel-1-med-data-fra-pakken-aer
+modell-1
+modell-2
+eksempel-2
+modell-1-standard-ols
+modell-2-iv-regresjon
+modell-3-ols-med-flere-prediktorer
+modell-4-iv-regresjon-med-flere-to-instrumenter
+test-av-relevansen-av-instrumentene
 logistisk-regresjon
 dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca
 innledning-2

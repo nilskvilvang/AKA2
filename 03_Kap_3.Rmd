@@ -3,7 +3,7 @@ bibliography: bibliografi.bib
 ---
 
 ```{r echo=FALSE}
-pacman::p_load(haven, tidyverse, readxl)
+pacman::p_load(haven, tidyverse, readxl, AER, lmtest)
 ```
 
 # IV regresjon
@@ -108,12 +108,109 @@ test6 + labs(y = "Inntekt", x = "Avstand") + theme(plot.title=element_text(hjust
 
 Vi ser at avstand og inntekt korrelerer. Vi kan dermed si at korrelasjonen mellom avstand og inntekt representerer en kausal effekt av lengde på utdanning og inntekt. Vi ser en kausal effekt mellom X og Y gjennom korrelasjonen mellom Z og Y. 
 
+## Eksempel 1 med data fra pakken "AER"
 
+I datasettet har vi en rekke variabler:
+```{r}
+data("CigarettesSW")
+summary(CigarettesSW)
+```
 
+Vi skal her se på sammenhengen mellom "packs" (= y -> antall sigarettpakker per capita)som avhengig variabel, "price" (= x -> gjennomsnittlig pris pr år inkl skatter og avgifter) som uavhengig variabel, og "taxs" (= z -> gjennomsnittlig skatt pr år) som instrumentvariabel.
 
+Forutsetningene er altså:
 
+1. z og x må være korrelerte: at pris og skatte-/avgiftsnivå korrelerer virker rimelig
+2. z må ikke påvirke y direkte: at skatte-/avgiftsnivået ikke i seg selv påvirker antall sigarettpakker som selges direkte virker rimelig, men at skatte-/avgiftsnivået påvirker antall sigarettpakker som selges gjennom prisnivåt virker også rimelig (dette er en forutsetning som alltid kan diskuteres, men for eksempelets skyld antar vi dette).
 
+```{r}
+cor(CigarettesSW$price, CigarettesSW$taxs)
+```
 
+### Modell 1
+
+```{r}
+model1 <- ivreg(log(packs) ~ log(price) | taxs, data = CigarettesSW)
+summary(model1)
+```
+
+Vi ser på koeffisientene at log(price) er signifikant, og at pris påvirker salget (antall sigarettpakker) negativt (negativ koeffisient). 
+
+### Modell 2
+
+Her legger vi inn en eksogen variabel - inntekt - altså en variabel hvis verdi er bestemt utenfor modellen for så å legges inn i modellen. Pris ser vi på som en endogen variabel, altså en variabel hvis verdi bestemmes i modellen. En tilfeldig endogen variabel i en modell korrelerer med feilleddet (som vi forsåvidt har beskrevet i begynnelsen av dette kapittelet), mens en eksogen variabel ikke er korrelert med feilleddet (hvilket er naturlig siden vi sier verdien er bestemt utenfor modellen). 
+
+```{r}
+model2 <- ivreg(log(packs) ~ log(price) + log(income) | log(income) + taxs, data = CigarettesSW)
+summary(model2)
+```
+
+Vi kan legge merke til at log(income) ikke er signifikant. 
+
+## Eksempel 2 
+
+Data for dette eksempelet er hentet fra @beckerECLR2021 ("Mroz.csv"). 
+```{r}
+Mrozdata <- read.csv(file = 'Mroz.csv', na.strings = ".")
+Mrozdata <- subset(Mrozdata, is.na(wage) == FALSE) 
+head(Mrozdata)
+```
+
+### Modell 1: Standard OLS
+
+Vi ønsker å kjøre en regresjon med kvinners lønn (lwage) som avhengig variabel og utdanning (educ) som uavhengig variabel. Eksempelet tar utgangspunkt i @wooldridgeIntroductoryEconometricsModern2016 (se kap. 15).
+
+```{r}
+IVregmod1 <- lm(lwage ~ educ, data = Mrozdata)
+summary(IVregmod1)
+```
+
+Vi ser at vi får et statistisk signifikant resultat og at et års lengre utdanning øker lønn med nesten 11 % (Esitmate = 0.1086). Vi kan imidlertid forvente at utdanning korrelerer med mange individuelle karakteristika hos et individ som er viktige for den personens lønn, men som ikke fanges opp av utdanningsvariabelen og derfor ikke fanges opp i denne modellen. I dette tilfellet, og for å følge eksempelet i @wooldridgeIntroductoryEconometricsModern2016 velger vi fars utdanning (fatheduc) som instrument (vi diskuterer ikke instrumentet og forutsetningene her).
+
+### Modell 2: IV regresjon
+
+```{r}
+IVregmod2 <- ivreg(lwage ~ educ | fatheduc, data = Mrozdata)
+print(summary(IVregmod2))
+```
+
+Vi kan se at "verdien" av et års ekstra utdanning nå kun er 5.9% økning, og signifikant p < 0.1.
+
+### Modell 3: OLS med flere prediktorer
+
+```{r}
+IVregmod3 <- lm(lwage ~ educ + age + exper + expersq, data = Mrozdata)
+summary(IVregmod3)
+```
+
+Estiemrt koeffisient for educ er nå 0.1075 med standardfeil 0.0141
+
+### Modell 4: IV regresjon med flere (to) instrumenter
+
+Vi legger til både fars og mors utdannelse som instrumenter:
+```{r}
+IVregmod4 <- ivreg(lwage ~ educ  +exper + expersq | fatheduc + motheduc + exper + expersq, data = Mrozdata)
+print(summary(IVregmod4))
+```
+
+fatheduc og motheduc er instrumentene, exper og expersq er eksogene uavhengige variabler.
+
+Også her ser vi en vesentlig reduksjon i estimatet for educ fra OLS til IV regresjon; fra 0.1075 med standardfeil 0.0141 til 0.0613 med standardfeil 0.0314. IV estiamtene vil ha større standardfeil enn OLS estimater. 
+
+### Test av relevansen av instrumentene
+
+Det er selvsagt avgjørende at instrumentet/-ene er relevante. Som beskrevet må instrumentene være tilstrekkelig sterkt korrelerte med den/de endogene uavhengige variablene. I dette eksempelet (modell 4) må altså fatheduc og motheduc forklare en tilstrekkelig del av variasjonen i educ for å kunne være relevant instrumenter. Dette kan vi gjøre gjennom en vanlig F-test:
+```{r}
+steg1 <- lm(educ ~ age + exper + expersq + fatheduc + motheduc, data = Mrozdata)
+
+instrumentF <- waldtest(steg1, .~. -fatheduc -motheduc)
+instrumentF
+```
+F-verdien er 54.943 med p < .001. Vi kan finne kritisk F-verdi:
+```{r}
+qf(0.05, df1 = 422, df2 = 424)
+```
+Vi kan klart forkaste nullhypotesen om at instrumentene er irrelevante. 
 
 
 

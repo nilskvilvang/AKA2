@@ -234,6 +234,19 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="2.1" data-path="iv-regresjon.html"><a href="iv-regresjon.html#innledning-1"><i class="fa fa-check"></i><b>2.1</b> Innledning</a></li>
 <li class="chapter" data-level="2.2" data-path="iv-regresjon.html"><a href="iv-regresjon.html#et-konstruert-eksempel-for-konseptualisering-av-iv-regresjon"><i class="fa fa-check"></i><b>2.2</b> Et konstruert eksempel for konseptualisering av IV-regresjon</a></li>
+<li class="chapter" data-level="2.3" data-path="iv-regresjon.html"><a href="iv-regresjon.html#eksempel-1-med-data-fra-pakken-aer"><i class="fa fa-check"></i><b>2.3</b> Eksempel 1 med data fra pakken “AER”</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="iv-regresjon.html"><a href="iv-regresjon.html#modell-1"><i class="fa fa-check"></i><b>2.3.1</b> Modell 1</a></li>
+<li class="chapter" data-level="2.3.2" data-path="iv-regresjon.html"><a href="iv-regresjon.html#modell-2"><i class="fa fa-check"></i><b>2.3.2</b> Modell 2</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="iv-regresjon.html"><a href="iv-regresjon.html#eksempel-2"><i class="fa fa-check"></i><b>2.4</b> Eksempel 2</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="iv-regresjon.html"><a href="iv-regresjon.html#modell-1-standard-ols"><i class="fa fa-check"></i><b>2.4.1</b> Modell 1: Standard OLS</a></li>
+<li class="chapter" data-level="2.4.2" data-path="iv-regresjon.html"><a href="iv-regresjon.html#modell-2-iv-regresjon"><i class="fa fa-check"></i><b>2.4.2</b> Modell 2: IV regresjon</a></li>
+<li class="chapter" data-level="2.4.3" data-path="iv-regresjon.html"><a href="iv-regresjon.html#modell-3-ols-med-flere-prediktorer"><i class="fa fa-check"></i><b>2.4.3</b> Modell 3: OLS med flere prediktorer</a></li>
+<li class="chapter" data-level="2.4.4" data-path="iv-regresjon.html"><a href="iv-regresjon.html#modell-4-iv-regresjon-med-flere-to-instrumenter"><i class="fa fa-check"></i><b>2.4.4</b> Modell 4: IV regresjon med flere (to) instrumenter</a></li>
+<li class="chapter" data-level="2.4.5" data-path="iv-regresjon.html"><a href="iv-regresjon.html#test-av-relevansen-av-instrumentene"><i class="fa fa-check"></i><b>2.4.5</b> Test av relevansen av instrumentene</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="logistisk-regresjon.html"><a href="logistisk-regresjon.html"><i class="fa fa-check"></i><b>3</b> Logistisk regresjon</a></li>
 <li class="chapter" data-level="4" data-path="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><a href="dimension-reduction-factor-analysis-fa-og-principal-component-analysis-pca.html"><i class="fa fa-check"></i><b>4</b> Dimension reduction: Factor Analysis (FA) og Principal Component Analysis (PCA)</a>
@@ -305,7 +318,242 @@ div.csl-indent {
 <p>Vi kan si at instrumentet “avstand” tilfredsstiller forutsetningene, og vi kan se på korrelasjonen mellom avstand og inntekt.</p>
 <p><img src="AKA-book_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
 <p>Vi ser at avstand og inntekt korrelerer. Vi kan dermed si at korrelasjonen mellom avstand og inntekt representerer en kausal effekt av lengde på utdanning og inntekt. Vi ser en kausal effekt mellom X og Y gjennom korrelasjonen mellom Z og Y.</p>
+</div>
+<div id="eksempel-1-med-data-fra-pakken-aer" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Eksempel 1 med data fra pakken “AER”<a href="iv-regresjon.html#eksempel-1-med-data-fra-pakken-aer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>I datasettet har vi en rekke variabler:</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="iv-regresjon.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;CigarettesSW&quot;</span>)</span>
+<span id="cb239-2"><a href="iv-regresjon.html#cb239-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(CigarettesSW)</span></code></pre></div>
+<pre><code>##      state      year         cpi          population           packs       
+##  AL     : 2   1985:48   Min.   :1.076   Min.   :  478447   Min.   : 49.27  
+##  AR     : 2   1995:48   1st Qu.:1.076   1st Qu.: 1622606   1st Qu.: 92.45  
+##  AZ     : 2             Median :1.300   Median : 3697472   Median :110.16  
+##  CA     : 2             Mean   :1.300   Mean   : 5168866   Mean   :109.18  
+##  CO     : 2             3rd Qu.:1.524   3rd Qu.: 5901500   3rd Qu.:123.52  
+##  CT     : 2             Max.   :1.524   Max.   :31493524   Max.   :197.99  
+##  (Other):84                                                                
+##      income               tax            price             taxs       
+##  Min.   :  6887097   Min.   :18.00   Min.   : 84.97   Min.   : 21.27  
+##  1st Qu.: 25520384   1st Qu.:31.00   1st Qu.:102.71   1st Qu.: 34.77  
+##  Median : 61661644   Median :37.00   Median :137.72   Median : 41.05  
+##  Mean   : 99878736   Mean   :42.68   Mean   :143.45   Mean   : 48.33  
+##  3rd Qu.:127313964   3rd Qu.:50.88   3rd Qu.:176.15   3rd Qu.: 59.48  
+##  Max.   :771470144   Max.   :99.00   Max.   :240.85   Max.   :112.63  
+## </code></pre>
+<p>Vi skal her se på sammenhengen mellom “packs” (= y -&gt; antall sigarettpakker per capita)som avhengig variabel, “price” (= x -&gt; gjennomsnittlig pris pr år inkl skatter og avgifter) som uavhengig variabel, og “taxs” (= z -&gt; gjennomsnittlig skatt pr år) som instrumentvariabel.</p>
+<p>Forutsetningene er altså:</p>
+<ol style="list-style-type: decimal">
+<li>z og x må være korrelerte: at pris og skatte-/avgiftsnivå korrelerer virker rimelig</li>
+<li>z må ikke påvirke y direkte: at skatte-/avgiftsnivået ikke i seg selv påvirker antall sigarettpakker som selges direkte virker rimelig, men at skatte-/avgiftsnivået påvirker antall sigarettpakker som selges gjennom prisnivåt virker også rimelig (dette er en forutsetning som alltid kan diskuteres, men for eksempelets skyld antar vi dette).</li>
+</ol>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="iv-regresjon.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(CigarettesSW<span class="sc">$</span>price, CigarettesSW<span class="sc">$</span>taxs)</span></code></pre></div>
+<pre><code>## [1] 0.9203278</code></pre>
+<div id="modell-1" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Modell 1<a href="iv-regresjon.html#modell-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="iv-regresjon.html#cb243-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">ivreg</span>(<span class="fu">log</span>(packs) <span class="sc">~</span> <span class="fu">log</span>(price) <span class="sc">|</span> taxs, <span class="at">data =</span> CigarettesSW)</span>
+<span id="cb243-2"><a href="iv-regresjon.html#cb243-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## ivreg(formula = log(packs) ~ log(price) | taxs, data = CigarettesSW)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.597468 -0.105477 -0.008609  0.101021  0.525352 
+## 
+## Coefficients:
+##             Estimate Std. Error t value             Pr(&gt;|t|)    
+## (Intercept)  7.66548    0.34514  22.210 &lt; 0.0000000000000002 ***
+## log(price)  -0.60993    0.07004  -8.708    0.000000000000103 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.1845 on 94 degrees of freedom
+## Multiple R-Squared: 0.4324,  Adjusted R-squared: 0.4264 
+## Wald test: 75.83 on 1 and 94 DF,  p-value: 0.0000000000001025</code></pre>
+<p>Vi ser på koeffisientene at log(price) er signifikant, og at pris påvirker salget (antall sigarettpakker) negativt (negativ koeffisient).</p>
+</div>
+<div id="modell-2" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Modell 2<a href="iv-regresjon.html#modell-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Her legger vi inn en eksogen variabel - inntekt - altså en variabel hvis verdi er bestemt utenfor modellen for så å legges inn i modellen. Pris ser vi på som en endogen variabel, altså en variabel hvis verdi bestemmes i modellen. En tilfeldig endogen variabel i en modell korrelerer med feilleddet (som vi forsåvidt har beskrevet i begynnelsen av dette kapittelet), mens en eksogen variabel ikke er korrelert med feilleddet (hvilket er naturlig siden vi sier verdien er bestemt utenfor modellen).</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="iv-regresjon.html#cb245-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">ivreg</span>(<span class="fu">log</span>(packs) <span class="sc">~</span> <span class="fu">log</span>(price) <span class="sc">+</span> <span class="fu">log</span>(income) <span class="sc">|</span> <span class="fu">log</span>(income) <span class="sc">+</span> taxs, <span class="at">data =</span> CigarettesSW)</span>
+<span id="cb245-2"><a href="iv-regresjon.html#cb245-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## ivreg(formula = log(packs) ~ log(price) + log(income) | log(income) + 
+##     taxs, data = CigarettesSW)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.599938 -0.104454 -0.007223  0.101973  0.525855 
+## 
+## Coefficients:
+##              Estimate Std. Error t value             Pr(&gt;|t|)    
+## (Intercept)  7.698702   0.399560  19.268 &lt; 0.0000000000000002 ***
+## log(price)  -0.605735   0.075878  -7.983     0.00000000000368 ***
+## log(income) -0.003015   0.018990  -0.159                0.874    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.1853 on 93 degrees of freedom
+## Multiple R-Squared: 0.4335,  Adjusted R-squared: 0.4214 
+## Wald test: 37.67 on 2 and 93 DF,  p-value: 0.000000000001038</code></pre>
+<p>Vi kan legge merke til at log(income) ikke er signifikant.</p>
+</div>
+</div>
+<div id="eksempel-2" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Eksempel 2<a href="iv-regresjon.html#eksempel-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Data for dette eksempelet er hentet fra <span class="citation">Becker &amp; Lincoln (2021)</span> (“Mroz.csv”).</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="iv-regresjon.html#cb247-1" aria-hidden="true" tabindex="-1"></a>Mrozdata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">&#39;Mroz.csv&#39;</span>, <span class="at">na.strings =</span> <span class="st">&quot;.&quot;</span>)</span>
+<span id="cb247-2"><a href="iv-regresjon.html#cb247-2" aria-hidden="true" tabindex="-1"></a>Mrozdata <span class="ot">&lt;-</span> <span class="fu">subset</span>(Mrozdata, <span class="fu">is.na</span>(wage) <span class="sc">==</span> <span class="cn">FALSE</span>) </span>
+<span id="cb247-3"><a href="iv-regresjon.html#cb247-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Mrozdata)</span></code></pre></div>
+<pre><code>##   inlf hours kidslt6 kidsge6 age educ   wage repwage hushrs husage huseduc
+## 1    1  1610       1       0  32   12 3.3540    2.65   2708     34      12
+## 2    1  1656       0       2  30   12 1.3889    2.65   2310     30       9
+## 3    1  1980       1       3  35   12 4.5455    4.04   3072     40      12
+## 4    1   456       0       3  34   12 1.0965    3.25   1920     53      10
+## 5    1  1568       1       2  31   14 4.5918    3.60   2000     32      12
+## 6    1  2032       0       0  54   12 4.7421    4.70   1040     57      11
+##   huswage faminc    mtr motheduc fatheduc unem city exper  nwifeinc     lwage
+## 1  4.0288  16310 0.7215       12        7  5.0    0    14 10.910060 1.2101540
+## 2  8.4416  21800 0.6615        7        7 11.0    1     5 19.499980 0.3285121
+## 3  3.5807  21040 0.6915       12        7  5.0    0    15 12.039910 1.5141380
+## 4  3.5417   7300 0.7815        7        7  5.0    0     6  6.799996 0.0921233
+## 5 10.0000  27300 0.6215       12       14  9.5    1     7 20.100060 1.5242720
+## 6  6.7106  19495 0.6915       14        7  7.5    1    33  9.859054 1.5564800
+##   expersq
+## 1     196
+## 2      25
+## 3     225
+## 4      36
+## 5      49
+## 6    1089</code></pre>
+<div id="modell-1-standard-ols" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Modell 1: Standard OLS<a href="iv-regresjon.html#modell-1-standard-ols" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Vi ønsker å kjøre en regresjon med kvinners lønn (lwage) som avhengig variabel og utdanning (educ) som uavhengig variabel. Eksempelet tar utgangspunkt i <span class="citation">Wooldridge (2016)</span> (se kap. 15).</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="iv-regresjon.html#cb249-1" aria-hidden="true" tabindex="-1"></a>IVregmod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(lwage <span class="sc">~</span> educ, <span class="at">data =</span> Mrozdata)</span>
+<span id="cb249-2"><a href="iv-regresjon.html#cb249-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(IVregmod1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = lwage ~ educ, data = Mrozdata)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -3.10256 -0.31473  0.06434  0.40081  2.10029 
+## 
+## Coefficients:
+##             Estimate Std. Error t value          Pr(&gt;|t|)    
+## (Intercept)  -0.1852     0.1852  -1.000             0.318    
+## educ          0.1086     0.0144   7.545 0.000000000000276 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.68 on 426 degrees of freedom
+## Multiple R-squared:  0.1179, Adjusted R-squared:  0.1158 
+## F-statistic: 56.93 on 1 and 426 DF,  p-value: 0.0000000000002761</code></pre>
+<p>Vi ser at vi får et statistisk signifikant resultat og at et års lengre utdanning øker lønn med nesten 11 % (Esitmate = 0.1086). Vi kan imidlertid forvente at utdanning korrelerer med mange individuelle karakteristika hos et individ som er viktige for den personens lønn, men som ikke fanges opp av utdanningsvariabelen og derfor ikke fanges opp i denne modellen. I dette tilfellet, og for å følge eksempelet i <span class="citation">Wooldridge (2016)</span> velger vi fars utdanning (fatheduc) som instrument (vi diskuterer ikke instrumentet og forutsetningene her).</p>
+</div>
+<div id="modell-2-iv-regresjon" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Modell 2: IV regresjon<a href="iv-regresjon.html#modell-2-iv-regresjon" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="iv-regresjon.html#cb251-1" aria-hidden="true" tabindex="-1"></a>IVregmod2 <span class="ot">&lt;-</span> <span class="fu">ivreg</span>(lwage <span class="sc">~</span> educ <span class="sc">|</span> fatheduc, <span class="at">data =</span> Mrozdata)</span>
+<span id="cb251-2"><a href="iv-regresjon.html#cb251-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">summary</span>(IVregmod2))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## ivreg(formula = lwage ~ educ | fatheduc, data = Mrozdata)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.0870 -0.3393  0.0525  0.4042  2.0677 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept)  0.44110    0.44610   0.989   0.3233  
+## educ         0.05917    0.03514   1.684   0.0929 .
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.6894 on 426 degrees of freedom
+## Multiple R-Squared: 0.09344, Adjusted R-squared: 0.09131 
+## Wald test: 2.835 on 1 and 426 DF,  p-value: 0.09294</code></pre>
+<p>Vi kan se at “verdien” av et års ekstra utdanning nå kun er 5.9% økning, og signifikant p &lt; 0.1.</p>
+</div>
+<div id="modell-3-ols-med-flere-prediktorer" class="section level3 hasAnchor" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> Modell 3: OLS med flere prediktorer<a href="iv-regresjon.html#modell-3-ols-med-flere-prediktorer" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="iv-regresjon.html#cb253-1" aria-hidden="true" tabindex="-1"></a>IVregmod3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(lwage <span class="sc">~</span> educ <span class="sc">+</span> age <span class="sc">+</span> exper <span class="sc">+</span> expersq, <span class="at">data =</span> Mrozdata)</span>
+<span id="cb253-2"><a href="iv-regresjon.html#cb253-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(IVregmod3)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = lwage ~ educ + age + exper + expersq, data = Mrozdata)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -3.08521 -0.30587  0.04946  0.37523  2.37077 
+## 
+## Coefficients:
+##               Estimate Std. Error t value          Pr(&gt;|t|)    
+## (Intercept) -0.5333762  0.2778430  -1.920           0.05557 .  
+## educ         0.1075228  0.0141745   7.586 0.000000000000212 ***
+## age          0.0002836  0.0048553   0.058           0.95344    
+## exper        0.0415623  0.0131909   3.151           0.00174 ** 
+## expersq     -0.0008152  0.0003996  -2.040           0.04195 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.6672 on 423 degrees of freedom
+## Multiple R-squared:  0.1568, Adjusted R-squared:  0.1489 
+## F-statistic: 19.67 on 4 and 423 DF,  p-value: 0.000000000000007328</code></pre>
+<p>Estiemrt koeffisient for educ er nå 0.1075 med standardfeil 0.0141</p>
+</div>
+<div id="modell-4-iv-regresjon-med-flere-to-instrumenter" class="section level3 hasAnchor" number="2.4.4">
+<h3><span class="header-section-number">2.4.4</span> Modell 4: IV regresjon med flere (to) instrumenter<a href="iv-regresjon.html#modell-4-iv-regresjon-med-flere-to-instrumenter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Vi legger til både fars og mors utdannelse som instrumenter:</p>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="iv-regresjon.html#cb255-1" aria-hidden="true" tabindex="-1"></a>IVregmod4 <span class="ot">&lt;-</span> <span class="fu">ivreg</span>(lwage <span class="sc">~</span> educ  <span class="sc">+</span>exper <span class="sc">+</span> expersq <span class="sc">|</span> fatheduc <span class="sc">+</span> motheduc <span class="sc">+</span> exper <span class="sc">+</span> expersq, <span class="at">data =</span> Mrozdata)</span>
+<span id="cb255-2"><a href="iv-regresjon.html#cb255-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">summary</span>(IVregmod4))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## ivreg(formula = lwage ~ educ + exper + expersq | fatheduc + motheduc + 
+##     exper + expersq, data = Mrozdata)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.0986 -0.3196  0.0551  0.3689  2.3493 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept)  0.0481003  0.4003281   0.120  0.90442   
+## educ         0.0613966  0.0314367   1.953  0.05147 . 
+## exper        0.0441704  0.0134325   3.288  0.00109 **
+## expersq     -0.0008990  0.0004017  -2.238  0.02574 * 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.6747 on 424 degrees of freedom
+## Multiple R-Squared: 0.1357,  Adjusted R-squared: 0.1296 
+## Wald test: 8.141 on 3 and 424 DF,  p-value: 0.00002787</code></pre>
+<p>fatheduc og motheduc er instrumentene, exper og expersq er eksogene uavhengige variabler.</p>
+<p>Også her ser vi en vesentlig reduksjon i estimatet for educ fra OLS til IV regresjon; fra 0.1075 med standardfeil 0.0141 til 0.0613 med standardfeil 0.0314. IV estiamtene vil ha større standardfeil enn OLS estimater.</p>
+</div>
+<div id="test-av-relevansen-av-instrumentene" class="section level3 hasAnchor" number="2.4.5">
+<h3><span class="header-section-number">2.4.5</span> Test av relevansen av instrumentene<a href="iv-regresjon.html#test-av-relevansen-av-instrumentene" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Det er selvsagt avgjørende at instrumentet/-ene er relevante. Som beskrevet må instrumentene være tilstrekkelig sterkt korrelerte med den/de endogene uavhengige variablene. I dette eksempelet (modell 4) må altså fatheduc og motheduc forklare en tilstrekkelig del av variasjonen i educ for å kunne være relevant instrumenter. Dette kan vi gjøre gjennom en vanlig F-test:</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="iv-regresjon.html#cb257-1" aria-hidden="true" tabindex="-1"></a>steg1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(educ <span class="sc">~</span> age <span class="sc">+</span> exper <span class="sc">+</span> expersq <span class="sc">+</span> fatheduc <span class="sc">+</span> motheduc, <span class="at">data =</span> Mrozdata)</span>
+<span id="cb257-2"><a href="iv-regresjon.html#cb257-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb257-3"><a href="iv-regresjon.html#cb257-3" aria-hidden="true" tabindex="-1"></a>instrumentF <span class="ot">&lt;-</span> <span class="fu">waldtest</span>(steg1, .<span class="sc">~</span>. <span class="sc">-</span>fatheduc <span class="sc">-</span>motheduc)</span>
+<span id="cb257-4"><a href="iv-regresjon.html#cb257-4" aria-hidden="true" tabindex="-1"></a>instrumentF</span></code></pre></div>
+<pre><code>## Wald test
+## 
+## Model 1: educ ~ age + exper + expersq + fatheduc + motheduc
+## Model 2: educ ~ age + exper + expersq
+##   Res.Df Df      F                Pr(&gt;F)    
+## 1    422                                    
+## 2    424 -2 54.943 &lt; 0.00000000000000022 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>F-verdien er 54.943 med p &lt; .001. Vi kan finne kritisk F-verdi:</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="iv-regresjon.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qf</span>(<span class="fl">0.05</span>, <span class="at">df1 =</span> <span class="dv">422</span>, <span class="at">df2 =</span> <span class="dv">424</span>)</span></code></pre></div>
+<pre><code>## [1] 0.8520168</code></pre>
+<p>Vi kan klart forkaste nullhypotesen om at instrumentene er irrelevante.</p>
 
+</div>
 </div>
 </div>
             </section>
